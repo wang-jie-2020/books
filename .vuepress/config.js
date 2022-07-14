@@ -1,7 +1,7 @@
 module.exports = {
     title: '📖Documents',
     description: 'hello world',
-    //base: '/',
+    base: '',
     host: '127.0.0.1',
     port: '8080',
     head: [
@@ -97,4 +97,43 @@ module.exports = {
     markdown: {
         lineNumbers: true
     },
+    themeConfig: {
+        //repo: 'meowv/docs',
+        //repoLabel: '⭐️GitHub',
+        //docsRepo: 'meowv/docs',
+        docsDir: '/',
+        editLinks: true,
+        editLinkText: '在 GitHub 上编辑此页',
+        lastUpdated: '上次更新',
+        sidebarDepth: 2,
+        smoothScroll: true,
+        nav: [
+            {
+                text: '⚡Forks',
+                items: [
+                    {
+                        text: '🚀funtl',
+                        link: '/docs-funtl/'
+                    },
+                    {
+                        text: '👍funtl',
+                        link: '/docs-meowv/'
+                    }
+                ]
+            },
+            {
+                text: '🍺技术栈',
+                link: '/docs/'
+            },
+            {
+                text: '👍github',
+                items: [
+                    {
+                        text: 'github.com',
+                        link: 'https://github.com/wang-jie-2020/docs'
+                    }
+                ]
+            }
+        ]
+    }
 }
