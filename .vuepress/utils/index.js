@@ -173,10 +173,11 @@ const sideBarTool = {
         // 准备接收
         let sidebars = []
         let allDirs = filehelper.getAllDirs(RootPath, unDirIncludes)
+
         allDirs.forEach((item) => {
             let children = filehelper.getAllFiles(item, unDirIncludes, SuffixIncludes)
             let dirname = item.replace(RootPath, "")
-            let titleTemp = item.replace(RootPath + '\\view', "")
+            let titleTemp = item.replace(RootPath, "")
             title = titleTemp.replace(/\\/g, '')
             if (children.length > 1) {
                 children = children.flatMap((vo, idx) => [[dirname.replace(/\\/g, '/') + vo, vo]])
@@ -189,8 +190,50 @@ const sideBarTool = {
             }
             sidebars.push(Obj)
         })
-        console.log(RootPath);
-        console.log(sidebars);
+
+        return sidebars
+    },
+
+    genSideBarGroupRecursion: function (rootPath, unDirIncludes, SuffixIncludes) {
+        let sidebars = []
+        let allDirs = fs.readdirSync(rootPath)
+
+        console.log('=====================')
+        console.log('rootPath', rootPath)
+
+        allDirs.map(item => {
+            let filedir = PATH.join(rootPath, item)
+            let fileInfo = fs.statSync(filedir)
+            let filename = ''
+
+            if (fileInfo.isDirectory() && !item.startsWith(".") && !unDirIncludes.includes(item)) {
+                var children = genSideBarGroupRecursion(path.join(rootPath, item), unDirIncludes, SuffixIncludes);
+
+                let folder = {
+                    title: item,
+                    children: children
+                }
+                sidebars.push(folder)
+            }
+            else if (fileInfo.isFile()) {
+                if (SuffixIncludes.includes(item.split('.')[1])) {
+                    if (item === 'readme.md' || item === 'README.md') {
+                        filename = ''
+                    } else {
+                        filename = item.replace('.md', '').replace('.html', '')
+                    }
+
+                    sidebars.push(filename)
+                }
+            }
+        })
+
+        console.log('=====')
+        console.log(sidebars[0])
+        console.log(sidebars[1])
+        console.log(sidebars[2])
+
+
         return sidebars
     }
 }

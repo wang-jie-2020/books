@@ -5,12 +5,12 @@ const rootPath = path.dirname(__dirname)
 const { sideBarTool } = require(path.join(__dirname, './utils/index.js'))
 
 // 需要排除的一些目录
-let unDirIncludes = ['node_modules', 'assets', 'public']
+let unDirIncludes = ['node_modules', 'assets', 'public', 'images']
 // 只需要处理后缀的文件类型
 let SuffixIncludes = ['md', 'html']
 
 //使用方法生生成侧边栏
-let sidebar = sideBarTool.genSideBarGroup(rootPath, unDirIncludes, SuffixIncludes, {})
+//let sidebar = sideBarTool.genSideBarGroup(rootPath, unDirIncludes, SuffixIncludes, {})
 
 module.exports = {
     title: '📖Documents',
@@ -119,7 +119,7 @@ module.exports = {
         editLinks: true,
         editLinkText: '在 GitHub 上编辑此页',
         lastUpdated: '上次更新',
-        sidebarDepth: 2,
+        sidebarDepth: 1,
         smoothScroll: true,
         nav: [
             {
@@ -131,7 +131,7 @@ module.exports = {
                 items: [
                     {
                         text: 'funtl',
-                        link: '/docs-funtl/'
+                        link: '/docs-funtl/index.html'
                     },
                     {
                         text: 'meowv',
@@ -150,8 +150,23 @@ module.exports = {
             }
         ],
         sidebar: {
-            '/docs/': sideBarTool.genSideBarGroup(path.join(rootPath, '/docs/'), unDirIncludes, SuffixIncludes, {}),
-            '/docs-funtl/': sideBarTool.genSideBarGroup(path.join(rootPath, '/docs-funtl/'), unDirIncludes, SuffixIncludes, {}),
+            // '/docs/': sideBarTool.genSideBarGroupRecursion(path.join(rootPath, 'docs'), unDirIncludes, SuffixIncludes, {}),
+            // [
+            //     ['a'],
+            //     {
+            //         title: 'nanoService',
+            //         children: [
+            //             {
+            //                 title: 'gate',
+            //                 children: [
+            //                     'nanoService/gate/c'
+            //                 ]
+            //             },
+            //             ['nanoService/b','']
+            //         ]
+            //     }
+            // ],
+            '/docs-funtl/': '',
             '/docs-meowv/': [
                 {
                     title: '.NET Core',
