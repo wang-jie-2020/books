@@ -198,10 +198,6 @@ const sideBarTool = {
         let sidebars = []
         let routergen = docPath.replace(rootPath, '').replace(/\\/g, '/')
 
-        console.log('rootPath', rootPath)
-        console.log('docPath', docPath)
-        console.log('routergen', routergen)
-
         fs.readdirSync(docPath).map(item => {
             let filedir = PATH.join(docPath, item)
             let fileInfo = fs.statSync(filedir)
@@ -227,12 +223,6 @@ const sideBarTool = {
                 }
             }
         })
-
-        console.log('=====')
-        console.log(sidebars[0])
-        console.log(sidebars[1])
-        console.log(sidebars[2])
-
 
         return sidebars
     }
