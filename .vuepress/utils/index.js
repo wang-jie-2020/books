@@ -194,20 +194,21 @@ const sideBarTool = {
         return sidebars
     },
 
-    genSideBarGroupRecursion: function (rootPath, unDirIncludes, SuffixIncludes) {
+    genSideBarGroupRecursion: function genSideBarGroupRecursion(rootPath, docPath, unDirIncludes, SuffixIncludes) {
         let sidebars = []
-        let allDirs = fs.readdirSync(rootPath)
+        let routergen = docPath.replace(rootPath, '').replace(/\\/g, '/')
 
-        console.log('=====================')
         console.log('rootPath', rootPath)
+        console.log('docPath', docPath)
+        console.log('routergen', routergen)
 
-        allDirs.map(item => {
-            let filedir = PATH.join(rootPath, item)
+        fs.readdirSync(docPath).map(item => {
+            let filedir = PATH.join(docPath, item)
             let fileInfo = fs.statSync(filedir)
             let filename = ''
 
             if (fileInfo.isDirectory() && !item.startsWith(".") && !unDirIncludes.includes(item)) {
-                var children = genSideBarGroupRecursion(path.join(rootPath, item), unDirIncludes, SuffixIncludes);
+                let children = genSideBarGroupRecursion(rootPath, PATH.join(docPath, item), unDirIncludes, SuffixIncludes)
 
                 let folder = {
                     title: item,
@@ -221,9 +222,8 @@ const sideBarTool = {
                         filename = ''
                     } else {
                         filename = item.replace('.md', '').replace('.html', '')
+                        sidebars.push([PATH.join(routergen, filename).replace(/\\/g, '/'), filename])
                     }
-
-                    sidebars.push(filename)
                 }
             }
         })

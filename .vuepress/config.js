@@ -5,17 +5,18 @@ const rootPath = path.dirname(__dirname)
 const { sideBarTool } = require(path.join(__dirname, './utils/index.js'))
 
 // 需要排除的一些目录
-let unDirIncludes = ['node_modules', 'assets', 'public', 'images']
+let unDirIncludes = ['node_modules', 'assets', 'public', 'images', 'media']
 // 只需要处理后缀的文件类型
 let SuffixIncludes = ['md', 'html']
 
 //使用方法生生成侧边栏
-//let sidebar = sideBarTool.genSideBarGroup(rootPath, unDirIncludes, SuffixIncludes, {})
+
+let sidebar = sideBarTool.genSideBarGroupRecursion(path.join(rootPath, 'docs/'), path.join(rootPath, 'docs/'), unDirIncludes, SuffixIncludes, {})
 
 module.exports = {
     title: '📖Documents',
     description: 'hello world',
-    base: '',
+    base: '/',
     host: '127.0.0.1',
     port: '8080',
     head: [
@@ -80,7 +81,7 @@ module.exports = {
                 margin: 16
             }
         },
-        [
+        //[
             // 评论
             // '@vssue/vuepress-plugin-vssue', {
             //     platform: 'github',
@@ -89,7 +90,7 @@ module.exports = {
             //     clientId: 'dfcb3e4078504d07ccbf',
             //     clientSecret: 'f182d64e6d5063e0b137c0d039d4a99a5cebda00',
             // }
-        ],
+        //],
         [
             "vuepress-plugin-code-copy", {
                 align: "top",
@@ -150,22 +151,23 @@ module.exports = {
             }
         ],
         sidebar: {
-            // '/docs/': sideBarTool.genSideBarGroupRecursion(path.join(rootPath, 'docs'), unDirIncludes, SuffixIncludes, {}),
-            // [
-            //     ['a'],
-            //     {
-            //         title: 'nanoService',
-            //         children: [
-            //             {
-            //                 title: 'gate',
-            //                 children: [
-            //                     'nanoService/gate/c'
-            //                 ]
-            //             },
-            //             ['nanoService/b','']
-            //         ]
-            //     }
-            // ],
+            '/docs/': sidebar,
+            // '/docs/':
+            //     [
+            //         ['a'],
+            //         {
+            //             title: 'nanoService',
+            //             children: [
+            //                 {
+            //                     title: 'gate',
+            //                     children: [
+            //                         'nanoService/gate/c'
+            //                     ]
+            //                 },
+            //                 ['nanoService/b','']
+            //             ]
+            //         }
+            //     ],
             '/docs-funtl/': '',
             '/docs-meowv/': [
                 {
