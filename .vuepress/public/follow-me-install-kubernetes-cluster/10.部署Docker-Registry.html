@@ -1,0 +1,1029 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-cn" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>10.部署Docker-Registry · 和我一步步部署kubernetes集群</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-tags/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="11.部署Harbor-Registry.html" />
+    
+    
+    <link rel="prev" href="09-4.EFK插件.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">和我一步步部署 kubernetes 集群</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="00.组件版本和配置策略.html">
+            
+                <a href="00.组件版本和配置策略.html">
+            
+                    
+                    00.组件版本和配置策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01.系统初始化和全局变量.html">
+            
+                <a href="01.系统初始化和全局变量.html">
+            
+                    
+                    01.系统初始化和全局变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02.创建CA证书和秘钥.html">
+            
+                <a href="02.创建CA证书和秘钥.html">
+            
+                    
+                    02.创建CA证书和秘钥
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="03.部署kubectl命令行工具.html">
+            
+                <a href="03.部署kubectl命令行工具.html">
+            
+                    
+                    03.部署kubectl命令行工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="04.部署etcd集群.html">
+            
+                <a href="04.部署etcd集群.html">
+            
+                    
+                    04.部署etcd集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="05.部署flannel网络.html">
+            
+                <a href="05.部署flannel网络.html">
+            
+                    
+                    05.部署flannel网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="06-0.apiserver高可用之nginx代理.html">
+            
+                <a href="06-0.apiserver高可用之nginx代理.html">
+            
+                    
+                    06.apiserver高可用之nginx代理.md
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="06-1.部署master节点.html">
+            
+                <a href="06-1.部署master节点.html">
+            
+                    
+                    06-1.部署master节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="06-2.apiserver集群.html">
+            
+                <a href="06-2.apiserver集群.html">
+            
+                    
+                    06-2.apiserver集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="06-3.controller-manager集群.html">
+            
+                <a href="06-3.controller-manager集群.html">
+            
+                    
+                    06-3.controller-manager集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="06-4.scheduler集群.html">
+            
+                <a href="06-4.scheduler集群.html">
+            
+                    
+                    06-4.scheduler集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="07-0.部署worker节点.html">
+            
+                <a href="07-0.部署worker节点.html">
+            
+                    
+                    07.部署worker节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="07-1.docker.html">
+            
+                <a href="07-1.docker.html">
+            
+                    
+                    07-1.docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="07-2.kubelet.html">
+            
+                <a href="07-2.kubelet.html">
+            
+                    
+                    07-2.kubelet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="07-3.kube-proxy.html">
+            
+                <a href="07-3.kube-proxy.html">
+            
+                    
+                    07-3.kube-proxy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="08.验证集群功能.html">
+            
+                <a href="08.验证集群功能.html">
+            
+                    
+                    08.验证集群功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="09-0.部署集群插件.html">
+            
+                <a href="09-0.部署集群插件.html">
+            
+                    
+                    09.部署集群插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="09-1.dns插件.html">
+            
+                <a href="09-1.dns插件.html">
+            
+                    
+                    09-1.dns插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="09-2.dashboard插件.html">
+            
+                <a href="09-2.dashboard插件.html">
+            
+                    
+                    09-2.dashboard插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="09-3.metrics-server插件.html">
+            
+                <a href="09-3.metrics-server插件.html">
+            
+                    
+                    09-3.metrics-server插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="09-4.EFK插件.html">
+            
+                <a href="09-4.EFK插件.html">
+            
+                    
+                    09-4.EFK插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.13" data-path="10.部署Docker-Registry.html">
+            
+                <a href="10.部署Docker-Registry.html">
+            
+                    
+                    10.部署Docker-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="11.部署Harbor-Registry.html">
+            
+                <a href="11.部署Harbor-Registry.html">
+            
+                    
+                    11.部署Harbor-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="12.清理集群.html">
+            
+                <a href="12.清理集群.html">
+            
+                    
+                    12.清理集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="A.浏览器访问kube-apiserver安全端口.html">
+            
+                <a href="A.浏览器访问kube-apiserver安全端口.html">
+            
+                    
+                    A.浏览器访问apiserver安全端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="B.校验TLS证书.html">
+            
+                <a href="B.校验TLS证书.html">
+            
+                    
+                    B.校验TLS证书
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">标签集合</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="tags.html">
+            
+                <a href="tags.html">
+            
+                    
+                    标签
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本書使用 GitBook 釋出
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >10.部署Docker-Registry</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="10&#x90E8;&#x7F72;&#x79C1;&#x6709;-docker-registry"><a name="10&#x90E8;&#x7F72;&#x79C1;&#x6709;-docker-registry" class="plugin-anchor" href="#10&#x90E8;&#x7F72;&#x79C1;&#x6709;-docker-registry"><i class="fa fa-link" aria-hidden="true"></i></a>10.&#x90E8;&#x7F72;&#x79C1;&#x6709; docker registry</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#10&#x90E8;&#x7F72;&#x79C1;&#x6709;-docker-registry">10.&#x90E8;&#x7F72;&#x79C1;&#x6709; docker registry</a><ul>
+<li><a href="#&#x90E8;&#x7F72;-ceph-rgw-&#x8282;&#x70B9;">&#x90E8;&#x7F72; ceph RGW &#x8282;&#x70B9;</a></li>
+<li><a href="#&#x521B;&#x5EFA;&#x6D4B;&#x8BD5;&#x8D26;&#x53F7;-demo">&#x521B;&#x5EFA;&#x6D4B;&#x8BD5;&#x8D26;&#x53F7; demo</a></li>
+<li><a href="#&#x521B;&#x5EFA;-demo-&#x8D26;&#x53F7;&#x7684;&#x5B50;&#x8D26;&#x53F7;-swift">&#x521B;&#x5EFA; demo &#x8D26;&#x53F7;&#x7684;&#x5B50;&#x8D26;&#x53F7; swift</a></li>
+<li><a href="#&#x521B;&#x5EFA;-demoswift-&#x5B50;&#x8D26;&#x53F7;&#x7684;-sercret-key">&#x521B;&#x5EFA; demo:swift &#x5B50;&#x8D26;&#x53F7;&#x7684; sercret key</a></li>
+<li><a href="#&#x521B;&#x5EFA;-docker-registry">&#x521B;&#x5EFA; docker registry</a></li>
+<li><a href="#&#x5411;-registry-push-image">&#x5411; registry push image</a></li>
+<li><a href="#&#x79C1;&#x6709;-registry-&#x7684;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;">&#x79C1;&#x6709; registry &#x7684;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;</a><ul>
+<li><a href="#&#x67E5;&#x8BE2;&#x79C1;&#x6709;&#x955C;&#x50CF;&#x4E2D;&#x7684;-images">&#x67E5;&#x8BE2;&#x79C1;&#x6709;&#x955C;&#x50CF;&#x4E2D;&#x7684; images</a></li>
+<li><a href="#&#x67E5;&#x8BE2;&#x67D0;&#x4E2A;&#x955C;&#x50CF;&#x7684;-tags-&#x5217;&#x8868;">&#x67E5;&#x8BE2;&#x67D0;&#x4E2A;&#x955C;&#x50CF;&#x7684; tags &#x5217;&#x8868;</a></li>
+<li><a href="#&#x83B7;&#x53D6;-image-&#x6216;-layer-&#x7684;-digest">&#x83B7;&#x53D6; image &#x6216; layer &#x7684; digest</a></li>
+<li><a href="#&#x5220;&#x9664;-image">&#x5220;&#x9664; image</a></li>
+<li><a href="#&#x5220;&#x9664;-layer">&#x5220;&#x9664; layer</a></li>
+</ul>
+</li>
+<li><a href="#&#x5E38;&#x89C1;&#x95EE;&#x9898;">&#x5E38;&#x89C1;&#x95EE;&#x9898;</a><ul>
+<li><a href="#login-&#x5931;&#x8D25;-416">login &#x5931;&#x8D25; 416</a></li>
+<li><a href="#login-&#x5931;&#x8D25;-503">login &#x5931;&#x8D25; 503</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x672C;&#x6587;&#x6863;&#x4ECB;&#x7ECD;&#x4F7F;&#x7528; docker &#x5B98;&#x65B9;&#x7684; registry v2 &#x955C;&#x50CF;&#x90E8;&#x7F72;&#x79C1;&#x6709;&#x4ED3;&#x5E93;&#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x90E8;&#x7F72; Harbor &#x79C1;&#x6709;&#x4ED3;&#x5E93;&#xFF08;<a href="13-&#x90E8;&#x7F72;harbor&#x79C1;&#x6709;&#x4ED3;&#x5E93;.md">&#x90E8;&#x7F72; Harbor &#x79C1;&#x6709;&#x4ED3;&#x5E93;</a>&#xFF09;&#x3002; </p>
+<p>&#x672C;&#x6587;&#x6863;&#x8BB2;&#x89E3;&#x90E8;&#x7F72;&#x4E00;&#x4E2A; TLS &#x52A0;&#x5BC6;&#x3001;HTTP Basic &#x8BA4;&#x8BC1;&#x3001;&#x7528; ceph rgw &#x505A;&#x540E;&#x7AEF;&#x5B58;&#x50A8;&#x7684;&#x79C1;&#x6709; docker registry &#x6B65;&#x9AA4;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x5176;&#x5B83;&#x7C7B;&#x578B;&#x7684;&#x540E;&#x7AEF;&#x5B58;&#x50A8;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x4ECE; &#x201C;&#x521B;&#x5EFA; docker registry&#x201D; &#x8282;&#x5F00;&#x59CB;&#xFF1B;</p>
+<p>&#x793A;&#x4F8B;&#x4E24;&#x53F0;&#x673A;&#x5668; IP &#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>ceph rgw: 172.27.132.66</li>
+<li>docker registry: 172.27.132.67</li>
+</ul>
+<h2 id="&#x90E8;&#x7F72;-ceph-rgw-&#x8282;&#x70B9;"><a name="&#x90E8;&#x7F72;-ceph-rgw-&#x8282;&#x70B9;" class="plugin-anchor" href="#&#x90E8;&#x7F72;-ceph-rgw-&#x8282;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x90E8;&#x7F72; ceph RGW &#x8282;&#x70B9;</h2>
+<pre class="language-"><code class="lang-bash">$ ceph-deploy rgw create <span class="token number">172.27</span>.132.66 <span class="token comment"># rgw &#x9ED8;&#x8BA4;&#x76D1;&#x542C;7480&#x7AEF;&#x53E3;</span>
+$
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;&#x6D4B;&#x8BD5;&#x8D26;&#x53F7;-demo"><a name="&#x521B;&#x5EFA;&#x6D4B;&#x8BD5;&#x8D26;&#x53F7;-demo" class="plugin-anchor" href="#&#x521B;&#x5EFA;&#x6D4B;&#x8BD5;&#x8D26;&#x53F7;-demo"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;&#x6D4B;&#x8BD5;&#x8D26;&#x53F7; demo</h2>
+<pre class="language-"><code class="lang-bash">$ radosgw-admin user create --uid<span class="token operator">=</span>demo --display-name<span class="token operator">=</span><span class="token string">&quot;ceph rgw demo user&quot;</span>
+$
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;-demo-&#x8D26;&#x53F7;&#x7684;&#x5B50;&#x8D26;&#x53F7;-swift"><a name="&#x521B;&#x5EFA;-demo-&#x8D26;&#x53F7;&#x7684;&#x5B50;&#x8D26;&#x53F7;-swift" class="plugin-anchor" href="#&#x521B;&#x5EFA;-demo-&#x8D26;&#x53F7;&#x7684;&#x5B50;&#x8D26;&#x53F7;-swift"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA; demo &#x8D26;&#x53F7;&#x7684;&#x5B50;&#x8D26;&#x53F7; swift</h2>
+<p>&#x5F53;&#x524D; registry &#x53EA;&#x652F;&#x6301;&#x4F7F;&#x7528; swift &#x534F;&#x8BAE;&#x8BBF;&#x95EE; ceph rgw &#x5B58;&#x50A8;&#xFF0C;&#x6682;&#x65F6;&#x4E0D;&#x652F;&#x6301; s3 &#x534F;&#x8BAE;&#xFF1B;</p>
+<pre class="language-"><code class="lang-bash">$ radosgw-admin subuser create --uid demo --subuser<span class="token operator">=</span>demo:swift --access<span class="token operator">=</span>full --secret<span class="token operator">=</span>secretkey --key-type<span class="token operator">=</span>swift
+$
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;-demoswift-&#x5B50;&#x8D26;&#x53F7;&#x7684;-sercret-key"><a name="&#x521B;&#x5EFA;-demoswift-&#x5B50;&#x8D26;&#x53F7;&#x7684;-sercret-key" class="plugin-anchor" href="#&#x521B;&#x5EFA;-demoswift-&#x5B50;&#x8D26;&#x53F7;&#x7684;-sercret-key"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA; demo:swift &#x5B50;&#x8D26;&#x53F7;&#x7684; sercret key</h2>
+<pre class="language-"><code class="lang-bash">$ radosgw-admin key create --subuser<span class="token operator">=</span>demo:swift --key-type<span class="token operator">=</span>swift --gen-secret
+<span class="token punctuation">{</span>
+    <span class="token string">&quot;user_id&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;demo&quot;</span>,
+    <span class="token string">&quot;display_name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;ceph rgw demo user&quot;</span>,
+    <span class="token string">&quot;email&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;&quot;</span>,
+    <span class="token string">&quot;suspended&quot;</span><span class="token builtin class-name">:</span> <span class="token number">0</span>,
+    <span class="token string">&quot;max_buckets&quot;</span><span class="token builtin class-name">:</span> <span class="token number">1000</span>,
+    <span class="token string">&quot;auid&quot;</span><span class="token builtin class-name">:</span> <span class="token number">0</span>,
+    <span class="token string">&quot;subusers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token string">&quot;id&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;demo:swift&quot;</span>,
+            <span class="token string">&quot;permissions&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;full-control&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>,
+    <span class="token string">&quot;keys&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token string">&quot;user&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;demo&quot;</span>,
+            <span class="token string">&quot;access_key&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;5Y1B1SIJ2YHKEHO5U36B&quot;</span>,
+            <span class="token string">&quot;secret_key&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;nrIvtPqUj7pUlccLYPuR3ntVzIa50DToIpe7xFjT&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>,
+    <span class="token string">&quot;swift_keys&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token string">&quot;user&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;demo:swift&quot;</span>,
+            <span class="token string">&quot;secret_key&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;ttQcU1O17DFQ4I9xzKqwgUe7WIYYX99zhcIfU9vb&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>,
+    <span class="token string">&quot;caps&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+    <span class="token string">&quot;op_mask&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;read, write, delete&quot;</span>,
+    <span class="token string">&quot;default_placement&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;&quot;</span>,
+    <span class="token string">&quot;placement_tags&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+    <span class="token string">&quot;bucket_quota&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;enabled&quot;</span><span class="token builtin class-name">:</span> false,
+        <span class="token string">&quot;max_size_kb&quot;</span><span class="token builtin class-name">:</span> -1,
+        <span class="token string">&quot;max_objects&quot;</span><span class="token builtin class-name">:</span> -1
+    <span class="token punctuation">}</span>,
+    <span class="token string">&quot;user_quota&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;enabled&quot;</span><span class="token builtin class-name">:</span> false,
+        <span class="token string">&quot;max_size_kb&quot;</span><span class="token builtin class-name">:</span> -1,
+        <span class="token string">&quot;max_objects&quot;</span><span class="token builtin class-name">:</span> -1
+    <span class="token punctuation">}</span>,
+        <span class="token string">&quot;temp_url_keys&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>ttQcU1O17DFQ4I9xzKqwgUe7WIYYX99zhcIfU9vb</code> &#x4E3A;&#x5B50;&#x8D26;&#x53F7; demo:swift &#x7684; secret key&#xFF1B;</li>
+</ul>
+<h2 id="&#x521B;&#x5EFA;-docker-registry"><a name="&#x521B;&#x5EFA;-docker-registry" class="plugin-anchor" href="#&#x521B;&#x5EFA;-docker-registry"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA; docker registry</h2>
+<p>&#x521B;&#x5EFA; registry &#x4F7F;&#x7528;&#x7684; x509 &#x8BC1;&#x4E66;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">mkdir</span> -p registry/<span class="token punctuation">{</span>auth,certs<span class="token punctuation">}</span>
+$ <span class="token function">cat</span> <span class="token operator">&gt;</span> registry-csr.json <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+{
+  &quot;CN&quot;: &quot;registry&quot;,
+  &quot;hosts&quot;: [
+      &quot;127.0.0.1&quot;,
+      &quot;172.27.132.67&quot;
+  ],
+  &quot;key&quot;: {
+    &quot;algo&quot;: &quot;rsa&quot;,
+    &quot;size&quot;: 2048
+  },
+  &quot;names&quot;: [
+    {
+      &quot;C&quot;: &quot;CN&quot;,
+      &quot;ST&quot;: &quot;BeiJing&quot;,
+      &quot;L&quot;: &quot;BeiJing&quot;,
+      &quot;O&quot;: &quot;k8s&quot;,
+      &quot;OU&quot;: &quot;4Paradigm&quot;
+    }
+  ]
+}
+EOF</span>
+$ cfssl gencert -ca<span class="token operator">=</span>/etc/kubernetes/cert/ca.pem <span class="token punctuation">\</span>
+    -ca-key<span class="token operator">=</span>/etc/kubernetes/cert/ca-key.pem <span class="token punctuation">\</span>
+    -config<span class="token operator">=</span>/etc/kubernetes/cert/ca-config.json <span class="token punctuation">\</span>
+    -profile<span class="token operator">=</span>kubernetes registry-csr.json <span class="token operator">|</span> cfssljson -bare registry
+$ <span class="token function">cp</span> registry.pem registry-key.pem registry/certs
+$
+</code></pre>
+<ul>
+<li>&#x8FD9;&#x91CC;&#x590D;&#x7528;&#x4EE5;&#x524D;&#x521B;&#x5EFA;&#x7684; CA &#x8BC1;&#x4E66;&#x548C;&#x79D8;&#x94A5;&#x6587;&#x4EF6;&#xFF1B;</li>
+<li>hosts &#x5B57;&#x6BB5;&#x6307;&#x5B9A; registry &#x7684; NodeIP&#xFF1B;</li>
+</ul>
+<p>&#x521B;&#x5EFA; HTTP Baisc &#x8BA4;&#x8BC1;&#x6587;&#x4EF6;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">docker</span> run --entrypoint htpasswd registry:2 -Bbn foo foo123  <span class="token operator">&gt;</span> registry/auth/htpasswd
+$ <span class="token function">cat</span>  registry/auth/htpasswd
+foo:<span class="token variable">$2y</span><span class="token variable">$05</span><span class="token variable">$iZaM45Jxlcg0DJKXZMggLOibAsHLGybyU</span>.CgU9AHqWcVDyBjiScN.
+</code></pre>
+<p>&#x914D;&#x7F6E; registry &#x53C2;&#x6570;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">RGW_AUTH_URL</span><span class="token operator">=</span><span class="token string">&quot;http://172.27.132.66:7480/auth/v1&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">RGW_USER</span><span class="token operator">=</span><span class="token string">&quot;demo:swift&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">RGW_SECRET_KEY</span><span class="token operator">=</span><span class="token string">&quot;ttQcU1O17DFQ4I9xzKqwgUe7WIYYX99zhcIfU9vb&quot;</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> config.yml <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+# https://docs.docker.com/registry/configuration/#list-of-configuration-options
+version: 0.1
+log:
+  level: info
+  fromatter: text
+  fields:
+    service: registry
+
+storage:
+  cache:
+    blobdescriptor: inmemory
+  delete:
+    enabled: true
+  swift:
+    authurl: <span class="token variable">${RGW_AUTH_URL}</span>
+    username: <span class="token variable">${RGW_USER}</span>
+    password: <span class="token variable">${RGW_SECRET_KEY}</span>
+    container: registry
+
+auth:
+  htpasswd:
+    realm: basic-realm
+    path: /auth/htpasswd
+
+http:
+  addr: 0.0.0.0:8000
+  headers:
+    X-Content-Type-Options: [nosniff]
+  tls:
+    certificate: /certs/registry.pem
+    key: /certs/registry-key.pem
+
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+EOF</span>
+<span class="token punctuation">[</span>k8s@zhangjun-k8s01 cert<span class="token punctuation">]</span>$ <span class="token function">cp</span> config.yml registry
+<span class="token punctuation">[</span>k8s@zhangjun-k8s01 cert<span class="token punctuation">]</span>$ <span class="token function">scp</span> -r registry <span class="token number">172.27</span>.132.67:/opt/k8s
+</code></pre>
+<ul>
+<li>storage.swift &#x6307;&#x5B9A;&#x540E;&#x7AEF;&#x4F7F;&#x7528; swfit &#x63A5;&#x53E3;&#x534F;&#x8BAE;&#x7684;&#x5B58;&#x50A8;&#xFF0C;&#x8FD9;&#x91CC;&#x914D;&#x7F6E;&#x7684;&#x662F; ceph rgw &#x5B58;&#x50A8;&#x53C2;&#x6570;&#xFF1B;</li>
+<li>auth.htpasswd &#x6307;&#x5B9A;&#x4E86; HTTP Basic &#x8BA4;&#x8BC1;&#x7684; token &#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF1B;</li>
+<li>http.tls &#x6307;&#x5B9A;&#x4E86; registry http &#x670D;&#x52A1;&#x5668;&#x7684;&#x8BC1;&#x4E66;&#x548C;&#x79D8;&#x94A5;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF1B;</li>
+</ul>
+<p>&#x521B;&#x5EFA; docker registry&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">ssh</span> k8s@172.27.132.67
+$ <span class="token function">docker</span> run -d -p <span class="token number">8000</span>:8000 --privileged <span class="token punctuation">\</span>
+    -v /opt/k8s/registry/auth/:/auth <span class="token punctuation">\</span>
+    -v /opt/k8s/registry/certs:/certs <span class="token punctuation">\</span>
+    -v /opt/k8s/registry/config.yml:/etc/docker/registry/config.yml <span class="token punctuation">\</span>
+    --name registry registry:2
+</code></pre>
+<ul>
+<li>&#x6267;&#x884C;&#x8BE5; docker run &#x547D;&#x4EE4;&#x7684;&#x673A;&#x5668; IP &#x4E3A; 172.27.132.67&#xFF1B;</li>
+</ul>
+<h2 id="&#x5411;-registry-push-image"><a name="&#x5411;-registry-push-image" class="plugin-anchor" href="#&#x5411;-registry-push-image"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5411; registry push image</h2>
+<p>&#x5C06;&#x7B7E;&#x7F72; registry &#x8BC1;&#x4E66;&#x7684; CA &#x8BC1;&#x4E66;&#x62F7;&#x8D1D;&#x5230; <code>/etc/docker/certs.d/172.27.132.67:8000</code> &#x76EE;&#x5F55;&#x4E0B;</p>
+<pre class="language-"><code class="lang-bash"><span class="token punctuation">[</span>k8s@zhangjun-k8s01 cert<span class="token punctuation">]</span>$ <span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/docker/certs.d/172.27.132.67:8000
+<span class="token punctuation">[</span>k8s@zhangjun-k8s01 cert<span class="token punctuation">]</span>$ <span class="token function">sudo</span> <span class="token function">cp</span> /etc/kubernetes/cert/ca.pem /etc/docker/certs.d/172.27.132.67:8000/ca.crt
+</code></pre>
+<p>&#x767B;&#x9646;&#x79C1;&#x6709; registry&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">docker</span> login <span class="token number">172.27</span>.132.67:8000
+Username: foo
+Password:
+Login Succeeded
+</code></pre>
+<p>&#x767B;&#x9646;&#x4FE1;&#x606F;&#x88AB;&#x5199;&#x5165; <code>~/.docker/config.json</code> &#x6587;&#x4EF6;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">cat</span> ~/.docker/config.json
+<span class="token punctuation">{</span>
+        <span class="token string">&quot;auths&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+                <span class="token string">&quot;172.27.132.67:8000&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+                        <span class="token string">&quot;auth&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;Zm9vOmZvbzEyMw==&quot;</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x5C06;&#x672C;&#x5730;&#x7684; image &#x6253;&#x4E0A;&#x79C1;&#x6709; registry &#x7684; tag&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">docker</span> tag prom/node-exporter:v0.16.0 <span class="token number">172.27</span>.132.67:8000/prom/node-exporter:v0.16.0
+$ <span class="token function">docker</span> images <span class="token operator">|</span><span class="token function">grep</span> pause
+prom/node-exporter:v0.16.0                            latest              f9d5de079539        <span class="token number">2</span> years ago         <span class="token number">239.8</span> kB
+<span class="token number">172.27</span>.132.67:8000/prom/node-exporter:v0.16.0                        latest              f9d5de079539        <span class="token number">2</span> years ago         <span class="token number">239.8</span> kB
+</code></pre>
+<p>&#x5C06; image push &#x5230;&#x79C1;&#x6709; registry&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">docker</span> push <span class="token number">172.27</span>.132.67:8000/prom/node-exporter:v0.16.0
+The push refers to a repository <span class="token punctuation">[</span><span class="token number">172.27</span>.132.67:8000/prom/node-exporter:v0.16.0<span class="token punctuation">]</span>
+5f70bf18a086: Pushed
+e16a89738269: Pushed
+latest: digest: sha256:9a6b437e896acad3f5a2a8084625fdd4177b2e7124ee943af642259f2f283359 size: <span class="token number">916</span>
+</code></pre>
+<p>&#x67E5;&#x770B; ceph &#x4E0A;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x6709; push &#x7684; pause &#x5BB9;&#x5668;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ rados lspools
+rbd
+cephfs_data
+cephfs_metadata
+.rgw.root
+k8s
+default.rgw.control
+default.rgw.meta
+default.rgw.log
+default.rgw.buckets.index
+default.rgw.buckets.data
+
+$  rados --pool default.rgw.buckets.data <span class="token function">ls</span><span class="token operator">|</span><span class="token function">grep</span> node-exporter
+1f3f02c4-fe58-4626-992b-c6c0fe4c8acf.34107.1_files/docker/registry/v2/repositories/prom/node-exporter/_layers/sha256/cdb7590af5f064887f3d6008d46be65e929c74250d747813d85199e04fc70463/link
+1f3f02c4-fe58-4626-992b-c6c0fe4c8acf.34107.1_files/docker/registry/v2/repositories/prom/node-exporter/_manifests/revisions/sha256/55302581333c43d540db0e144cf9e7735423117a733cdec27716d87254221086/link
+1f3f02c4-fe58-4626-992b-c6c0fe4c8acf.34107.1_files/docker/registry/v2/repositories/prom/node-exporter/_manifests/tags/v0.16.0/current/link
+1f3f02c4-fe58-4626-992b-c6c0fe4c8acf.34107.1_files/docker/registry/v2/repositories/prom/node-exporter/_manifests/tags/v0.16.0/index/sha256/55302581333c43d540db0e144cf9e7735423117a733cdec27716d87254221086/link
+1f3f02c4-fe58-4626-992b-c6c0fe4c8acf.34107.1_files/docker/registry/v2/repositories/prom/node-exporter/_layers/sha256/224a21997e8ca8514d42eb2ed98b19a7ee2537bce0b3a26b8dff510ab637f15c/link
+1f3f02c4-fe58-4626-992b-c6c0fe4c8acf.34107.1_files/docker/registry/v2/repositories/prom/node-exporter/_layers/sha256/528dda9cf23d0fad80347749d6d06229b9a19903e49b7177d5f4f58736538d4e/link
+1f3f02c4-fe58-4626-992b-c6c0fe4c8acf.34107.1_files/docker/registry/v2/repositories/prom/node-exporter/_layers/sha256/188af75e2de0203eac7c6e982feff45f9c340eaac4c7a0f59129712524fa2984/link
+</code></pre>
+<h2 id="&#x79C1;&#x6709;-registry-&#x7684;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;"><a name="&#x79C1;&#x6709;-registry-&#x7684;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;" class="plugin-anchor" href="#&#x79C1;&#x6709;-registry-&#x7684;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x79C1;&#x6709; registry &#x7684;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;</h2>
+<h3 id="&#x67E5;&#x8BE2;&#x79C1;&#x6709;&#x955C;&#x50CF;&#x4E2D;&#x7684;-images"><a name="&#x67E5;&#x8BE2;&#x79C1;&#x6709;&#x955C;&#x50CF;&#x4E2D;&#x7684;-images" class="plugin-anchor" href="#&#x67E5;&#x8BE2;&#x79C1;&#x6709;&#x955C;&#x50CF;&#x4E2D;&#x7684;-images"><i class="fa fa-link" aria-hidden="true"></i></a>&#x67E5;&#x8BE2;&#x79C1;&#x6709;&#x955C;&#x50CF;&#x4E2D;&#x7684; images</h3>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">curl</span>  --user foo:foo123 --cacert /etc/docker/certs.d/172.27.132.67<span class="token punctuation">\</span>:8000/ca.crt https://172.27.132.67:8000/v2/_catalog
+<span class="token punctuation">{</span><span class="token string">&quot;repositories&quot;</span>:<span class="token punctuation">[</span><span class="token string">&quot;prom/node-exporter&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+</code></pre>
+<h3 id="&#x67E5;&#x8BE2;&#x67D0;&#x4E2A;&#x955C;&#x50CF;&#x7684;-tags-&#x5217;&#x8868;"><a name="&#x67E5;&#x8BE2;&#x67D0;&#x4E2A;&#x955C;&#x50CF;&#x7684;-tags-&#x5217;&#x8868;" class="plugin-anchor" href="#&#x67E5;&#x8BE2;&#x67D0;&#x4E2A;&#x955C;&#x50CF;&#x7684;-tags-&#x5217;&#x8868;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x67E5;&#x8BE2;&#x67D0;&#x4E2A;&#x955C;&#x50CF;&#x7684; tags &#x5217;&#x8868;</h3>
+<pre class="language-"><code class="lang-bash">$  <span class="token function">curl</span>  --user foo:foo123 --cacert /etc/docker/certs.d/172.27.132.67<span class="token punctuation">\</span>:8000/ca.crt https://172.27.132.67:8000/v2/prom/node-exporter/tags/list
+<span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;prom/node-exporter&quot;</span>,<span class="token string">&quot;tags&quot;</span>:<span class="token punctuation">[</span><span class="token string">&quot;v0.16.0&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+</code></pre>
+<h3 id="&#x83B7;&#x53D6;-image-&#x6216;-layer-&#x7684;-digest"><a name="&#x83B7;&#x53D6;-image-&#x6216;-layer-&#x7684;-digest" class="plugin-anchor" href="#&#x83B7;&#x53D6;-image-&#x6216;-layer-&#x7684;-digest"><i class="fa fa-link" aria-hidden="true"></i></a>&#x83B7;&#x53D6; image &#x6216; layer &#x7684; digest</h3>
+<p>&#x5411; <code>v2/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>repoName</span><span class="token punctuation">&gt;</span></span>/manifests/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tagName</span><span class="token punctuation">&gt;</span></span></code> &#x53D1; GET &#x8BF7;&#x6C42;&#xFF0C;&#x4ECE;&#x54CD;&#x5E94;&#x7684;&#x5934;&#x90E8; <code>Docker-Content-Digest</code> &#x83B7;&#x53D6; image digest&#xFF0C;&#x4ECE;&#x54CD;&#x5E94;&#x7684; body &#x7684; <code>fsLayers.blobSum</code> &#x4E2D;&#x83B7;&#x53D6; layDigests;</p>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x8BF7;&#x6C42;&#x5934;&#xFF1A;<code>Accept: application/vnd.docker.distribution.manifest.v2+json</code>&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">curl</span> -v -H <span class="token string">&quot;Accept: application/vnd.docker.distribution.manifest.v2+json&quot;</span> --user foo:foo123 --cacert /etc/docker/certs.d/172.27.132.67<span class="token punctuation">\</span>:8000/ca.crt https://172.27.132.67:8000/v2/prom/node-exporter/manifests/v0.16.0
+* About to connect<span class="token punctuation">(</span><span class="token punctuation">)</span> to <span class="token number">172.27</span>.132.67 port <span class="token number">8000</span> <span class="token punctuation">(</span><span class="token comment">#0)</span>
+*   Trying <span class="token number">172.27</span>.132.67<span class="token punctuation">..</span>.
+* Connected to <span class="token number">172.27</span>.132.67 <span class="token punctuation">(</span><span class="token number">172.27</span>.132.67<span class="token punctuation">)</span> port <span class="token number">8000</span> <span class="token punctuation">(</span><span class="token comment">#0)</span>
+* Initializing NSS with certpath: sql:/etc/pki/nssdb
+*   CAfile: /etc/docker/certs.d/172.27.132.67:8000/ca.crt
+  CApath: none
+* SSL connection using TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+* Server certificate:
+*       subject: <span class="token assign-left variable">CN</span><span class="token operator">=</span>registry,OU<span class="token operator">=</span>4Paradigm,O<span class="token operator">=</span>k8s,L<span class="token operator">=</span>BeiJing,ST<span class="token operator">=</span>BeiJing,C<span class="token operator">=</span>CN
+*       start date: Jul 05 <span class="token number">12</span>:52:00 <span class="token number">2018</span> GMT
+*       expire date: Jul 02 <span class="token number">12</span>:52:00 <span class="token number">2028</span> GMT
+*       common name: registry
+*       issuer: <span class="token assign-left variable">CN</span><span class="token operator">=</span>kubernetes,OU<span class="token operator">=</span>4Paradigm,O<span class="token operator">=</span>k8s,L<span class="token operator">=</span>BeiJing,ST<span class="token operator">=</span>BeiJing,C<span class="token operator">=</span>CN
+* Server auth using Basic with user <span class="token string">&apos;foo&apos;</span>
+<span class="token operator">&gt;</span> GET /v2/prom/node-exporter/manifests/v0.16.0 HTTP/1.1
+<span class="token operator">&gt;</span> Authorization: Basic <span class="token assign-left variable">Zm9vOmZvbzEyMw</span><span class="token operator">==</span>
+<span class="token operator">&gt;</span> User-Agent: curl/7.29.0
+<span class="token operator">&gt;</span> Host: <span class="token number">172.27</span>.132.67:8000
+<span class="token operator">&gt;</span> Accept: application/vnd.docker.distribution.manifest.v2+json
+<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span> HTTP/1.1 <span class="token number">200</span> OK
+<span class="token operator">&lt;</span> Content-Length: <span class="token number">949</span>
+<span class="token operator">&lt;</span> Content-Type: application/vnd.docker.distribution.manifest.v2+json
+<span class="token operator">&lt;</span> Docker-Content-Digest: sha256:55302581333c43d540db0e144cf9e7735423117a733cdec27716d87254221086
+<span class="token operator">&lt;</span> Docker-Distribution-Api-Version: registry/2.0
+<span class="token operator">&lt;</span> Etag: <span class="token string">&quot;sha256:55302581333c43d540db0e144cf9e7735423117a733cdec27716d87254221086&quot;</span>
+<span class="token operator">&lt;</span> X-Content-Type-Options: nosniff
+<span class="token operator">&lt;</span> Date: Fri, 06 Jul <span class="token number">2018</span> 06:18:41 GMT
+<span class="token operator">&lt;</span>
+<span class="token punctuation">{</span>
+   <span class="token string">&quot;schemaVersion&quot;</span><span class="token builtin class-name">:</span> <span class="token number">2</span>,
+   <span class="token string">&quot;mediaType&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;application/vnd.docker.distribution.manifest.v2+json&quot;</span>,
+   <span class="token string">&quot;config&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;mediaType&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;application/vnd.docker.container.image.v1+json&quot;</span>,
+      <span class="token string">&quot;size&quot;</span><span class="token builtin class-name">:</span> <span class="token number">3511</span>,
+      <span class="token string">&quot;digest&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;sha256:188af75e2de0203eac7c6e982feff45f9c340eaac4c7a0f59129712524fa2984&quot;</span>
+   <span class="token punctuation">}</span>,
+   <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+         <span class="token string">&quot;mediaType&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;application/vnd.docker.image.rootfs.diff.tar.gzip&quot;</span>,
+         <span class="token string">&quot;size&quot;</span><span class="token builtin class-name">:</span> <span class="token number">2392417</span>,
+         <span class="token string">&quot;digest&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;sha256:224a21997e8ca8514d42eb2ed98b19a7ee2537bce0b3a26b8dff510ab637f15c&quot;</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+         <span class="token string">&quot;mediaType&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;application/vnd.docker.image.rootfs.diff.tar.gzip&quot;</span>,
+         <span class="token string">&quot;size&quot;</span><span class="token builtin class-name">:</span> <span class="token number">560703</span>,
+         <span class="token string">&quot;digest&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;sha256:cdb7590af5f064887f3d6008d46be65e929c74250d747813d85199e04fc70463&quot;</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+         <span class="token string">&quot;mediaType&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;application/vnd.docker.image.rootfs.diff.tar.gzip&quot;</span>,
+         <span class="token string">&quot;size&quot;</span><span class="token builtin class-name">:</span> <span class="token number">5332460</span>,
+         <span class="token string">&quot;digest&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;sha256:528dda9cf23d0fad80347749d6d06229b9a19903e49b7177d5f4f58736538d4e&quot;</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">]</span>
+</code></pre>
+<h3 id="&#x5220;&#x9664;-image"><a name="&#x5220;&#x9664;-image" class="plugin-anchor" href="#&#x5220;&#x9664;-image"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5220;&#x9664; image</h3>
+<p>&#x5411; <code>/v2/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>/manifests/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>reference</span><span class="token punctuation">&gt;</span></span></code> &#x53D1;&#x9001; DELETE &#x8BF7;&#x6C42;&#xFF0C;reference &#x4E3A;&#x4E0A;&#x4E00;&#x6B65;&#x8FD4;&#x56DE;&#x7684; Docker-Content-Digest &#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">curl</span> -X DELETE  --user foo:foo123 --cacert /etc/docker/certs.d/172.27.132.67<span class="token punctuation">\</span>:8000/ca.crt https://172.27.132.67:8000/v2/prom/node-exporter/manifests/sha256:68effe31a4ae8312e47f54bec52d1fc925908009ce7e6f734e1b54a4169081c5
+$
+</code></pre>
+<h3 id="&#x5220;&#x9664;-layer"><a name="&#x5220;&#x9664;-layer" class="plugin-anchor" href="#&#x5220;&#x9664;-layer"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5220;&#x9664; layer</h3>
+<p>&#x5411; <code>/v2/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>/blobs/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>digest</span><span class="token punctuation">&gt;</span></span></code>&#x53D1;&#x9001; DELETE &#x8BF7;&#x6C42;&#xFF0C;&#x5176;&#x4E2D; digest &#x662F;&#x4E0A;&#x4E00;&#x6B65;&#x8FD4;&#x56DE;&#x7684; <code>fsLayers.blobSum</code> &#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">curl</span> -X DELETE  --user foo:foo123 --cacert /etc/docker/certs.d/172.27.132.67<span class="token punctuation">\</span>:8000/ca.crt https://172.27.132.67:8000/v2/prom/node-exporter/blobs/sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4
+$ <span class="token function">curl</span> -X DELETE  --cacert /etc/docker/certs.d/172.27.132.67<span class="token punctuation">\</span>:8000/ca.crt https://172.27.132.67:8000/v2/prom/node-exporter/blobs/sha256:04176c8b224aa0eb9942af765f66dae866f436e75acef028fe44b8a98e045515
+$
+</code></pre>
+<h2 id="&#x5E38;&#x89C1;&#x95EE;&#x9898;"><a name="&#x5E38;&#x89C1;&#x95EE;&#x9898;" class="plugin-anchor" href="#&#x5E38;&#x89C1;&#x95EE;&#x9898;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5E38;&#x89C1;&#x95EE;&#x9898;</h2>
+<h3 id="login-&#x5931;&#x8D25;-416"><a name="login-&#x5931;&#x8D25;-416" class="plugin-anchor" href="#login-&#x5931;&#x8D25;-416"><i class="fa fa-link" aria-hidden="true"></i></a>login &#x5931;&#x8D25; 416</h3>
+<p>&#x6267;&#x884C; <a href="http://docs.ceph.com/docs/master/install/install-ceph-gateway/" target="_blank">http://docs.ceph.com/docs/master/install/install-ceph-gateway/</a> &#x91CC;&#x9762;&#x7684; s3 test.py &#x7A0B;&#x5E8F;&#x5931;&#x8D25;&#xFF1A;</p>
+<p>[k8s@zhangjun-k8s01 cert]$ python s3test.py
+Traceback (most recent call last):
+  File &quot;s3test.py&quot;, line 12, in <module>
+    bucket = conn.create_bucket(&apos;my-new-bucket&apos;)
+  File &quot;/usr/lib/python2.7/site-packages/boto/s3/connection.py&quot;, line 625, in create_bucket
+    response.status, response.reason, body)
+boto.exception.S3ResponseError: S3ResponseError: 416 Requested Range Not Satisfiable</module></p>
+<p>&#x89E3;&#x51B3;&#x7248;&#x529E;&#x6CD5;&#xFF1A;</p>
+<ol>
+<li>&#x5728;&#x7BA1;&#x7406;&#x8282;&#x70B9;&#x4E0A;&#x4FEE;&#x6539; ceph.conf</li>
+<li>ceph-deploy config push zhangjun-k8s01 zhangjun-k8s02 zhangjun-k8s03</li>
+<li>systemctl restart &apos;ceph-mds@zhangjun-k8s03.service&apos;
+systemctl restart ceph-osd@0
+systemctl restart &apos;ceph-mon@zhangjun-k8s01.service&apos;
+systemctl restart &apos;ceph-mgr@zhangjun-k8s01.service&apos;</li>
+</ol>
+<p>For anyone who is hitting this issue
+set default pg_num and pgp_num to lower value(8 for example), or set mon_max_pg_per_osd to a high value in ceph.conf
+radosgw-admin doesn&apos; throw proper error when internal pool creation fails, hence the upper level error which is very confusing.</p>
+<p><a href="https://tracker.ceph.com/issues/21497" target="_blank">https://tracker.ceph.com/issues/21497</a></p>
+<h3 id="login-&#x5931;&#x8D25;-503"><a name="login-&#x5931;&#x8D25;-503" class="plugin-anchor" href="#login-&#x5931;&#x8D25;-503"><i class="fa fa-link" aria-hidden="true"></i></a>login &#x5931;&#x8D25; 503</h3>
+<p>[root@zhangjun-k8s01 ~]# docker login  172.27.132.67:8000
+Username: foo
+Password:
+Error response from daemon: login attempt to <a href="https://172.27.132.67:8000/v2/" target="_blank">https://172.27.132.67:8000/v2/</a> failed with status: 503 Service Unavailable</p>
+<p>&#x539F;&#x56E0;&#xFF1A; docker run &#x7F3A;&#x5C11; --privileged &#x53C2;&#x6570;&#xFF1B;</p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> zhangjun </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6700;&#x540E;&#x66F4;&#x65B0;&#xFF1A; 2022-07-20 14:59:29 </span> </footer><!-- tags --><div id="tags" class="tags"><p><i class="fa fa-tags" aria-hidden="true"></i> <a href="tags.html#registry">registry</a> <a href="tags.html#ceph">ceph</a></p></div><!-- tagsstop -->
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="09-4.EFK插件.html" class="navigation navigation-prev " aria-label="Previous page: 09-4.EFK插件">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="11.部署Harbor-Registry.html" class="navigation navigation-next " aria-label="Next page: 11.部署Harbor-Registry">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"10.部署Docker-Registry","level":"1.13","depth":1,"next":{"title":"11.部署Harbor-Registry","level":"1.14","depth":1,"path":"11.部署Harbor-Registry.md","ref":"11.部署Harbor-Registry.md","articles":[]},"previous":{"title":"09-4.EFK插件","level":"1.12.4","depth":2,"path":"09-4.EFK插件.md","ref":"09-4.EFK插件.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","anchors","disqus","github","editlink","prism","-highlight","-lunr","-search","search-plus","baidu","codesnippet","splitter","page-toc-button","image-captions","page-footer-ex","tags","multipart"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"knowl"},"github":{"url":"https://github.com/opsnull/follow-me-install-kubernetes-cluster"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/"},"page-footer-ex":{"copyright":"zhangjun","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"最后更新："},"splitter":{},"multipart":{},"codesnippet":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sitemap":{"hostname":"http://k8s.opsnull.com"},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"tags":{"placement":"bottom"},"baidu":{"token":"18c1967ba7abeaf5be1330bb512f0617"},"sharing":{"facebook":true,"twitter":true,"google":true,"weibo":true,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"expandable-chapters":{},"search-plus":{},"image-captions":{"caption":"图片 - _CAPTION_","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":11,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"index.html#fig1.1.1","level":"1.1","list_caption":"Figure: dashboard-home","alt":"dashboard-home","nro":1,"url":"./images/dashboard-home.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-home","attributes":{},"skip":false,"key":"1.1.1"},{"backlink":"index.html#fig1.1.2","level":"1.1","list_caption":"Figure: kubeoperator-ui","alt":"kubeoperator-ui","nro":2,"url":"https://raw.githubusercontent.com/KubeOperator/website/master/images/kubeoperator-ui.jpg","index":2,"caption_template":"图片 - _CAPTION_","label":"kubeoperator-ui","attributes":{},"skip":false,"key":"1.1.2"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.1","level":"1.12.2","list_caption":"Figure: dashboard-login","alt":"dashboard-login","nro":3,"url":"./images/dashboard-login.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-login","attributes":{},"skip":false,"key":"1.12.2.1"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.2","level":"1.12.2","list_caption":"Figure: images/dashboard.png","alt":"images/dashboard.png","nro":4,"url":"images/dashboard.png","index":2,"caption_template":"图片 - _CAPTION_","label":"images/dashboard.png","attributes":{},"skip":false,"key":"1.12.2.2"},{"backlink":"09-3.metrics-server插件.html#fig1.12.3.1","level":"1.12.3","list_caption":"Figure: monitoring_architecture.png","alt":"monitoring_architecture.png","nro":5,"url":"images/monitoring_architecture.png","index":1,"caption_template":"图片 - _CAPTION_","label":"monitoring_architecture.png","attributes":{},"skip":false,"key":"1.12.3.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.1","level":"1.12.4","list_caption":"Figure: es-setting","alt":"es-setting","nro":6,"url":"./images/es-setting.png","index":1,"caption_template":"图片 - _CAPTION_","label":"es-setting","attributes":{},"skip":false,"key":"1.12.4.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.2","level":"1.12.4","list_caption":"Figure: es-home","alt":"es-home","nro":7,"url":"./images/es-home.png","index":2,"caption_template":"图片 - _CAPTION_","label":"es-home","attributes":{},"skip":false,"key":"1.12.4.2"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.1","level":"1.14","list_caption":"Figure: virtualbox-harbor","alt":"virtualbox-harbor","nro":8,"url":"./images/virtualbox-harbor.png","index":1,"caption_template":"图片 - _CAPTION_","label":"virtualbox-harbor","attributes":{},"skip":false,"key":"1.14.1"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.2","level":"1.14","list_caption":"Figure: harbor","alt":"harbor","nro":9,"url":"./images/harbo.png","index":2,"caption_template":"图片 - _CAPTION_","label":"harbor","attributes":{},"skip":false,"key":"1.14.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.1","level":"1.16","list_caption":"Figure: ssl-failed","alt":"ssl-failed","nro":10,"url":"images/ssl-failed.png","index":1,"caption_template":"图片 - _CAPTION_","label":"ssl-failed","attributes":{},"skip":false,"key":"1.16.1"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.2","level":"1.16","list_caption":"Figure: keychain","alt":"keychain","nro":11,"url":"images/keychain.png","index":2,"caption_template":"图片 - _CAPTION_","label":"keychain","attributes":{},"skip":false,"key":"1.16.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.3","level":"1.16","list_caption":"Figure: ssl-success","alt":"ssl-success","nro":12,"url":"images/ssl-success.png","index":3,"caption_template":"图片 - _CAPTION_","label":"ssl-success","attributes":{},"skip":false,"key":"1.16.3"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.4","level":"1.16","list_caption":"Figure: admin-cert","alt":"admin-cert","nro":13,"url":"images/admin-cert.png","index":4,"caption_template":"图片 - _CAPTION_","label":"admin-cert","attributes":{},"skip":false,"key":"1.16.4"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.5","level":"1.16","list_caption":"Figure: select-cert","alt":"select-cert","nro":14,"url":"images/select-cert.png","index":5,"caption_template":"图片 - _CAPTION_","label":"select-cert","attributes":{},"skip":false,"key":"1.16.5"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.6","level":"1.16","list_caption":"Figure: chrome-authored","alt":"chrome-authored","nro":15,"url":"images/chrome-authored.png","index":6,"caption_template":"图片 - _CAPTION_","label":"chrome-authored","attributes":{},"skip":false,"key":"1.16.6"}]},"title":"和我一步步部署kubernetes集群","language":"zh-cn","gitbook":"*","description":"和我一步步部署kubernetes集群"},"file":{"path":"10.部署Docker-Registry.md","mtime":"2022-07-20T06:59:29.357Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-20T07:04:13.263Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-baidu/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

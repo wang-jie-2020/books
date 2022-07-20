@@ -137,6 +137,10 @@ module.exports = {
                     {
                         text: 'meowv',
                         link: '/docs-meowv/'
+                    },
+                    {
+                        text: 'install-kubernetes-cluster',
+                        link: '/follow-me-install-kubernetes-cluster/'
                     }
                 ]
             },
@@ -152,22 +156,6 @@ module.exports = {
         ],
         sidebar: {
             '/docs/': sidebar,
-            // '/docs/':
-            //     [
-            //         ['a'],
-            //         {
-            //             title: 'nanoService',
-            //             children: [
-            //                 {
-            //                     title: 'gate',
-            //                     children: [
-            //                         'nanoService/gate/c'
-            //                     ]
-            //                 },
-            //                 ['nanoService/b','']
-            //             ]
-            //         }
-            //     ],
             '/docs-funtl/': '',
             '/docs-meowv/': [
                 {

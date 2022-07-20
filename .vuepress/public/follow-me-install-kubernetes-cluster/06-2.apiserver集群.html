@@ -1,0 +1,1230 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-cn" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>06-2.apiserver集群 · 和我一步步部署kubernetes集群</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-tags/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="06-3.controller-manager集群.html" />
+    
+    
+    <link rel="prev" href="06-1.部署master节点.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">和我一步步部署 kubernetes 集群</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="00.组件版本和配置策略.html">
+            
+                <a href="00.组件版本和配置策略.html">
+            
+                    
+                    00.组件版本和配置策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01.系统初始化和全局变量.html">
+            
+                <a href="01.系统初始化和全局变量.html">
+            
+                    
+                    01.系统初始化和全局变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02.创建CA证书和秘钥.html">
+            
+                <a href="02.创建CA证书和秘钥.html">
+            
+                    
+                    02.创建CA证书和秘钥
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="03.部署kubectl命令行工具.html">
+            
+                <a href="03.部署kubectl命令行工具.html">
+            
+                    
+                    03.部署kubectl命令行工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="04.部署etcd集群.html">
+            
+                <a href="04.部署etcd集群.html">
+            
+                    
+                    04.部署etcd集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="05.部署flannel网络.html">
+            
+                <a href="05.部署flannel网络.html">
+            
+                    
+                    05.部署flannel网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="06-0.apiserver高可用之nginx代理.html">
+            
+                <a href="06-0.apiserver高可用之nginx代理.html">
+            
+                    
+                    06.apiserver高可用之nginx代理.md
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="06-1.部署master节点.html">
+            
+                <a href="06-1.部署master节点.html">
+            
+                    
+                    06-1.部署master节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.9.1" data-path="06-2.apiserver集群.html">
+            
+                <a href="06-2.apiserver集群.html">
+            
+                    
+                    06-2.apiserver集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="06-3.controller-manager集群.html">
+            
+                <a href="06-3.controller-manager集群.html">
+            
+                    
+                    06-3.controller-manager集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="06-4.scheduler集群.html">
+            
+                <a href="06-4.scheduler集群.html">
+            
+                    
+                    06-4.scheduler集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="07-0.部署worker节点.html">
+            
+                <a href="07-0.部署worker节点.html">
+            
+                    
+                    07.部署worker节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="07-1.docker.html">
+            
+                <a href="07-1.docker.html">
+            
+                    
+                    07-1.docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="07-2.kubelet.html">
+            
+                <a href="07-2.kubelet.html">
+            
+                    
+                    07-2.kubelet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="07-3.kube-proxy.html">
+            
+                <a href="07-3.kube-proxy.html">
+            
+                    
+                    07-3.kube-proxy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="08.验证集群功能.html">
+            
+                <a href="08.验证集群功能.html">
+            
+                    
+                    08.验证集群功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="09-0.部署集群插件.html">
+            
+                <a href="09-0.部署集群插件.html">
+            
+                    
+                    09.部署集群插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="09-1.dns插件.html">
+            
+                <a href="09-1.dns插件.html">
+            
+                    
+                    09-1.dns插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="09-2.dashboard插件.html">
+            
+                <a href="09-2.dashboard插件.html">
+            
+                    
+                    09-2.dashboard插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="09-3.metrics-server插件.html">
+            
+                <a href="09-3.metrics-server插件.html">
+            
+                    
+                    09-3.metrics-server插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="09-4.EFK插件.html">
+            
+                <a href="09-4.EFK插件.html">
+            
+                    
+                    09-4.EFK插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="10.部署Docker-Registry.html">
+            
+                <a href="10.部署Docker-Registry.html">
+            
+                    
+                    10.部署Docker-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="11.部署Harbor-Registry.html">
+            
+                <a href="11.部署Harbor-Registry.html">
+            
+                    
+                    11.部署Harbor-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="12.清理集群.html">
+            
+                <a href="12.清理集群.html">
+            
+                    
+                    12.清理集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="A.浏览器访问kube-apiserver安全端口.html">
+            
+                <a href="A.浏览器访问kube-apiserver安全端口.html">
+            
+                    
+                    A.浏览器访问apiserver安全端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="B.校验TLS证书.html">
+            
+                <a href="B.校验TLS证书.html">
+            
+                    
+                    B.校验TLS证书
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">标签集合</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="tags.html">
+            
+                <a href="tags.html">
+            
+                    
+                    标签
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本書使用 GitBook 釋出
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >06-2.apiserver集群</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="06-2&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;-kube-apiserver-&#x96C6;&#x7FA4;"><a name="06-2&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;-kube-apiserver-&#x96C6;&#x7FA4;" class="plugin-anchor" href="#06-2&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;-kube-apiserver-&#x96C6;&#x7FA4;"><i class="fa fa-link" aria-hidden="true"></i></a>06-2.&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528; kube-apiserver &#x96C6;&#x7FA4;</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#06-2&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;-kube-apiserver-&#x96C6;&#x7FA4;">06-2.&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528; kube-apiserver &#x96C6;&#x7FA4;</a><ul>
+<li><a href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;">&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</a></li>
+<li><a href="#&#x521B;&#x5EFA;-kubernetes-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;">&#x521B;&#x5EFA; kubernetes &#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;</a></li>
+<li><a href="#&#x521B;&#x5EFA;&#x52A0;&#x5BC6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#x521B;&#x5EFA;&#x52A0;&#x5BC6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</a></li>
+<li><a href="#&#x521B;&#x5EFA;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x6587;&#x4EF6;">&#x521B;&#x5EFA;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x6587;&#x4EF6;</a></li>
+<li><a href="#&#x521B;&#x5EFA;&#x540E;&#x7EED;&#x8BBF;&#x95EE;-metrics-server-&#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;">&#x521B;&#x5EFA;&#x540E;&#x7EED;&#x8BBF;&#x95EE; metrics-server &#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;</a></li>
+<li><a href="#&#x521B;&#x5EFA;-kube-apiserver-systemd-unit-&#x6A21;&#x677F;&#x6587;&#x4EF6;">&#x521B;&#x5EFA; kube-apiserver systemd unit &#x6A21;&#x677F;&#x6587;&#x4EF6;</a></li>
+<li><a href="#&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x521B;&#x5EFA;&#x548C;&#x5206;&#x53D1;-kube-apiserver-systemd-unit-&#x6587;&#x4EF6;">&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x521B;&#x5EFA;&#x548C;&#x5206;&#x53D1; kube-apiserver systemd unit &#x6587;&#x4EF6;</a></li>
+<li><a href="#&#x542F;&#x52A8;-kube-apiserver-&#x670D;&#x52A1;">&#x542F;&#x52A8; kube-apiserver &#x670D;&#x52A1;</a></li>
+<li><a href="#&#x68C0;&#x67E5;-kube-apiserver-&#x8FD0;&#x884C;&#x72B6;&#x6001;">&#x68C0;&#x67E5; kube-apiserver &#x8FD0;&#x884C;&#x72B6;&#x6001;</a></li>
+<li><a href="#&#x6253;&#x5370;-kube-apiserver-&#x5199;&#x5165;-etcd-&#x7684;&#x6570;&#x636E;">&#x6253;&#x5370; kube-apiserver &#x5199;&#x5165; etcd &#x7684;&#x6570;&#x636E;</a></li>
+<li><a href="#&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;">&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;</a></li>
+<li><a href="#&#x68C0;&#x67E5;-kube-apiserver-&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;">&#x68C0;&#x67E5; kube-apiserver &#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;</a></li>
+<li><a href="#&#x6388;&#x4E88;-kube-apiserver-&#x8BBF;&#x95EE;-kubelet-api-&#x7684;&#x6743;&#x9650;">&#x6388;&#x4E88; kube-apiserver &#x8BBF;&#x95EE; kubelet API &#x7684;&#x6743;&#x9650;</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<p>&#x672C;&#x6587;&#x6863;&#x8BB2;&#x89E3;&#x90E8;&#x7F72;&#x4E00;&#x4E2A;&#x4E09;&#x5B9E;&#x4F8B; kube-apiserver &#x96C6;&#x7FA4;&#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x5B83;&#x4EEC;&#x901A;&#x8FC7; kube-nginx &#x8FDB;&#x884C;&#x4EE3;&#x7406;&#x8BBF;&#x95EE;&#xFF0C;&#x4ECE;&#x800C;&#x4FDD;&#x8BC1;&#x670D;&#x52A1;&#x53EF;&#x7528;&#x6027;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7279;&#x6B8A;&#x6307;&#x660E;&#xFF0C;&#x672C;&#x6587;&#x6863;&#x7684;&#x6240;&#x6709;&#x64CD;&#x4F5C;<strong>&#x5747;&#x5728; zhangjun-k8s01 &#x8282;&#x70B9;&#x4E0A;&#x6267;&#x884C;</strong>&#xFF0C;&#x7136;&#x540E;&#x8FDC;&#x7A0B;&#x5206;&#x53D1;&#x6587;&#x4EF6;&#x548C;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x3002;</p>
+<h2 id="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><a name="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" class="plugin-anchor" href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</h2>
+<p>&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x3001;&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E; flanneld &#x53C2;&#x8003;&#xFF1A;<a href="06-1.&#x90E8;&#x7F72;master&#x8282;&#x70B9;.html">06-1.&#x90E8;&#x7F72;master&#x8282;&#x70B9;.md</a></p>
+<h2 id="&#x521B;&#x5EFA;-kubernetes-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;"><a name="&#x521B;&#x5EFA;-kubernetes-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;" class="plugin-anchor" href="#&#x521B;&#x5EFA;-kubernetes-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA; kubernetes &#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;</h2>
+<p>&#x521B;&#x5EFA;&#x8BC1;&#x4E66;&#x7B7E;&#x540D;&#x8BF7;&#x6C42;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token function">cat</span> <span class="token operator">&gt;</span> kubernetes-csr.json <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+{
+  &quot;CN&quot;: &quot;kubernetes&quot;,
+  &quot;hosts&quot;: [
+    &quot;127.0.0.1&quot;,
+    &quot;172.27.137.240&quot;,
+    &quot;172.27.137.239&quot;,
+    &quot;172.27.137.238&quot;,
+    &quot;<span class="token variable">${CLUSTER_KUBERNETES_SVC_IP}</span>&quot;,
+    &quot;kubernetes&quot;,
+    &quot;kubernetes.default&quot;,
+    &quot;kubernetes.default.svc&quot;,
+    &quot;kubernetes.default.svc.cluster&quot;,
+    &quot;kubernetes.default.svc.cluster.local.&quot;
+  ],
+  &quot;key&quot;: {
+    &quot;algo&quot;: &quot;rsa&quot;,
+    &quot;size&quot;: 2048
+  },
+  &quot;names&quot;: [
+    {
+      &quot;C&quot;: &quot;CN&quot;,
+      &quot;ST&quot;: &quot;BeiJing&quot;,
+      &quot;L&quot;: &quot;BeiJing&quot;,
+      &quot;O&quot;: &quot;k8s&quot;,
+      &quot;OU&quot;: &quot;4Paradigm&quot;
+    }
+  ]
+}
+EOF</span>
+</code></pre>
+<ul>
+<li>hosts &#x5B57;&#x6BB5;&#x6307;&#x5B9A;&#x6388;&#x6743;&#x4F7F;&#x7528;&#x8BE5;&#x8BC1;&#x4E66;&#x7684; <strong>IP &#x548C;&#x57DF;&#x540D;&#x5217;&#x8868;</strong>&#xFF0C;&#x8FD9;&#x91CC;&#x5217;&#x51FA;&#x4E86; master &#x8282;&#x70B9; IP&#x3001;kubernetes &#x670D;&#x52A1;&#x7684; IP &#x548C;&#x57DF;&#x540D;&#xFF1B;</li>
+<li><p>kubernetes &#x670D;&#x52A1; IP &#x662F; apiserver &#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x7684;&#xFF0C;&#x4E00;&#x822C;&#x662F; <code>--service-cluster-ip-range</code> &#x53C2;&#x6570;&#x6307;&#x5B9A;&#x7684;&#x7F51;&#x6BB5;&#x7684;<strong>&#x7B2C;&#x4E00;&#x4E2A;IP</strong>&#xFF0C;&#x540E;&#x7EED;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x547D;&#x4EE4;&#x83B7;&#x53D6;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">$ kubectl get svc kubernetes
+NAME         CLUSTER-IP   EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>   AGE
+kubernetes   <span class="token number">10.254</span>.0.1   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">443</span>/TCP   1d
+</code></pre>
+</li>
+</ul>
+<p>&#x751F;&#x6210;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">cfssl gencert -ca<span class="token operator">=</span>/opt/k8s/work/ca.pem <span class="token punctuation">\</span>
+  -ca-key<span class="token operator">=</span>/opt/k8s/work/ca-key.pem <span class="token punctuation">\</span>
+  -config<span class="token operator">=</span>/opt/k8s/work/ca-config.json <span class="token punctuation">\</span>
+  -profile<span class="token operator">=</span>kubernetes kubernetes-csr.json <span class="token operator">|</span> cfssljson -bare kubernetes
+<span class="token function">ls</span> kubernetes*pem
+</code></pre>
+<p>&#x5C06;&#x751F;&#x6210;&#x7684;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x5230;&#x6240;&#x6709; master &#x8282;&#x70B9;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;mkdir -p /etc/kubernetes/cert&quot;</span>
+    <span class="token function">scp</span> kubernetes*.pem root@<span class="token variable">${node_ip}</span>:/etc/kubernetes/cert/
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;&#x52A0;&#x5BC6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a name="&#x521B;&#x5EFA;&#x52A0;&#x5BC6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="plugin-anchor" href="#&#x521B;&#x5EFA;&#x52A0;&#x5BC6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;&#x52A0;&#x5BC6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token function">cat</span> <span class="token operator">&gt;</span> encryption-config.yaml <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+kind: EncryptionConfig
+apiVersion: v1
+resources:
+  - resources:
+      - secrets
+    providers:
+      - aescbc:
+          keys:
+            - name: key1
+              secret: <span class="token variable">${ENCRYPTION_KEY}</span>
+      - identity: {}
+EOF</span>
+</code></pre>
+<p>&#x5C06;&#x52A0;&#x5BC6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x5230; master &#x8282;&#x70B9;&#x7684; <code>/etc/kubernetes</code> &#x76EE;&#x5F55;&#x4E0B;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">scp</span> encryption-config.yaml root@<span class="token variable">${node_ip}</span>:/etc/kubernetes/
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x6587;&#x4EF6;"><a name="&#x521B;&#x5EFA;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x6587;&#x4EF6;" class="plugin-anchor" href="#&#x521B;&#x5EFA;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x6587;&#x4EF6;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token function">cat</span> <span class="token operator">&gt;</span> audit-policy.yaml <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+apiVersion: audit.k8s.io/v1beta1
+kind: Policy
+rules:
+  # The following requests were manually identified as high-volume and low-risk, so drop them.
+  - level: None
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - endpoints
+          - services
+          - services/status
+    users:
+      - &apos;system:kube-proxy&apos;
+    verbs:
+      - watch
+
+  - level: None
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - nodes
+          - nodes/status
+    userGroups:
+      - &apos;system:nodes&apos;
+    verbs:
+      - get
+
+  - level: None
+    namespaces:
+      - kube-system
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - endpoints
+    users:
+      - &apos;system:kube-controller-manager&apos;
+      - &apos;system:kube-scheduler&apos;
+      - &apos;system:serviceaccount:kube-system:endpoint-controller&apos;
+    verbs:
+      - get
+      - update
+
+  - level: None
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - namespaces
+          - namespaces/status
+          - namespaces/finalize
+    users:
+      - &apos;system:apiserver&apos;
+    verbs:
+      - get
+
+  # Don&apos;t log HPA fetching metrics.
+  - level: None
+    resources:
+      - group: metrics.k8s.io
+    users:
+      - &apos;system:kube-controller-manager&apos;
+    verbs:
+      - get
+      - list
+
+  # Don&apos;t log these read-only URLs.
+  - level: None
+    nonResourceURLs:
+      - &apos;/healthz*&apos;
+      - /version
+      - &apos;/swagger*&apos;
+
+  # Don&apos;t log events requests.
+  - level: None
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - events
+
+  # node and pod status calls from nodes are high-volume and can be large, don&apos;t log responses for expected updates from nodes
+  - level: Request
+    omitStages:
+      - RequestReceived
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - nodes/status
+          - pods/status
+    users:
+      - kubelet
+      - &apos;system:node-problem-detector&apos;
+      - &apos;system:serviceaccount:kube-system:node-problem-detector&apos;
+    verbs:
+      - update
+      - patch
+
+  - level: Request
+    omitStages:
+      - RequestReceived
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - nodes/status
+          - pods/status
+    userGroups:
+      - &apos;system:nodes&apos;
+    verbs:
+      - update
+      - patch
+
+  # deletecollection calls can be large, don&apos;t log responses for expected namespace deletions
+  - level: Request
+    omitStages:
+      - RequestReceived
+    users:
+      - &apos;system:serviceaccount:kube-system:namespace-controller&apos;
+    verbs:
+      - deletecollection
+
+  # Secrets, ConfigMaps, and TokenReviews can contain sensitive &amp; binary data,
+  # so only log at the Metadata level.
+  - level: Metadata
+    omitStages:
+      - RequestReceived
+    resources:
+      - group: &quot;&quot;
+        resources:
+          - secrets
+          - configmaps
+      - group: authentication.k8s.io
+        resources:
+          - tokenreviews
+  # Get repsonses can be large; skip them.
+  - level: Request
+    omitStages:
+      - RequestReceived
+    resources:
+      - group: &quot;&quot;
+      - group: admissionregistration.k8s.io
+      - group: apiextensions.k8s.io
+      - group: apiregistration.k8s.io
+      - group: apps
+      - group: authentication.k8s.io
+      - group: authorization.k8s.io
+      - group: autoscaling
+      - group: batch
+      - group: certificates.k8s.io
+      - group: extensions
+      - group: metrics.k8s.io
+      - group: networking.k8s.io
+      - group: policy
+      - group: rbac.authorization.k8s.io
+      - group: scheduling.k8s.io
+      - group: settings.k8s.io
+      - group: storage.k8s.io
+    verbs:
+      - get
+      - list
+      - watch
+
+  # Default level for known APIs
+  - level: RequestResponse
+    omitStages:
+      - RequestReceived
+    resources:
+      - group: &quot;&quot;
+      - group: admissionregistration.k8s.io
+      - group: apiextensions.k8s.io
+      - group: apiregistration.k8s.io
+      - group: apps
+      - group: authentication.k8s.io
+      - group: authorization.k8s.io
+      - group: autoscaling
+      - group: batch
+      - group: certificates.k8s.io
+      - group: extensions
+      - group: metrics.k8s.io
+      - group: networking.k8s.io
+      - group: policy
+      - group: rbac.authorization.k8s.io
+      - group: scheduling.k8s.io
+      - group: settings.k8s.io
+      - group: storage.k8s.io
+
+  # Default level for all other requests.
+  - level: Metadata
+    omitStages:
+      - RequestReceived
+EOF</span>
+</code></pre>
+<p>&#x5206;&#x53D1;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">scp</span> audit-policy.yaml root@<span class="token variable">${node_ip}</span>:/etc/kubernetes/audit-policy.yaml
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;&#x540E;&#x7EED;&#x8BBF;&#x95EE;-metrics-server-&#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;"><a name="&#x521B;&#x5EFA;&#x540E;&#x7EED;&#x8BBF;&#x95EE;-metrics-server-&#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;" class="plugin-anchor" href="#&#x521B;&#x5EFA;&#x540E;&#x7EED;&#x8BBF;&#x95EE;-metrics-server-&#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;&#x540E;&#x7EED;&#x8BBF;&#x95EE; metrics-server &#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;</h2>
+<p>&#x521B;&#x5EFA;&#x8BC1;&#x4E66;&#x7B7E;&#x540D;&#x8BF7;&#x6C42;:</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">cat</span> <span class="token operator">&gt;</span> proxy-client-csr.json <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+{
+  &quot;CN&quot;: &quot;aggregator&quot;,
+  &quot;hosts&quot;: [],
+  &quot;key&quot;: {
+    &quot;algo&quot;: &quot;rsa&quot;,
+    &quot;size&quot;: 2048
+  },
+  &quot;names&quot;: [
+    {
+      &quot;C&quot;: &quot;CN&quot;,
+      &quot;ST&quot;: &quot;BeiJing&quot;,
+      &quot;L&quot;: &quot;BeiJing&quot;,
+      &quot;O&quot;: &quot;k8s&quot;,
+      &quot;OU&quot;: &quot;4Paradigm&quot;
+    }
+  ]
+}
+EOF</span>
+</code></pre>
+<ul>
+<li>CN &#x540D;&#x79F0;&#x9700;&#x8981;&#x4F4D;&#x4E8E; kube-apiserver &#x7684; <code>--requestheader-allowed-names</code> &#x53C2;&#x6570;&#x4E2D;&#xFF0C;&#x5426;&#x5219;&#x540E;&#x7EED;&#x8BBF;&#x95EE; metrics &#x65F6;&#x4F1A;&#x63D0;&#x793A;&#x6743;&#x9650;&#x4E0D;&#x8DB3;&#x3002;</li>
+</ul>
+<p>&#x751F;&#x6210;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">cfssl gencert -ca<span class="token operator">=</span>/etc/kubernetes/cert/ca.pem <span class="token punctuation">\</span>
+  -ca-key<span class="token operator">=</span>/etc/kubernetes/cert/ca-key.pem  <span class="token punctuation">\</span>
+  -config<span class="token operator">=</span>/etc/kubernetes/cert/ca-config.json  <span class="token punctuation">\</span>
+  -profile<span class="token operator">=</span>kubernetes proxy-client-csr.json <span class="token operator">|</span> cfssljson -bare proxy-client
+<span class="token function">ls</span> proxy-client*.pem
+</code></pre>
+<p>&#x5C06;&#x751F;&#x6210;&#x7684;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x5230;&#x6240;&#x6709; master &#x8282;&#x70B9;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">scp</span> proxy-client*.pem root@<span class="token variable">${node_ip}</span>:/etc/kubernetes/cert/
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;-kube-apiserver-systemd-unit-&#x6A21;&#x677F;&#x6587;&#x4EF6;"><a name="&#x521B;&#x5EFA;-kube-apiserver-systemd-unit-&#x6A21;&#x677F;&#x6587;&#x4EF6;" class="plugin-anchor" href="#&#x521B;&#x5EFA;-kube-apiserver-systemd-unit-&#x6A21;&#x677F;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA; kube-apiserver systemd unit &#x6A21;&#x677F;&#x6587;&#x4EF6;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token function">cat</span> <span class="token operator">&gt;</span> kube-apiserver.service.template <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+[Unit]
+Description=Kubernetes API Server
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+After=network.target
+
+[Service]
+WorkingDirectory=<span class="token variable">${K8S_DIR}</span>/kube-apiserver
+ExecStart=/opt/k8s/bin/kube-apiserver <span class="token entity" title="\\">\\</span>
+  --advertise-address=##NODE_IP## <span class="token entity" title="\\">\\</span>
+  --default-not-ready-toleration-seconds=360 <span class="token entity" title="\\">\\</span>
+  --default-unreachable-toleration-seconds=360 <span class="token entity" title="\\">\\</span>
+  --feature-gates=DynamicAuditing=true <span class="token entity" title="\\">\\</span>
+  --max-mutating-requests-inflight=2000 <span class="token entity" title="\\">\\</span>
+  --max-requests-inflight=4000 <span class="token entity" title="\\">\\</span>
+  --default-watch-cache-size=200 <span class="token entity" title="\\">\\</span>
+  --delete-collection-workers=2 <span class="token entity" title="\\">\\</span>
+  --encryption-provider-config=/etc/kubernetes/encryption-config.yaml <span class="token entity" title="\\">\\</span>
+  --etcd-cafile=/etc/kubernetes/cert/ca.pem <span class="token entity" title="\\">\\</span>
+  --etcd-certfile=/etc/kubernetes/cert/kubernetes.pem <span class="token entity" title="\\">\\</span>
+  --etcd-keyfile=/etc/kubernetes/cert/kubernetes-key.pem <span class="token entity" title="\\">\\</span>
+  --etcd-servers=<span class="token variable">${ETCD_ENDPOINTS}</span> <span class="token entity" title="\\">\\</span>
+  --bind-address=##NODE_IP## <span class="token entity" title="\\">\\</span>
+  --secure-port=6443 <span class="token entity" title="\\">\\</span>
+  --tls-cert-file=/etc/kubernetes/cert/kubernetes.pem <span class="token entity" title="\\">\\</span>
+  --tls-private-key-file=/etc/kubernetes/cert/kubernetes-key.pem <span class="token entity" title="\\">\\</span>
+  --insecure-port=0 <span class="token entity" title="\\">\\</span>
+  --audit-dynamic-configuration <span class="token entity" title="\\">\\</span>
+  --audit-log-maxage=15 <span class="token entity" title="\\">\\</span>
+  --audit-log-maxbackup=3 <span class="token entity" title="\\">\\</span>
+  --audit-log-maxsize=100 <span class="token entity" title="\\">\\</span>
+  --audit-log-truncate-enabled <span class="token entity" title="\\">\\</span>
+  --audit-log-path=<span class="token variable">${K8S_DIR}</span>/kube-apiserver/audit.log <span class="token entity" title="\\">\\</span>
+  --audit-policy-file=/etc/kubernetes/audit-policy.yaml <span class="token entity" title="\\">\\</span>
+  --profiling <span class="token entity" title="\\">\\</span>
+  --anonymous-auth=false <span class="token entity" title="\\">\\</span>
+  --client-ca-file=/etc/kubernetes/cert/ca.pem <span class="token entity" title="\\">\\</span>
+  --enable-bootstrap-token-auth <span class="token entity" title="\\">\\</span>
+  --requestheader-allowed-names=&quot;aggregator&quot; <span class="token entity" title="\\">\\</span>
+  --requestheader-client-ca-file=/etc/kubernetes/cert/ca.pem <span class="token entity" title="\\">\\</span>
+  --requestheader-extra-headers-prefix=&quot;X-Remote-Extra-&quot; <span class="token entity" title="\\">\\</span>
+  --requestheader-group-headers=X-Remote-Group <span class="token entity" title="\\">\\</span>
+  --requestheader-username-headers=X-Remote-User <span class="token entity" title="\\">\\</span>
+  --service-account-key-file=/etc/kubernetes/cert/ca.pem <span class="token entity" title="\\">\\</span>
+  --authorization-mode=Node,RBAC <span class="token entity" title="\\">\\</span>
+  --runtime-config=api/all=true <span class="token entity" title="\\">\\</span>
+  --enable-admission-plugins=NodeRestriction <span class="token entity" title="\\">\\</span>
+  --allow-privileged=true <span class="token entity" title="\\">\\</span>
+  --apiserver-count=3 <span class="token entity" title="\\">\\</span>
+  --event-ttl=168h <span class="token entity" title="\\">\\</span>
+  --kubelet-certificate-authority=/etc/kubernetes/cert/ca.pem <span class="token entity" title="\\">\\</span>
+  --kubelet-client-certificate=/etc/kubernetes/cert/kubernetes.pem <span class="token entity" title="\\">\\</span>
+  --kubelet-client-key=/etc/kubernetes/cert/kubernetes-key.pem <span class="token entity" title="\\">\\</span>
+  --kubelet-https=true <span class="token entity" title="\\">\\</span>
+  --kubelet-timeout=10s <span class="token entity" title="\\">\\</span>
+  --proxy-client-cert-file=/etc/kubernetes/cert/proxy-client.pem <span class="token entity" title="\\">\\</span>
+  --proxy-client-key-file=/etc/kubernetes/cert/proxy-client-key.pem <span class="token entity" title="\\">\\</span>
+  --service-cluster-ip-range=<span class="token variable">${SERVICE_CIDR}</span> <span class="token entity" title="\\">\\</span>
+  --service-node-port-range=<span class="token variable">${NODE_PORT_RANGE}</span> <span class="token entity" title="\\">\\</span>
+  --logtostderr=true <span class="token entity" title="\\">\\</span>
+  --v=2
+Restart=on-failure
+RestartSec=10
+Type=notify
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+EOF</span>
+</code></pre>
+<ul>
+<li><code>--advertise-address</code>&#xFF1A;apiserver &#x5BF9;&#x5916;&#x901A;&#x544A;&#x7684; IP&#xFF08;kubernetes &#x670D;&#x52A1;&#x540E;&#x7AEF;&#x8282;&#x70B9; IP&#xFF09;&#xFF1B;</li>
+<li><code>--default-*-toleration-seconds</code>&#xFF1A;&#x8BBE;&#x7F6E;&#x8282;&#x70B9;&#x5F02;&#x5E38;&#x76F8;&#x5173;&#x7684;&#x9608;&#x503C;&#xFF1B;</li>
+<li><code>--max-*-requests-inflight</code>&#xFF1A;&#x8BF7;&#x6C42;&#x76F8;&#x5173;&#x7684;&#x6700;&#x5927;&#x9608;&#x503C;&#xFF1B;</li>
+<li><code>--etcd-*</code>&#xFF1A;&#x8BBF;&#x95EE; etcd &#x7684;&#x8BC1;&#x4E66;&#x548C; etcd &#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;&#xFF1B;</li>
+<li><code>--experimental-encryption-provider-config</code>&#xFF1A;&#x6307;&#x5B9A;&#x7528;&#x4E8E;&#x52A0;&#x5BC6; etcd &#x4E2D; secret &#x7684;&#x914D;&#x7F6E;&#xFF1B;</li>
+<li><code>--bind-address</code>&#xFF1A; https &#x76D1;&#x542C;&#x7684; IP&#xFF0C;&#x4E0D;&#x80FD;&#x4E3A; <code>127.0.0.1</code>&#xFF0C;&#x5426;&#x5219;&#x5916;&#x754C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x5B83;&#x7684;&#x5B89;&#x5168;&#x7AEF;&#x53E3; 6443&#xFF1B;</li>
+<li><code>--secret-port</code>&#xFF1A;https &#x76D1;&#x542C;&#x7AEF;&#x53E3;&#xFF1B;</li>
+<li><code>--insecure-port=0</code>&#xFF1A;&#x5173;&#x95ED;&#x76D1;&#x542C; http &#x975E;&#x5B89;&#x5168;&#x7AEF;&#x53E3;(8080)&#xFF1B;</li>
+<li><code>--tls-*-file</code>&#xFF1A;&#x6307;&#x5B9A; apiserver &#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;&#x3001;&#x79C1;&#x94A5;&#x548C; CA &#x6587;&#x4EF6;&#xFF1B;</li>
+<li><code>--audit-*</code>&#xFF1A;&#x914D;&#x7F6E;&#x5BA1;&#x8BA1;&#x7B56;&#x7565;&#x548C;&#x5BA1;&#x8BA1;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x76F8;&#x5173;&#x7684;&#x53C2;&#x6570;&#xFF1B;</li>
+<li><code>--client-ca-file</code>&#xFF1A;&#x9A8C;&#x8BC1; client (kue-controller-manager&#x3001;kube-scheduler&#x3001;kubelet&#x3001;kube-proxy &#x7B49;)&#x8BF7;&#x6C42;&#x6240;&#x5E26;&#x7684;&#x8BC1;&#x4E66;&#xFF1B;</li>
+<li><code>--enable-bootstrap-token-auth</code>&#xFF1A;&#x542F;&#x7528; kubelet bootstrap &#x7684; token &#x8BA4;&#x8BC1;&#xFF1B;</li>
+<li><code>--requestheader-*</code>&#xFF1A;kube-apiserver &#x7684; aggregator layer &#x76F8;&#x5173;&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#xFF0C;proxy-client &amp; HPA &#x9700;&#x8981;&#x4F7F;&#x7528;&#xFF1B;</li>
+<li><code>--requestheader-client-ca-file</code>&#xFF1A;&#x7528;&#x4E8E;&#x7B7E;&#x540D; <code>--proxy-client-cert-file</code> &#x548C; <code>--proxy-client-key-file</code> &#x6307;&#x5B9A;&#x7684;&#x8BC1;&#x4E66;&#xFF1B;&#x5728;&#x542F;&#x7528;&#x4E86; metric aggregator &#x65F6;&#x4F7F;&#x7528;&#xFF1B;</li>
+<li><code>--requestheader-allowed-names</code>&#xFF1A;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&#xFF0C;&#x503C;&#x4E3A;&#x9017;&#x53F7;&#x5206;&#x5272;&#x7684; <code>--proxy-client-cert-file</code> &#x8BC1;&#x4E66;&#x7684; CN &#x540D;&#x79F0;&#xFF0C;&#x8FD9;&#x91CC;&#x8BBE;&#x7F6E;&#x4E3A; &quot;aggregator&quot;&#xFF1B;</li>
+<li><code>--service-account-key-file</code>&#xFF1A;&#x7B7E;&#x540D; ServiceAccount Token &#x7684;&#x516C;&#x94A5;&#x6587;&#x4EF6;&#xFF0C;kube-controller-manager &#x7684; <code>--service-account-private-key-file</code> &#x6307;&#x5B9A;&#x79C1;&#x94A5;&#x6587;&#x4EF6;&#xFF0C;&#x4E24;&#x8005;&#x914D;&#x5BF9;&#x4F7F;&#x7528;&#xFF1B;</li>
+<li><code>--runtime-config=api/all=true</code>&#xFF1A; &#x542F;&#x7528;&#x6240;&#x6709;&#x7248;&#x672C;&#x7684; APIs&#xFF0C;&#x5982; autoscaling/v2alpha1&#xFF1B;</li>
+<li><code>--authorization-mode=Node,RBAC</code>&#x3001;<code>--anonymous-auth=false</code>&#xFF1A; &#x5F00;&#x542F; Node &#x548C; RBAC &#x6388;&#x6743;&#x6A21;&#x5F0F;&#xFF0C;&#x62D2;&#x7EDD;&#x672A;&#x6388;&#x6743;&#x7684;&#x8BF7;&#x6C42;&#xFF1B;</li>
+<li><code>--enable-admission-plugins</code>&#xFF1A;&#x542F;&#x7528;&#x4E00;&#x4E9B;&#x9ED8;&#x8BA4;&#x5173;&#x95ED;&#x7684; plugins&#xFF1B;</li>
+<li><code>--allow-privileged</code>&#xFF1A;&#x8FD0;&#x884C;&#x6267;&#x884C; privileged &#x6743;&#x9650;&#x7684;&#x5BB9;&#x5668;&#xFF1B;</li>
+<li><code>--apiserver-count=3</code>&#xFF1A;&#x6307;&#x5B9A; apiserver &#x5B9E;&#x4F8B;&#x7684;&#x6570;&#x91CF;&#xFF1B;</li>
+<li><code>--event-ttl</code>&#xFF1A;&#x6307;&#x5B9A; events &#x7684;&#x4FDD;&#x5B58;&#x65F6;&#x95F4;&#xFF1B;</li>
+<li><code>--kubelet-*</code>&#xFF1A;&#x5982;&#x679C;&#x6307;&#x5B9A;&#xFF0C;&#x5219;&#x4F7F;&#x7528; https &#x8BBF;&#x95EE; kubelet APIs&#xFF1B;&#x9700;&#x8981;&#x4E3A;&#x8BC1;&#x4E66;&#x5BF9;&#x5E94;&#x7684;&#x7528;&#x6237;(&#x4E0A;&#x9762; kubernetes*.pem &#x8BC1;&#x4E66;&#x7684;&#x7528;&#x6237;&#x4E3A; kubernetes) &#x7528;&#x6237;&#x5B9A;&#x4E49; RBAC &#x89C4;&#x5219;&#xFF0C;&#x5426;&#x5219;&#x8BBF;&#x95EE; kubelet API &#x65F6;&#x63D0;&#x793A;&#x672A;&#x6388;&#x6743;&#xFF1B;</li>
+<li><code>--proxy-client-*</code>&#xFF1A;apiserver &#x8BBF;&#x95EE; metrics-server &#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;&#xFF1B;</li>
+<li><code>--service-cluster-ip-range</code>&#xFF1A; &#x6307;&#x5B9A; Service Cluster IP &#x5730;&#x5740;&#x6BB5;&#xFF1B;</li>
+<li><code>--service-node-port-range</code>&#xFF1A; &#x6307;&#x5B9A; NodePort &#x7684;&#x7AEF;&#x53E3;&#x8303;&#x56F4;&#xFF1B;</li>
+</ul>
+<p>&#x5982;&#x679C; kube-apiserver &#x673A;&#x5668;<strong>&#x6CA1;&#x6709;</strong>&#x8FD0;&#x884C; kube-proxy&#xFF0C;&#x5219;&#x8FD8;&#x9700;&#x8981;&#x6DFB;&#x52A0; <code>--enable-aggregator-routing=true</code> &#x53C2;&#x6570;&#xFF1B;</p>
+<p>&#x5173;&#x4E8E; <code>--requestheader-XXX</code> &#x76F8;&#x5173;&#x53C2;&#x6570;&#xFF0C;&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><a href="https://github.com/kubernetes-incubator/apiserver-builder/blob/master/docs/concepts/auth.md" target="_blank">https://github.com/kubernetes-incubator/apiserver-builder/blob/master/docs/concepts/auth.md</a></li>
+<li><a href="https://docs.bitnami.com/kubernetes/how-to/configure-autoscaling-custom-metrics/" target="_blank">https://docs.bitnami.com/kubernetes/how-to/configure-autoscaling-custom-metrics/</a></li>
+</ul>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ol>
+<li>requestheader-client-ca-file &#x6307;&#x5B9A;&#x7684; CA &#x8BC1;&#x4E66;&#xFF0C;&#x5FC5;&#x987B;&#x5177;&#x6709; client auth and server auth&#xFF1B;</li>
+<li>&#x5982;&#x679C; <code>--requestheader-allowed-names</code>  &#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x4E14; <code>--proxy-client-cert-file</code> &#x8BC1;&#x4E66;&#x7684; CN &#x540D;&#x79F0;&#x4E0D;&#x5728; allowed-names &#x4E2D;&#xFF0C;&#x5219;&#x540E;&#x7EED;&#x67E5;&#x770B; node &#x6216; pods &#x7684; metrics &#x5931;&#x8D25;&#xFF0C;&#x63D0;&#x793A;&#xFF1A;<pre class="language-"><code class="lang-bash"><span class="token punctuation">[</span>root@zhangjun-k8s01 <span class="token number">1.8</span>+<span class="token punctuation">]</span><span class="token comment"># kubectl top nodes</span>
+Error from server <span class="token punctuation">(</span>Forbidden<span class="token punctuation">)</span>: nodes.metrics.k8s.io is forbidden: User <span class="token string">&quot;aggregator&quot;</span> cannot list resource <span class="token string">&quot;nodes&quot;</span> <span class="token keyword">in</span> API group <span class="token string">&quot;metrics.k8s.io&quot;</span> at the cluster scope
+</code></pre>
+</li>
+</ol>
+<h2 id="&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x521B;&#x5EFA;&#x548C;&#x5206;&#x53D1;-kube-apiserver-systemd-unit-&#x6587;&#x4EF6;"><a name="&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x521B;&#x5EFA;&#x548C;&#x5206;&#x53D1;-kube-apiserver-systemd-unit-&#x6587;&#x4EF6;" class="plugin-anchor" href="#&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x521B;&#x5EFA;&#x548C;&#x5206;&#x53D1;-kube-apiserver-systemd-unit-&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x521B;&#x5EFA;&#x548C;&#x5206;&#x53D1; kube-apiserver systemd unit &#x6587;&#x4EF6;</h2>
+<p>&#x66FF;&#x6362;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x751F;&#x6210; systemd unit &#x6587;&#x4EF6;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">))</span></span>
+  <span class="token keyword">do</span>
+    <span class="token function">sed</span> -e <span class="token string">&quot;s/##NODE_NAME##/<span class="token variable">${NODE_NAMES<span class="token punctuation">[</span>i<span class="token punctuation">]</span>}</span>/&quot;</span> -e <span class="token string">&quot;s/##NODE_IP##/<span class="token variable">${NODE_IPS<span class="token punctuation">[</span>i<span class="token punctuation">]</span>}</span>/&quot;</span> kube-apiserver.service.template <span class="token operator">&gt;</span> kube-apiserver-<span class="token variable">${NODE_IPS<span class="token punctuation">[</span>i<span class="token punctuation">]</span>}</span>.service 
+  <span class="token keyword">done</span>
+<span class="token function">ls</span> kube-apiserver*.service
+</code></pre>
+<ul>
+<li>NODE_NAMES &#x548C; NODE_IPS &#x4E3A;&#x76F8;&#x540C;&#x957F;&#x5EA6;&#x7684; bash &#x6570;&#x7EC4;&#xFF0C;&#x5206;&#x522B;&#x4E3A;&#x8282;&#x70B9;&#x540D;&#x79F0;&#x548C;&#x5BF9;&#x5E94;&#x7684; IP&#xFF1B;</li>
+</ul>
+<p>&#x5206;&#x53D1;&#x751F;&#x6210;&#x7684; systemd unit &#x6587;&#x4EF6;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">scp</span> kube-apiserver-<span class="token variable">${node_ip}</span>.service root@<span class="token variable">${node_ip}</span>:/etc/systemd/system/kube-apiserver.service
+  <span class="token keyword">done</span>
+</code></pre>
+<ul>
+<li>&#x6587;&#x4EF6;&#x91CD;&#x547D;&#x540D;&#x4E3A; kube-apiserver.service;</li>
+</ul>
+<h2 id="&#x542F;&#x52A8;-kube-apiserver-&#x670D;&#x52A1;"><a name="&#x542F;&#x52A8;-kube-apiserver-&#x670D;&#x52A1;" class="plugin-anchor" href="#&#x542F;&#x52A8;-kube-apiserver-&#x670D;&#x52A1;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x542F;&#x52A8; kube-apiserver &#x670D;&#x52A1;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;mkdir -p <span class="token variable">${K8S_DIR}</span>/kube-apiserver&quot;</span>
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;systemctl daemon-reload &amp;&amp; systemctl enable kube-apiserver &amp;&amp; systemctl restart kube-apiserver&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<ul>
+<li>&#x542F;&#x52A8;&#x670D;&#x52A1;&#x524D;&#x5FC5;&#x987B;&#x5148;&#x521B;&#x5EFA;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#xFF1B;</li>
+</ul>
+<h2 id="&#x68C0;&#x67E5;-kube-apiserver-&#x8FD0;&#x884C;&#x72B6;&#x6001;"><a name="&#x68C0;&#x67E5;-kube-apiserver-&#x8FD0;&#x884C;&#x72B6;&#x6001;" class="plugin-anchor" href="#&#x68C0;&#x67E5;-kube-apiserver-&#x8FD0;&#x884C;&#x72B6;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5; kube-apiserver &#x8FD0;&#x884C;&#x72B6;&#x6001;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;systemctl status kube-apiserver |grep &apos;Active:&apos;&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<p>&#x786E;&#x4FDD;&#x72B6;&#x6001;&#x4E3A; <code>active (running)</code>&#xFF0C;&#x5426;&#x5219;&#x67E5;&#x770B;&#x65E5;&#x5FD7;&#xFF0C;&#x786E;&#x8BA4;&#x539F;&#x56E0;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">journalctl -u kube-apiserver
+</code></pre>
+<h2 id="&#x6253;&#x5370;-kube-apiserver-&#x5199;&#x5165;-etcd-&#x7684;&#x6570;&#x636E;"><a name="&#x6253;&#x5370;-kube-apiserver-&#x5199;&#x5165;-etcd-&#x7684;&#x6570;&#x636E;" class="plugin-anchor" href="#&#x6253;&#x5370;-kube-apiserver-&#x5199;&#x5165;-etcd-&#x7684;&#x6570;&#x636E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6253;&#x5370; kube-apiserver &#x5199;&#x5165; etcd &#x7684;&#x6570;&#x636E;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token assign-left variable">ETCDCTL_API</span><span class="token operator">=</span><span class="token number">3</span> etcdctl <span class="token punctuation">\</span>
+    --endpoints<span class="token operator">=</span><span class="token variable">${ETCD_ENDPOINTS}</span> <span class="token punctuation">\</span>
+    --cacert<span class="token operator">=</span>/opt/k8s/work/ca.pem <span class="token punctuation">\</span>
+    --cert<span class="token operator">=</span>/opt/k8s/work/etcd.pem <span class="token punctuation">\</span>
+    --key<span class="token operator">=</span>/opt/k8s/work/etcd-key.pem <span class="token punctuation">\</span>
+    get /registry/ --prefix --keys-only
+</code></pre>
+<h2 id="&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;"><a name="&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;" class="plugin-anchor" href="#&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;</h2>
+<pre class="language-"><code class="lang-bash">$ kubectl cluster-info
+Kubernetes master is running at https://127.0.0.1:8443
+
+To further debug and diagnose cluster problems, use <span class="token string">&apos;kubectl cluster-info dump&apos;</span><span class="token builtin class-name">.</span>
+
+$ kubectl get all --all-namespaces
+NAMESPACE   NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>   AGE
+default     service/kubernetes   ClusterIP   <span class="token number">10.254</span>.0.1   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">443</span>/TCP   12m
+
+$ kubectl get componentstatuses
+NAME                 STATUS      MESSAGE                                                                                     ERROR
+controller-manager   Unhealthy   Get http://127.0.0.1:10252/healthz: dial tcp <span class="token number">127.0</span>.0.1:10252: connect: connection refused
+scheduler            Unhealthy   Get http://127.0.0.1:10251/healthz: dial tcp <span class="token number">127.0</span>.0.1:10251: connect: connection refused
+etcd-0               Healthy     <span class="token punctuation">{</span><span class="token string">&quot;health&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;true&quot;</span><span class="token punctuation">}</span>
+etcd-2               Healthy     <span class="token punctuation">{</span><span class="token string">&quot;health&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;true&quot;</span><span class="token punctuation">}</span>
+etcd-1               Healthy     <span class="token punctuation">{</span><span class="token string">&quot;health&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;true&quot;</span><span class="token punctuation">}</span>
+</code></pre>
+<ol>
+<li><p>&#x5982;&#x679C;&#x6267;&#x884C; kubectl &#x547D;&#x4EE4;&#x5F0F;&#x65F6;&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x4F7F;&#x7528;&#x7684; <code>~/.kube/config</code> &#x6587;&#x4EF6;&#x4E0D;&#x5BF9;&#xFF0C;&#x8BF7;&#x5207;&#x6362;&#x5230;&#x6B63;&#x786E;&#x7684;&#x8D26;&#x6237;&#x540E;&#x518D;&#x6267;&#x884C;&#x8BE5;&#x547D;&#x4EE4;&#xFF1A;</p>
+<p> <code>The connection to the server localhost:8080 was refused - did you specify the right host or port?</code></p>
+</li>
+<li><p>&#x6267;&#x884C; <code>kubectl get componentstatuses</code> &#x547D;&#x4EE4;&#x65F6;&#xFF0C;apiserver &#x9ED8;&#x8BA4;&#x5411; 127.0.0.1 &#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x3002;&#x5F53; controller-manager&#x3001;scheduler &#x4EE5;&#x96C6;&#x7FA4;&#x6A21;&#x5F0F;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x6709;&#x53EF;&#x80FD;&#x548C; kube-apiserver <strong>&#x4E0D;&#x5728;&#x4E00;&#x53F0;&#x673A;&#x5668;</strong>&#x4E0A;&#xFF0C;&#x8FD9;&#x65F6; controller-manager &#x6216; scheduler &#x7684;&#x72B6;&#x6001;&#x4E3A; Unhealthy&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x5B83;&#x4EEC;&#x5DE5;&#x4F5C;<strong>&#x6B63;&#x5E38;</strong>&#x3002;</p>
+</li>
+</ol>
+<h2 id="&#x68C0;&#x67E5;-kube-apiserver-&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;"><a name="&#x68C0;&#x67E5;-kube-apiserver-&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;" class="plugin-anchor" href="#&#x68C0;&#x67E5;-kube-apiserver-&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5; kube-apiserver &#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;</h2>
+<pre class="language-"><code class="lang-bash">$ <span class="token function">sudo</span> <span class="token function">netstat</span> -lnpt<span class="token operator">|</span><span class="token function">grep</span> kube
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">172.27</span>.137.240:6443     <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">101442</span>/kube-apiserv
+</code></pre>
+<ul>
+<li>6443: &#x63A5;&#x6536; https &#x8BF7;&#x6C42;&#x7684;&#x5B89;&#x5168;&#x7AEF;&#x53E3;&#xFF0C;&#x5BF9;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x505A;&#x8BA4;&#x8BC1;&#x548C;&#x6388;&#x6743;&#xFF1B;</li>
+<li>&#x7531;&#x4E8E;&#x5173;&#x95ED;&#x4E86;&#x975E;&#x5B89;&#x5168;&#x7AEF;&#x53E3;&#xFF0C;&#x6545;&#x6CA1;&#x6709;&#x76D1;&#x542C; 8080&#xFF1B;</li>
+</ul>
+<h2 id="&#x6388;&#x4E88;-kube-apiserver-&#x8BBF;&#x95EE;-kubelet-api-&#x7684;&#x6743;&#x9650;"><a name="&#x6388;&#x4E88;-kube-apiserver-&#x8BBF;&#x95EE;-kubelet-api-&#x7684;&#x6743;&#x9650;" class="plugin-anchor" href="#&#x6388;&#x4E88;-kube-apiserver-&#x8BBF;&#x95EE;-kubelet-api-&#x7684;&#x6743;&#x9650;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6388;&#x4E88; kube-apiserver &#x8BBF;&#x95EE; kubelet API &#x7684;&#x6743;&#x9650;</h2>
+<p>&#x5728;&#x6267;&#x884C; kubectl exec&#x3001;run&#x3001;logs &#x7B49;&#x547D;&#x4EE4;&#x65F6;&#xFF0C;apiserver &#x4F1A;&#x5C06;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x5230; kubelet &#x7684; https &#x7AEF;&#x53E3;&#x3002;&#x8FD9;&#x91CC;&#x5B9A;&#x4E49; RBAC &#x89C4;&#x5219;&#xFF0C;&#x6388;&#x6743; apiserver &#x4F7F;&#x7528;&#x7684;&#x8BC1;&#x4E66;&#xFF08;kubernetes.pem&#xFF09;&#x7528;&#x6237;&#x540D;&#xFF08;CN&#xFF1A;kuberntes&#xFF09;&#x8BBF;&#x95EE; kubelet API &#x7684;&#x6743;&#x9650;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">kubectl create clusterrolebinding kube-apiserver:kubelet-apis --clusterrole<span class="token operator">=</span>system:kubelet-api-admin --user kubernetes
+</code></pre>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> zhangjun </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6700;&#x540E;&#x66F4;&#x65B0;&#xFF1A; 2022-07-20 14:59:29 </span> </footer><!-- tags --><div id="tags" class="tags"><p><i class="fa fa-tags" aria-hidden="true"></i> <a href="tags.html#master">master</a> <a href="tags.html#kube-apiserver">kube-apiserver</a></p></div><!-- tagsstop -->
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="06-1.部署master节点.html" class="navigation navigation-prev " aria-label="Previous page: 06-1.部署master节点">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="06-3.controller-manager集群.html" class="navigation navigation-next " aria-label="Next page: 06-3.controller-manager集群">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"06-2.apiserver集群","level":"1.9.1","depth":2,"next":{"title":"06-3.controller-manager集群","level":"1.9.2","depth":2,"path":"06-3.controller-manager集群.md","ref":"06-3.controller-manager集群.md","articles":[]},"previous":{"title":"06-1.部署master节点","level":"1.9","depth":1,"path":"06-1.部署master节点.md","ref":"06-1.部署master节点.md","articles":[{"title":"06-2.apiserver集群","level":"1.9.1","depth":2,"path":"06-2.apiserver集群.md","ref":"06-2.apiserver集群.md","articles":[]},{"title":"06-3.controller-manager集群","level":"1.9.2","depth":2,"path":"06-3.controller-manager集群.md","ref":"06-3.controller-manager集群.md","articles":[]},{"title":"06-4.scheduler集群","level":"1.9.3","depth":2,"path":"06-4.scheduler集群.md","ref":"06-4.scheduler集群.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","anchors","disqus","github","editlink","prism","-highlight","-lunr","-search","search-plus","baidu","codesnippet","splitter","page-toc-button","image-captions","page-footer-ex","tags","multipart"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"knowl"},"github":{"url":"https://github.com/opsnull/follow-me-install-kubernetes-cluster"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/"},"page-footer-ex":{"copyright":"zhangjun","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"最后更新："},"splitter":{},"multipart":{},"codesnippet":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sitemap":{"hostname":"http://k8s.opsnull.com"},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"tags":{"placement":"bottom"},"baidu":{"token":"18c1967ba7abeaf5be1330bb512f0617"},"sharing":{"facebook":true,"twitter":true,"google":true,"weibo":true,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"expandable-chapters":{},"search-plus":{},"image-captions":{"caption":"图片 - _CAPTION_","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":11,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"index.html#fig1.1.1","level":"1.1","list_caption":"Figure: dashboard-home","alt":"dashboard-home","nro":1,"url":"./images/dashboard-home.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-home","attributes":{},"skip":false,"key":"1.1.1"},{"backlink":"index.html#fig1.1.2","level":"1.1","list_caption":"Figure: kubeoperator-ui","alt":"kubeoperator-ui","nro":2,"url":"https://raw.githubusercontent.com/KubeOperator/website/master/images/kubeoperator-ui.jpg","index":2,"caption_template":"图片 - _CAPTION_","label":"kubeoperator-ui","attributes":{},"skip":false,"key":"1.1.2"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.1","level":"1.12.2","list_caption":"Figure: dashboard-login","alt":"dashboard-login","nro":3,"url":"./images/dashboard-login.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-login","attributes":{},"skip":false,"key":"1.12.2.1"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.2","level":"1.12.2","list_caption":"Figure: images/dashboard.png","alt":"images/dashboard.png","nro":4,"url":"images/dashboard.png","index":2,"caption_template":"图片 - _CAPTION_","label":"images/dashboard.png","attributes":{},"skip":false,"key":"1.12.2.2"},{"backlink":"09-3.metrics-server插件.html#fig1.12.3.1","level":"1.12.3","list_caption":"Figure: monitoring_architecture.png","alt":"monitoring_architecture.png","nro":5,"url":"images/monitoring_architecture.png","index":1,"caption_template":"图片 - _CAPTION_","label":"monitoring_architecture.png","attributes":{},"skip":false,"key":"1.12.3.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.1","level":"1.12.4","list_caption":"Figure: es-setting","alt":"es-setting","nro":6,"url":"./images/es-setting.png","index":1,"caption_template":"图片 - _CAPTION_","label":"es-setting","attributes":{},"skip":false,"key":"1.12.4.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.2","level":"1.12.4","list_caption":"Figure: es-home","alt":"es-home","nro":7,"url":"./images/es-home.png","index":2,"caption_template":"图片 - _CAPTION_","label":"es-home","attributes":{},"skip":false,"key":"1.12.4.2"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.1","level":"1.14","list_caption":"Figure: virtualbox-harbor","alt":"virtualbox-harbor","nro":8,"url":"./images/virtualbox-harbor.png","index":1,"caption_template":"图片 - _CAPTION_","label":"virtualbox-harbor","attributes":{},"skip":false,"key":"1.14.1"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.2","level":"1.14","list_caption":"Figure: harbor","alt":"harbor","nro":9,"url":"./images/harbo.png","index":2,"caption_template":"图片 - _CAPTION_","label":"harbor","attributes":{},"skip":false,"key":"1.14.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.1","level":"1.16","list_caption":"Figure: ssl-failed","alt":"ssl-failed","nro":10,"url":"images/ssl-failed.png","index":1,"caption_template":"图片 - _CAPTION_","label":"ssl-failed","attributes":{},"skip":false,"key":"1.16.1"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.2","level":"1.16","list_caption":"Figure: keychain","alt":"keychain","nro":11,"url":"images/keychain.png","index":2,"caption_template":"图片 - _CAPTION_","label":"keychain","attributes":{},"skip":false,"key":"1.16.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.3","level":"1.16","list_caption":"Figure: ssl-success","alt":"ssl-success","nro":12,"url":"images/ssl-success.png","index":3,"caption_template":"图片 - _CAPTION_","label":"ssl-success","attributes":{},"skip":false,"key":"1.16.3"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.4","level":"1.16","list_caption":"Figure: admin-cert","alt":"admin-cert","nro":13,"url":"images/admin-cert.png","index":4,"caption_template":"图片 - _CAPTION_","label":"admin-cert","attributes":{},"skip":false,"key":"1.16.4"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.5","level":"1.16","list_caption":"Figure: select-cert","alt":"select-cert","nro":14,"url":"images/select-cert.png","index":5,"caption_template":"图片 - _CAPTION_","label":"select-cert","attributes":{},"skip":false,"key":"1.16.5"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.6","level":"1.16","list_caption":"Figure: chrome-authored","alt":"chrome-authored","nro":15,"url":"images/chrome-authored.png","index":6,"caption_template":"图片 - _CAPTION_","label":"chrome-authored","attributes":{},"skip":false,"key":"1.16.6"}]},"title":"和我一步步部署kubernetes集群","language":"zh-cn","gitbook":"*","description":"和我一步步部署kubernetes集群"},"file":{"path":"06-2.apiserver集群.md","mtime":"2022-07-20T06:59:29.351Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-20T07:04:13.263Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-baidu/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

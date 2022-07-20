@@ -1,0 +1,916 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-cn" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>01.系统初始化和全局变量 · 和我一步步部署kubernetes集群</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-tags/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="02.创建CA证书和秘钥.html" />
+    
+    
+    <link rel="prev" href="00.组件版本和配置策略.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">和我一步步部署 kubernetes 集群</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="00.组件版本和配置策略.html">
+            
+                <a href="00.组件版本和配置策略.html">
+            
+                    
+                    00.组件版本和配置策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="01.系统初始化和全局变量.html">
+            
+                <a href="01.系统初始化和全局变量.html">
+            
+                    
+                    01.系统初始化和全局变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02.创建CA证书和秘钥.html">
+            
+                <a href="02.创建CA证书和秘钥.html">
+            
+                    
+                    02.创建CA证书和秘钥
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="03.部署kubectl命令行工具.html">
+            
+                <a href="03.部署kubectl命令行工具.html">
+            
+                    
+                    03.部署kubectl命令行工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="04.部署etcd集群.html">
+            
+                <a href="04.部署etcd集群.html">
+            
+                    
+                    04.部署etcd集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="05.部署flannel网络.html">
+            
+                <a href="05.部署flannel网络.html">
+            
+                    
+                    05.部署flannel网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="06-0.apiserver高可用之nginx代理.html">
+            
+                <a href="06-0.apiserver高可用之nginx代理.html">
+            
+                    
+                    06.apiserver高可用之nginx代理.md
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="06-1.部署master节点.html">
+            
+                <a href="06-1.部署master节点.html">
+            
+                    
+                    06-1.部署master节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="06-2.apiserver集群.html">
+            
+                <a href="06-2.apiserver集群.html">
+            
+                    
+                    06-2.apiserver集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="06-3.controller-manager集群.html">
+            
+                <a href="06-3.controller-manager集群.html">
+            
+                    
+                    06-3.controller-manager集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="06-4.scheduler集群.html">
+            
+                <a href="06-4.scheduler集群.html">
+            
+                    
+                    06-4.scheduler集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="07-0.部署worker节点.html">
+            
+                <a href="07-0.部署worker节点.html">
+            
+                    
+                    07.部署worker节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="07-1.docker.html">
+            
+                <a href="07-1.docker.html">
+            
+                    
+                    07-1.docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="07-2.kubelet.html">
+            
+                <a href="07-2.kubelet.html">
+            
+                    
+                    07-2.kubelet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="07-3.kube-proxy.html">
+            
+                <a href="07-3.kube-proxy.html">
+            
+                    
+                    07-3.kube-proxy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="08.验证集群功能.html">
+            
+                <a href="08.验证集群功能.html">
+            
+                    
+                    08.验证集群功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="09-0.部署集群插件.html">
+            
+                <a href="09-0.部署集群插件.html">
+            
+                    
+                    09.部署集群插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="09-1.dns插件.html">
+            
+                <a href="09-1.dns插件.html">
+            
+                    
+                    09-1.dns插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="09-2.dashboard插件.html">
+            
+                <a href="09-2.dashboard插件.html">
+            
+                    
+                    09-2.dashboard插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="09-3.metrics-server插件.html">
+            
+                <a href="09-3.metrics-server插件.html">
+            
+                    
+                    09-3.metrics-server插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="09-4.EFK插件.html">
+            
+                <a href="09-4.EFK插件.html">
+            
+                    
+                    09-4.EFK插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="10.部署Docker-Registry.html">
+            
+                <a href="10.部署Docker-Registry.html">
+            
+                    
+                    10.部署Docker-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="11.部署Harbor-Registry.html">
+            
+                <a href="11.部署Harbor-Registry.html">
+            
+                    
+                    11.部署Harbor-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="12.清理集群.html">
+            
+                <a href="12.清理集群.html">
+            
+                    
+                    12.清理集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="A.浏览器访问kube-apiserver安全端口.html">
+            
+                <a href="A.浏览器访问kube-apiserver安全端口.html">
+            
+                    
+                    A.浏览器访问apiserver安全端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="B.校验TLS证书.html">
+            
+                <a href="B.校验TLS证书.html">
+            
+                    
+                    B.校验TLS证书
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">标签集合</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="tags.html">
+            
+                <a href="tags.html">
+            
+                    
+                    标签
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本書使用 GitBook 釋出
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >01.系统初始化和全局变量</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="01&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><a name="01&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;" class="plugin-anchor" href="#01&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>01.&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#01&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;">01.&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;</a><ul>
+<li><a href="#&#x96C6;&#x7FA4;&#x673A;&#x5668;">&#x96C6;&#x7FA4;&#x673A;&#x5668;</a></li>
+<li><a href="#&#x4E3B;&#x673A;&#x540D;">&#x4E3B;&#x673A;&#x540D;</a></li>
+<li><a href="#&#x6DFB;&#x52A0;-docker-&#x8D26;&#x6237;">&#x6DFB;&#x52A0; docker &#x8D26;&#x6237;</a></li>
+<li><a href="#&#x65E0;&#x5BC6;&#x7801;-ssh-&#x767B;&#x5F55;&#x5176;&#x5B83;&#x8282;&#x70B9;">&#x65E0;&#x5BC6;&#x7801; ssh &#x767B;&#x5F55;&#x5176;&#x5B83;&#x8282;&#x70B9;</a></li>
+<li><a href="#&#x66F4;&#x65B0;-path-&#x53D8;&#x91CF;">&#x66F4;&#x65B0; PATH &#x53D8;&#x91CF;</a></li>
+<li><a href="#&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;">&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;</a></li>
+<li><a href="#&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;">&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;</a></li>
+<li><a href="#&#x5173;&#x95ED;-swap-&#x5206;&#x533A;">&#x5173;&#x95ED; swap &#x5206;&#x533A;</a></li>
+<li><a href="#&#x5173;&#x95ED;-selinux">&#x5173;&#x95ED; SELinux</a></li>
+<li><a href="#&#x5173;&#x95ED;-dnsmasq&#x53EF;&#x9009;">&#x5173;&#x95ED; dnsmasq&#xFF08;&#x53EF;&#x9009;&#xFF09;</a></li>
+<li><a href="#&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x6A21;&#x5757;">&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x6A21;&#x5757;</a></li>
+<li><a href="#&#x4F18;&#x5316;&#x5185;&#x6838;&#x53C2;&#x6570;">&#x4F18;&#x5316;&#x5185;&#x6838;&#x53C2;&#x6570;</a></li>
+<li><a href="#&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x65F6;&#x533A;">&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x65F6;&#x533A;</a></li>
+<li><a href="#&#x5173;&#x95ED;&#x65E0;&#x5173;&#x7684;&#x670D;&#x52A1;">&#x5173;&#x95ED;&#x65E0;&#x5173;&#x7684;&#x670D;&#x52A1;</a></li>
+<li><a href="#&#x8BBE;&#x7F6E;-rsyslogd-&#x548C;-systemd-journald">&#x8BBE;&#x7F6E; rsyslogd &#x548C; systemd journald</a></li>
+<li><a href="#&#x521B;&#x5EFA;&#x76F8;&#x5173;&#x76EE;&#x5F55;">&#x521B;&#x5EFA;&#x76F8;&#x5173;&#x76EE;&#x5F55;</a></li>
+<li><a href="#&#x5347;&#x7EA7;&#x5185;&#x6838;">&#x5347;&#x7EA7;&#x5185;&#x6838;</a></li>
+<li><a href="#&#x5173;&#x95ED;-numa">&#x5173;&#x95ED; NUMA</a></li>
+<li><a href="#&#x5206;&#x53D1;&#x96C6;&#x7FA4;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x811A;&#x672C;">&#x5206;&#x53D1;&#x96C6;&#x7FA4;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x811A;&#x672C;</a></li>
+<li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="&#x96C6;&#x7FA4;&#x673A;&#x5668;"><a name="&#x96C6;&#x7FA4;&#x673A;&#x5668;" class="plugin-anchor" href="#&#x96C6;&#x7FA4;&#x673A;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x96C6;&#x7FA4;&#x673A;&#x5668;</h2>
+<ul>
+<li>zhangjun-k8s01&#xFF1A;172.27.137.240</li>
+<li>zhangjun-k8s02&#xFF1A;172.27.137.239</li>
+<li>zhangjun-k8s03&#xFF1A;172.27.137.238</li>
+</ul>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ol>
+<li>&#x672C;&#x6587;&#x6863;&#x4E2D;&#x7684; etcd &#x96C6;&#x7FA4;&#x3001;master &#x8282;&#x70B9;&#x3001;worker &#x8282;&#x70B9;&#x5747;&#x4F7F;&#x7528;&#x8FD9;&#x4E09;&#x53F0;&#x673A;&#x5668;&#xFF1B;</li>
+<li>&#x9700;&#x8981;&#x5728;<strong>&#x6240;&#x6709;&#x673A;&#x5668;</strong>&#x4E0A;&#x6267;&#x884C;&#x672C;&#x6587;&#x6863;&#x7684;&#x521D;&#x59CB;&#x5316;&#x547D;&#x4EE4;&#xFF1B;</li>
+<li>&#x9700;&#x8981;&#x4F7F;&#x7528; <strong>root &#x8D26;&#x53F7;</strong>&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x547D;&#x4EE4;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7279;&#x6B8A;&#x6307;&#x660E;&#xFF0C;&#x672C;&#x6587;&#x6863;&#x7684;&#x6240;&#x6709;&#x64CD;&#x4F5C;<strong>&#x5747;&#x5728; zhangjun-k8s01 &#x8282;&#x70B9;&#x4E0A;&#x6267;&#x884C;</strong>&#xFF0C;&#x7136;&#x540E;&#x8FDC;&#x7A0B;&#x5206;&#x53D1;&#x6587;&#x4EF6;&#x548C;&#x6267;&#x884C;&#x547D;&#x4EE4;&#xFF1B;</li>
+</ol>
+<h2 id="&#x4E3B;&#x673A;&#x540D;"><a name="&#x4E3B;&#x673A;&#x540D;" class="plugin-anchor" href="#&#x4E3B;&#x673A;&#x540D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3B;&#x673A;&#x540D;</h2>
+<p>&#x8BBE;&#x7F6E;&#x6C38;&#x4E45;&#x4E3B;&#x673A;&#x540D;&#x79F0;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x65B0;&#x767B;&#x5F55;:</p>
+<pre class="language-"><code class="lang-bash">hostnamectl set-hostname zhangjun-k8s01 <span class="token comment"># &#x5C06; zhangjun-k8s01 &#x66FF;&#x6362;&#x4E3A;&#x5F53;&#x524D;&#x4E3B;&#x673A;&#x540D;</span>
+</code></pre>
+<ul>
+<li>&#x8BBE;&#x7F6E;&#x7684;&#x4E3B;&#x673A;&#x540D;&#x4FDD;&#x5B58;&#x5728; <code>/etc/hostname</code> &#x6587;&#x4EF6;&#x4E2D;&#xFF1B;</li>
+</ul>
+<p>&#x5982;&#x679C; DNS &#x4E0D;&#x652F;&#x6301;&#x89E3;&#x6790;&#x4E3B;&#x673A;&#x540D;&#x79F0;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x7684; <code>/etc/hosts</code> &#x6587;&#x4EF6;&#xFF0C;&#x6DFB;&#x52A0;&#x4E3B;&#x673A;&#x540D;&#x548C; IP &#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">cat</span> <span class="token operator">&gt;&gt;</span> /etc/hosts <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+172.27.137.240 zhangjun-k8s01
+172.27.137.239 zhangjun-k8s02
+172.27.137.238 zhangjun-k8s03
+EOF</span>
+</code></pre>
+<h2 id="&#x6DFB;&#x52A0;-docker-&#x8D26;&#x6237;"><a name="&#x6DFB;&#x52A0;-docker-&#x8D26;&#x6237;" class="plugin-anchor" href="#&#x6DFB;&#x52A0;-docker-&#x8D26;&#x6237;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6DFB;&#x52A0; docker &#x8D26;&#x6237;</h2>
+<p>&#x5728;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x6DFB;&#x52A0; docker &#x8D26;&#x6237;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">useradd</span> -m <span class="token function">docker</span>
+</code></pre>
+<h2 id="&#x65E0;&#x5BC6;&#x7801;-ssh-&#x767B;&#x5F55;&#x5176;&#x5B83;&#x8282;&#x70B9;"><a name="&#x65E0;&#x5BC6;&#x7801;-ssh-&#x767B;&#x5F55;&#x5176;&#x5B83;&#x8282;&#x70B9;" class="plugin-anchor" href="#&#x65E0;&#x5BC6;&#x7801;-ssh-&#x767B;&#x5F55;&#x5176;&#x5B83;&#x8282;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x65E0;&#x5BC6;&#x7801; ssh &#x767B;&#x5F55;&#x5176;&#x5B83;&#x8282;&#x70B9;</h2>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7279;&#x6B8A;&#x6307;&#x660E;&#xFF0C;&#x672C;&#x6587;&#x6863;&#x7684;&#x6240;&#x6709;&#x64CD;&#x4F5C;<strong>&#x5747;&#x5728; zhangjun-k8s01 &#x8282;&#x70B9;&#x4E0A;&#x6267;&#x884C;</strong>&#xFF0C;&#x7136;&#x540E;&#x8FDC;&#x7A0B;&#x5206;&#x53D1;&#x6587;&#x4EF6;&#x548C;&#x6267;&#x884C;&#x547D;&#x4EE4;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x8BE5;&#x8282;&#x70B9;&#x5230;&#x5176;&#x5B83;&#x8282;&#x70B9;&#x7684; ssh &#x4FE1;&#x4EFB;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x8BBE;&#x7F6E; zhangjun-k8s01 &#x7684; root &#x8D26;&#x6237;&#x53EF;&#x4EE5;&#x65E0;&#x5BC6;&#x7801;&#x767B;&#x5F55;<strong>&#x6240;&#x6709;&#x8282;&#x70B9;</strong>&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">ssh-keygen -t rsa
+ssh-copy-id root@zhangjun-k8s01
+ssh-copy-id root@zhangjun-k8s02
+ssh-copy-id root@zhangjun-k8s03
+</code></pre>
+<h2 id="&#x66F4;&#x65B0;-path-&#x53D8;&#x91CF;"><a name="&#x66F4;&#x65B0;-path-&#x53D8;&#x91CF;" class="plugin-anchor" href="#&#x66F4;&#x65B0;-path-&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x66F4;&#x65B0; PATH &#x53D8;&#x91CF;</h2>
+<p>&#x5C06;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x6DFB;&#x52A0;&#x5230; PATH &#x73AF;&#x5883;&#x53D8;&#x91CF;&#x4E2D;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">echo</span> <span class="token string">&apos;PATH=/opt/k8s/bin:$PATH&apos;</span> <span class="token operator">&gt;&gt;</span>/root/.bashrc
+<span class="token builtin class-name">source</span> /root/.bashrc
+</code></pre>
+<h2 id="&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;"><a name="&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;" class="plugin-anchor" href="#&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;</h2>
+<p>&#x5728;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;&#xFF1A;</p>
+<p>CentOS:</p>
+<pre class="language-"><code class="lang-bash">yum <span class="token function">install</span> -y epel-release
+yum <span class="token function">install</span> -y conntrack ntpdate ntp ipvsadm ipset jq iptables <span class="token function">curl</span> sysstat libseccomp <span class="token function">wget</span>
+</code></pre>
+<p>Ubuntu: </p>
+<pre class="language-"><code class="lang-bash"><span class="token function">apt-get</span> <span class="token function">install</span> -y conntrack ipvsadm ntp ipset jq iptables <span class="token function">curl</span> sysstat libseccomp
+</code></pre>
+<ul>
+<li>ipvs &#x4F9D;&#x8D56; ipset&#xFF1B;</li>
+<li>ntp &#x4FDD;&#x8BC1;&#x5404;&#x673A;&#x5668;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x540C;&#x6B65;&#xFF1B;</li>
+</ul>
+<h2 id="&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;"><a name="&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;" class="plugin-anchor" href="#&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;</h2>
+<p>&#x5728;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;&#xFF0C;&#x6E05;&#x7406;&#x9632;&#x706B;&#x5899;&#x89C4;&#x5219;&#xFF0C;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x8F6C;&#x53D1;&#x7B56;&#x7565;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">systemctl stop firewalld
+systemctl disable firewalld
+iptables -F <span class="token operator">&amp;&amp;</span> iptables -X <span class="token operator">&amp;&amp;</span> iptables -F -t nat <span class="token operator">&amp;&amp;</span> iptables -X -t nat
+iptables -P FORWARD ACCEPT
+</code></pre>
+<h2 id="&#x5173;&#x95ED;-swap-&#x5206;&#x533A;"><a name="&#x5173;&#x95ED;-swap-&#x5206;&#x533A;" class="plugin-anchor" href="#&#x5173;&#x95ED;-swap-&#x5206;&#x533A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5173;&#x95ED; swap &#x5206;&#x533A;</h2>
+<p>&#x5982;&#x679C;&#x5F00;&#x542F;&#x4E86; swap &#x5206;&#x533A;&#xFF0C;kubelet &#x4F1A;&#x542F;&#x52A8;&#x5931;&#x8D25;(&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5C06;&#x53C2;&#x6570; --fail-swap-on &#x8BBE;&#x7F6E;&#x4E3A; false &#x6765;&#x5FFD;&#x7565; swap on)&#xFF0C;&#x6545;&#x9700;&#x8981;&#x5728;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x5173;&#x95ED; swap &#x5206;&#x533A;&#x3002;&#x540C;&#x65F6;&#x6CE8;&#x91CA; <code>/etc/fstab</code> &#x4E2D;&#x76F8;&#x5E94;&#x7684;&#x6761;&#x76EE;&#xFF0C;&#x9632;&#x6B62;&#x5F00;&#x673A;&#x81EA;&#x52A8;&#x6302;&#x8F7D; swap &#x5206;&#x533A;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">swapoff -a
+<span class="token function">sed</span> -i <span class="token string">&apos;/ swap / s/^\(.*\)$/#\1/g&apos;</span> /etc/fstab
+</code></pre>
+<h2 id="&#x5173;&#x95ED;-selinux"><a name="&#x5173;&#x95ED;-selinux" class="plugin-anchor" href="#&#x5173;&#x95ED;-selinux"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5173;&#x95ED; SELinux</h2>
+<p>&#x5173;&#x95ED; SELinux&#xFF0C;&#x5426;&#x5219;&#x540E;&#x7EED; K8S &#x6302;&#x8F7D;&#x76EE;&#x5F55;&#x65F6;&#x53EF;&#x80FD;&#x62A5;&#x9519; <code>Permission denied</code>&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">setenforce <span class="token number">0</span>
+<span class="token function">sed</span> -i <span class="token string">&apos;s/^SELINUX=.*/SELINUX=disabled/&apos;</span> /etc/selinux/config
+</code></pre>
+<h2 id="&#x5173;&#x95ED;-dnsmasq&#xFF08;&#x53EF;&#x9009;&#xFF09;"><a name="&#x5173;&#x95ED;-dnsmasq&#xFF08;&#x53EF;&#x9009;&#xFF09;" class="plugin-anchor" href="#&#x5173;&#x95ED;-dnsmasq&#xFF08;&#x53EF;&#x9009;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5173;&#x95ED; dnsmasq&#xFF08;&#x53EF;&#x9009;&#xFF09;</h2>
+<p>linux &#x7CFB;&#x7EDF;&#x5F00;&#x542F;&#x4E86; dnsmasq &#x540E;(&#x5982; GUI &#x73AF;&#x5883;)&#xFF0C;&#x5C06;&#x7CFB;&#x7EDF; DNS Server &#x8BBE;&#x7F6E;&#x4E3A; 127.0.0.1&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4; docker &#x5BB9;&#x5668;&#x65E0;&#x6CD5;&#x89E3;&#x6790;&#x57DF;&#x540D;&#xFF0C;&#x9700;&#x8981;&#x5173;&#x95ED;&#x5B83;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">systemctl stop dnsmasq
+systemctl disable dnsmasq
+</code></pre>
+<h2 id="&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x6A21;&#x5757;"><a name="&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x6A21;&#x5757;" class="plugin-anchor" href="#&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x6A21;&#x5757;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x6A21;&#x5757;</h2>
+<pre class="language-"><code class="lang-bash">modprobe ip_vs_rr
+modprobe br_netfilter
+</code></pre>
+<h2 id="&#x4F18;&#x5316;&#x5185;&#x6838;&#x53C2;&#x6570;"><a name="&#x4F18;&#x5316;&#x5185;&#x6838;&#x53C2;&#x6570;" class="plugin-anchor" href="#&#x4F18;&#x5316;&#x5185;&#x6838;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F18;&#x5316;&#x5185;&#x6838;&#x53C2;&#x6570;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token function">cat</span> <span class="token operator">&gt;</span> kubernetes.conf <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+net.bridge.bridge-nf-call-iptables=1
+net.bridge.bridge-nf-call-ip6tables=1
+net.ipv4.ip_forward=1
+net.ipv4.tcp_tw_recycle=0
+vm.swappiness=0 # &#x7981;&#x6B62;&#x4F7F;&#x7528; swap &#x7A7A;&#x95F4;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x7CFB;&#x7EDF; OOM &#x65F6;&#x624D;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x5B83;
+vm.overcommit_memory=1 # &#x4E0D;&#x68C0;&#x67E5;&#x7269;&#x7406;&#x5185;&#x5B58;&#x662F;&#x5426;&#x591F;&#x7528;
+vm.panic_on_oom=0 # &#x5F00;&#x542F; OOM
+fs.inotify.max_user_instances=8192
+fs.inotify.max_user_watches=1048576
+fs.file-max=52706963
+fs.nr_open=52706963
+net.ipv6.conf.all.disable_ipv6=1
+net.netfilter.nf_conntrack_max=2310720
+EOF</span>
+<span class="token function">cp</span> kubernetes.conf  /etc/sysctl.d/kubernetes.conf
+sysctl -p /etc/sysctl.d/kubernetes.conf
+</code></pre>
+<ul>
+<li>&#x5FC5;&#x987B;&#x5173;&#x95ED; tcp_tw_recycle&#xFF0C;&#x5426;&#x5219;&#x548C; NAT &#x51B2;&#x7A81;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x670D;&#x52A1;&#x4E0D;&#x901A;&#xFF1B;</li>
+<li>&#x5173;&#x95ED; IPV6&#xFF0C;&#x9632;&#x6B62;&#x89E6;&#x53D1; docker BUG&#xFF1B;</li>
+</ul>
+<h2 id="&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x65F6;&#x533A;"><a name="&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x65F6;&#x533A;" class="plugin-anchor" href="#&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x65F6;&#x533A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x65F6;&#x533A;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token comment"># &#x8C03;&#x6574;&#x7CFB;&#x7EDF; TimeZone</span>
+timedatectl set-timezone Asia/Shanghai
+
+<span class="token comment"># &#x5C06;&#x5F53;&#x524D;&#x7684; UTC &#x65F6;&#x95F4;&#x5199;&#x5165;&#x786C;&#x4EF6;&#x65F6;&#x949F;</span>
+timedatectl set-local-rtc <span class="token number">0</span>
+
+<span class="token comment"># &#x91CD;&#x542F;&#x4F9D;&#x8D56;&#x4E8E;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x7684;&#x670D;&#x52A1;</span>
+systemctl restart rsyslog 
+systemctl restart crond
+</code></pre>
+<h2 id="&#x5173;&#x95ED;&#x65E0;&#x5173;&#x7684;&#x670D;&#x52A1;"><a name="&#x5173;&#x95ED;&#x65E0;&#x5173;&#x7684;&#x670D;&#x52A1;" class="plugin-anchor" href="#&#x5173;&#x95ED;&#x65E0;&#x5173;&#x7684;&#x670D;&#x52A1;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5173;&#x95ED;&#x65E0;&#x5173;&#x7684;&#x670D;&#x52A1;</h2>
+<pre class="language-"><code class="lang-bash">systemctl stop postfix <span class="token operator">&amp;&amp;</span> systemctl disable postfix
+</code></pre>
+<h2 id="&#x8BBE;&#x7F6E;-rsyslogd-&#x548C;-systemd-journald"><a name="&#x8BBE;&#x7F6E;-rsyslogd-&#x548C;-systemd-journald" class="plugin-anchor" href="#&#x8BBE;&#x7F6E;-rsyslogd-&#x548C;-systemd-journald"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BBE;&#x7F6E; rsyslogd &#x548C; systemd journald</h2>
+<p>systemd &#x7684; journald &#x662F; Centos 7 &#x7F3A;&#x7701;&#x7684;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x8BB0;&#x5F55;&#x4E86;&#x6240;&#x6709;&#x7CFB;&#x7EDF;&#x3001;&#x5185;&#x6838;&#x3001;Service Unit &#x7684;&#x65E5;&#x5FD7;&#x3002;</p>
+<p>&#x76F8;&#x6BD4; systemd&#xFF0C;journald &#x8BB0;&#x5F55;&#x7684;&#x65E5;&#x5FD7;&#x6709;&#x5982;&#x4E0B;&#x4F18;&#x52BF;&#xFF1A;</p>
+<ol>
+<li>&#x53EF;&#x4EE5;&#x8BB0;&#x5F55;&#x5230;&#x5185;&#x5B58;&#x6216;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF1B;(&#x9ED8;&#x8BA4;&#x8BB0;&#x5F55;&#x5230;&#x5185;&#x5B58;&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x4F4D;&#x7F6E;&#x4E3A; /run/log/jounal)&#xFF1B;</li>
+<li>&#x53EF;&#x4EE5;&#x9650;&#x5236;&#x5360;&#x7528;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#x3001;&#x4FDD;&#x8BC1;&#x78C1;&#x76D8;&#x5269;&#x4F59;&#x7A7A;&#x95F4;&#xFF1B;</li>
+<li>&#x53EF;&#x4EE5;&#x9650;&#x5236;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#x3001;&#x4FDD;&#x5B58;&#x7684;&#x65F6;&#x95F4;&#xFF1B;</li>
+</ol>
+<p>journald &#x9ED8;&#x8BA4;&#x5C06;&#x65E5;&#x5FD7;&#x8F6C;&#x53D1;&#x7ED9; rsyslog&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x65E5;&#x5FD7;&#x5199;&#x4E86;&#x591A;&#x4EFD;&#xFF0C;/var/log/messages &#x4E2D;&#x5305;&#x542B;&#x4E86;&#x592A;&#x591A;&#x65E0;&#x5173;&#x65E5;&#x5FD7;&#xFF0C;&#x4E0D;&#x65B9;&#x4FBF;&#x540E;&#x7EED;&#x67E5;&#x770B;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x5F71;&#x54CD;&#x7CFB;&#x7EDF;&#x6027;&#x80FD;&#x3002;</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">mkdir</span> /var/log/journal <span class="token comment"># &#x6301;&#x4E45;&#x5316;&#x4FDD;&#x5B58;&#x65E5;&#x5FD7;&#x7684;&#x76EE;&#x5F55;</span>
+<span class="token function">mkdir</span> /etc/systemd/journald.conf.d
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /etc/systemd/journald.conf.d/99-prophet.conf <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+[Journal]
+# &#x6301;&#x4E45;&#x5316;&#x4FDD;&#x5B58;&#x5230;&#x78C1;&#x76D8;
+Storage=persistent
+
+# &#x538B;&#x7F29;&#x5386;&#x53F2;&#x65E5;&#x5FD7;
+Compress=yes
+
+SyncIntervalSec=5m
+RateLimitInterval=30s
+RateLimitBurst=1000
+
+# &#x6700;&#x5927;&#x5360;&#x7528;&#x7A7A;&#x95F4; 10G
+SystemMaxUse=10G
+
+# &#x5355;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x6700;&#x5927; 200M
+SystemMaxFileSize=200M
+
+# &#x65E5;&#x5FD7;&#x4FDD;&#x5B58;&#x65F6;&#x95F4; 2 &#x5468;
+MaxRetentionSec=2week
+
+# &#x4E0D;&#x5C06;&#x65E5;&#x5FD7;&#x8F6C;&#x53D1;&#x5230; syslog
+ForwardToSyslog=no
+EOF</span>
+systemctl restart systemd-journald
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;&#x76F8;&#x5173;&#x76EE;&#x5F55;"><a name="&#x521B;&#x5EFA;&#x76F8;&#x5173;&#x76EE;&#x5F55;" class="plugin-anchor" href="#&#x521B;&#x5EFA;&#x76F8;&#x5173;&#x76EE;&#x5F55;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;&#x76F8;&#x5173;&#x76EE;&#x5F55;</h2>
+<p>&#x521B;&#x5EFA;&#x76EE;&#x5F55;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">mkdir</span> -p  /opt/k8s/<span class="token punctuation">{</span>bin,work<span class="token punctuation">}</span> /etc/<span class="token punctuation">{</span>kubernetes,etcd<span class="token punctuation">}</span>/cert
+</code></pre>
+<h2 id="&#x5347;&#x7EA7;&#x5185;&#x6838;"><a name="&#x5347;&#x7EA7;&#x5185;&#x6838;" class="plugin-anchor" href="#&#x5347;&#x7EA7;&#x5185;&#x6838;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5347;&#x7EA7;&#x5185;&#x6838;</h2>
+<p>CentOS 7.x &#x7CFB;&#x7EDF;&#x81EA;&#x5E26;&#x7684; 3.10.x &#x5185;&#x6838;&#x5B58;&#x5728;&#x4E00;&#x4E9B; Bugs&#xFF0C;&#x5BFC;&#x81F4;&#x8FD0;&#x884C;&#x7684; Docker&#x3001;Kubernetes &#x4E0D;&#x7A33;&#x5B9A;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<ol>
+<li>&#x9AD8;&#x7248;&#x672C;&#x7684; docker(1.13 &#x4EE5;&#x540E;) &#x542F;&#x7528;&#x4E86; 3.10 kernel &#x5B9E;&#x9A8C;&#x652F;&#x6301;&#x7684; kernel memory account &#x529F;&#x80FD;(&#x65E0;&#x6CD5;&#x5173;&#x95ED;)&#xFF0C;&#x5F53;&#x8282;&#x70B9;&#x538B;&#x529B;&#x5927;&#x5982;&#x9891;&#x7E41;&#x542F;&#x52A8;&#x548C;&#x505C;&#x6B62;&#x5BB9;&#x5668;&#x65F6;&#x4F1A;&#x5BFC;&#x81F4; cgroup memory leak&#xFF1B;</li>
+<li>&#x7F51;&#x7EDC;&#x8BBE;&#x5907;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CC4;&#x6F0F;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x7C7B;&#x4F3C;&#x4E8E;&#x62A5;&#x9519;&#xFF1A;&quot;kernel:unregister_netdevice: waiting for eth0 to become free. Usage count = 1&quot;;</li>
+</ol>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>&#x5347;&#x7EA7;&#x5185;&#x6838;&#x5230; 4.4.X &#x4EE5;&#x4E0A;&#xFF1B;</li>
+<li>&#x6216;&#x8005;&#xFF0C;&#x624B;&#x52A8;&#x7F16;&#x8BD1;&#x5185;&#x6838;&#xFF0C;disable CONFIG_MEMCG_KMEM &#x7279;&#x6027;&#xFF1B;</li>
+<li>&#x6216;&#x8005;&#xFF0C;&#x5B89;&#x88C5;&#x4FEE;&#x590D;&#x4E86;&#x8BE5;&#x95EE;&#x9898;&#x7684; Docker 18.09.1 &#x53CA;&#x4EE5;&#x4E0A;&#x7684;&#x7248;&#x672C;&#x3002;&#x4F46;&#x7531;&#x4E8E; kubelet &#x4E5F;&#x4F1A;&#x8BBE;&#x7F6E; kmem&#xFF08;&#x5B83; vendor &#x4E86; runc&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x7F16;&#x8BD1; kubelet &#x5E76;&#x6307;&#x5B9A; GOFLAGS=&quot;-tags=nokmem&quot;&#xFF1B;<pre class="language-"><code class="lang-bash"><span class="token function">git</span> clone --branch v1.14.1 --single-branch --depth <span class="token number">1</span> https://github.com/kubernetes/kubernetes
+<span class="token builtin class-name">cd</span> kubernetes
+<span class="token assign-left variable">KUBE_GIT_VERSION</span><span class="token operator">=</span>v1.14.1 ./build/run.sh <span class="token function">make</span> kubelet <span class="token assign-left variable">GOFLAGS</span><span class="token operator">=</span><span class="token string">&quot;-tags=nokmem&quot;</span>
+</code></pre>
+</li>
+</ol>
+<p>&#x8FD9;&#x91CC;&#x91C7;&#x7528;&#x5347;&#x7EA7;&#x5185;&#x6838;&#x7684;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">rpm</span> -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+<span class="token comment"># &#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#x68C0;&#x67E5; /boot/grub2/grub.cfg &#x4E2D;&#x5BF9;&#x5E94;&#x5185;&#x6838; menuentry &#x4E2D;&#x662F;&#x5426;&#x5305;&#x542B; initrd16 &#x914D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x518D;&#x5B89;&#x88C5;&#x4E00;&#x6B21;&#xFF01;</span>
+yum --enablerepo<span class="token operator">=</span>elrepo-kernel <span class="token function">install</span> -y kernel-lt
+<span class="token comment"># &#x8BBE;&#x7F6E;&#x5F00;&#x673A;&#x4ECE;&#x65B0;&#x5185;&#x6838;&#x542F;&#x52A8;</span>
+grub2-set-default <span class="token number">0</span>
+</code></pre>
+<p>&#x5B89;&#x88C5;&#x5185;&#x6838;&#x6E90;&#x6587;&#x4EF6;&#xFF08;&#x53EF;&#x9009;&#xFF0C;&#x5728;&#x5347;&#x7EA7;&#x5B8C;&#x5185;&#x6838;&#x5E76;&#x91CD;&#x542F;&#x673A;&#x5668;&#x540E;&#x6267;&#x884C;&#xFF09;:</p>
+<pre class="language-"><code class="lang-bash"><span class="token comment"># yum erase kernel-headers</span>
+yum --enablerepo<span class="token operator">=</span>elrepo-kernel <span class="token function">install</span> kernel-lt-devel-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -r<span class="token variable">)</span></span> kernel-lt-headers-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -r<span class="token variable">)</span></span>
+</code></pre>
+<h2 id="&#x5173;&#x95ED;-numa"><a name="&#x5173;&#x95ED;-numa" class="plugin-anchor" href="#&#x5173;&#x95ED;-numa"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5173;&#x95ED; NUMA</h2>
+<pre class="language-"><code class="lang-bash"><span class="token function">cp</span> /etc/default/grub<span class="token punctuation">{</span>,.bak<span class="token punctuation">}</span>
+<span class="token function">vim</span> /etc/default/grub <span class="token comment"># &#x5728; GRUB_CMDLINE_LINUX &#x4E00;&#x884C;&#x6DFB;&#x52A0; `numa=off` &#x53C2;&#x6570;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</span>
+<span class="token function">diff</span> /etc/default/grub.bak /etc/default/grub
+6c6
+<span class="token operator">&lt;</span> <span class="token assign-left variable">GRUB_CMDLINE_LINUX</span><span class="token operator">=</span><span class="token string">&quot;crashkernel=auto rd.lvm.lv=centos/root rhgb quiet&quot;</span>
+---
+<span class="token operator">&gt;</span> <span class="token assign-left variable">GRUB_CMDLINE_LINUX</span><span class="token operator">=</span><span class="token string">&quot;crashkernel=auto rd.lvm.lv=centos/root rhgb quiet numa=off&quot;</span>
+</code></pre>
+<p>&#x91CD;&#x65B0;&#x751F;&#x6210; grub2 &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">cp</span> /boot/grub2/grub.cfg<span class="token punctuation">{</span>,.bak<span class="token punctuation">}</span>
+grub2-mkconfig -o /boot/grub2/grub.cfg
+</code></pre>
+<h2 id="&#x5206;&#x53D1;&#x96C6;&#x7FA4;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x811A;&#x672C;"><a name="&#x5206;&#x53D1;&#x96C6;&#x7FA4;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x811A;&#x672C;" class="plugin-anchor" href="#&#x5206;&#x53D1;&#x96C6;&#x7FA4;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x811A;&#x672C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5206;&#x53D1;&#x96C6;&#x7FA4;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x811A;&#x672C;</h2>
+<p>&#x540E;&#x7EED;&#x4F7F;&#x7528;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x90FD;&#x5B9A;&#x4E49;&#x5728;&#x6587;&#x4EF6; <a href="manifests/environment.sh">environment.sh</a> &#x4E2D;&#xFF0C;&#x8BF7;&#x6839;&#x636E;<strong>&#x81EA;&#x5DF1;&#x7684;&#x673A;&#x5668;&#x3001;&#x7F51;&#x7EDC;&#x60C5;&#x51B5;</strong>&#x4FEE;&#x6539;&#x3002;&#x7136;&#x540E;&#xFF0C;&#x628A;&#x5B83;&#x62F7;&#x8D1D;&#x5230;<strong>&#x6240;&#x6709;</strong>&#x8282;&#x70B9;&#x7684; <code>/opt/k8s/bin</code> &#x76EE;&#x5F55;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">scp</span> environment.sh root@<span class="token variable">${node_ip}</span>:/opt/k8s/bin/
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;chmod +x /opt/k8s/bin/*&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x53C2;&#x8003;"><a name="&#x53C2;&#x8003;" class="plugin-anchor" href="#&#x53C2;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;</h2>
+<ol>
+<li>&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x76F8;&#x5173;&#x53C2;&#x6570;&#x53C2;&#x8003;&#xFF1A;<a href="https://docs.openshift.com/enterprise/3.2/admin_guide/overcommit.html" target="_blank">https://docs.openshift.com/enterprise/3.2/admin_guide/overcommit.html</a></li>
+<li>3.10.x &#x5185;&#x6838; kmem bugs &#x76F8;&#x5173;&#x7684;&#x8BA8;&#x8BBA;&#x548C;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;<ol>
+<li><a href="https://github.com/kubernetes/kubernetes/issues/61937" target="_blank">https://github.com/kubernetes/kubernetes/issues/61937</a></li>
+<li><a href="https://support.mesosphere.com/s/article/Critical-Issue-KMEM-MSPH-2018-0006" target="_blank">https://support.mesosphere.com/s/article/Critical-Issue-KMEM-MSPH-2018-0006</a></li>
+<li><a href="https://pingcap.com/blog/try-to-fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/" target="_blank">https://pingcap.com/blog/try-to-fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/</a></li>
+</ol>
+</li>
+</ol>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> zhangjun </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6700;&#x540E;&#x66F4;&#x65B0;&#xFF1A; 2022-07-20 14:59:29 </span> </footer><!-- tags --><div id="tags" class="tags"><p><i class="fa fa-tags" aria-hidden="true"></i> <a href="tags.html#environment">environment</a></p></div><!-- tagsstop -->
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="00.组件版本和配置策略.html" class="navigation navigation-prev " aria-label="Previous page: 00.组件版本和配置策略">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="02.创建CA证书和秘钥.html" class="navigation navigation-next " aria-label="Next page: 02.创建CA证书和秘钥">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"01.系统初始化和全局变量","level":"1.3","depth":1,"next":{"title":"02.创建CA证书和秘钥","level":"1.4","depth":1,"path":"02.创建CA证书和秘钥.md","ref":"02.创建CA证书和秘钥.md","articles":[]},"previous":{"title":"00.组件版本和配置策略","level":"1.2","depth":1,"path":"00.组件版本和配置策略.md","ref":"00.组件版本和配置策略.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","anchors","disqus","github","editlink","prism","-highlight","-lunr","-search","search-plus","baidu","codesnippet","splitter","page-toc-button","image-captions","page-footer-ex","tags","multipart"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"knowl"},"github":{"url":"https://github.com/opsnull/follow-me-install-kubernetes-cluster"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/"},"page-footer-ex":{"copyright":"zhangjun","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"最后更新："},"splitter":{},"multipart":{},"codesnippet":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sitemap":{"hostname":"http://k8s.opsnull.com"},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"tags":{"placement":"bottom"},"baidu":{"token":"18c1967ba7abeaf5be1330bb512f0617"},"sharing":{"facebook":true,"twitter":true,"google":true,"weibo":true,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"expandable-chapters":{},"search-plus":{},"image-captions":{"caption":"图片 - _CAPTION_","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":11,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"index.html#fig1.1.1","level":"1.1","list_caption":"Figure: dashboard-home","alt":"dashboard-home","nro":1,"url":"./images/dashboard-home.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-home","attributes":{},"skip":false,"key":"1.1.1"},{"backlink":"index.html#fig1.1.2","level":"1.1","list_caption":"Figure: kubeoperator-ui","alt":"kubeoperator-ui","nro":2,"url":"https://raw.githubusercontent.com/KubeOperator/website/master/images/kubeoperator-ui.jpg","index":2,"caption_template":"图片 - _CAPTION_","label":"kubeoperator-ui","attributes":{},"skip":false,"key":"1.1.2"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.1","level":"1.12.2","list_caption":"Figure: dashboard-login","alt":"dashboard-login","nro":3,"url":"./images/dashboard-login.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-login","attributes":{},"skip":false,"key":"1.12.2.1"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.2","level":"1.12.2","list_caption":"Figure: images/dashboard.png","alt":"images/dashboard.png","nro":4,"url":"images/dashboard.png","index":2,"caption_template":"图片 - _CAPTION_","label":"images/dashboard.png","attributes":{},"skip":false,"key":"1.12.2.2"},{"backlink":"09-3.metrics-server插件.html#fig1.12.3.1","level":"1.12.3","list_caption":"Figure: monitoring_architecture.png","alt":"monitoring_architecture.png","nro":5,"url":"images/monitoring_architecture.png","index":1,"caption_template":"图片 - _CAPTION_","label":"monitoring_architecture.png","attributes":{},"skip":false,"key":"1.12.3.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.1","level":"1.12.4","list_caption":"Figure: es-setting","alt":"es-setting","nro":6,"url":"./images/es-setting.png","index":1,"caption_template":"图片 - _CAPTION_","label":"es-setting","attributes":{},"skip":false,"key":"1.12.4.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.2","level":"1.12.4","list_caption":"Figure: es-home","alt":"es-home","nro":7,"url":"./images/es-home.png","index":2,"caption_template":"图片 - _CAPTION_","label":"es-home","attributes":{},"skip":false,"key":"1.12.4.2"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.1","level":"1.14","list_caption":"Figure: virtualbox-harbor","alt":"virtualbox-harbor","nro":8,"url":"./images/virtualbox-harbor.png","index":1,"caption_template":"图片 - _CAPTION_","label":"virtualbox-harbor","attributes":{},"skip":false,"key":"1.14.1"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.2","level":"1.14","list_caption":"Figure: harbor","alt":"harbor","nro":9,"url":"./images/harbo.png","index":2,"caption_template":"图片 - _CAPTION_","label":"harbor","attributes":{},"skip":false,"key":"1.14.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.1","level":"1.16","list_caption":"Figure: ssl-failed","alt":"ssl-failed","nro":10,"url":"images/ssl-failed.png","index":1,"caption_template":"图片 - _CAPTION_","label":"ssl-failed","attributes":{},"skip":false,"key":"1.16.1"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.2","level":"1.16","list_caption":"Figure: keychain","alt":"keychain","nro":11,"url":"images/keychain.png","index":2,"caption_template":"图片 - _CAPTION_","label":"keychain","attributes":{},"skip":false,"key":"1.16.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.3","level":"1.16","list_caption":"Figure: ssl-success","alt":"ssl-success","nro":12,"url":"images/ssl-success.png","index":3,"caption_template":"图片 - _CAPTION_","label":"ssl-success","attributes":{},"skip":false,"key":"1.16.3"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.4","level":"1.16","list_caption":"Figure: admin-cert","alt":"admin-cert","nro":13,"url":"images/admin-cert.png","index":4,"caption_template":"图片 - _CAPTION_","label":"admin-cert","attributes":{},"skip":false,"key":"1.16.4"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.5","level":"1.16","list_caption":"Figure: select-cert","alt":"select-cert","nro":14,"url":"images/select-cert.png","index":5,"caption_template":"图片 - _CAPTION_","label":"select-cert","attributes":{},"skip":false,"key":"1.16.5"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.6","level":"1.16","list_caption":"Figure: chrome-authored","alt":"chrome-authored","nro":15,"url":"images/chrome-authored.png","index":6,"caption_template":"图片 - _CAPTION_","label":"chrome-authored","attributes":{},"skip":false,"key":"1.16.6"}]},"title":"和我一步步部署kubernetes集群","language":"zh-cn","gitbook":"*","description":"和我一步步部署kubernetes集群"},"file":{"path":"01.系统初始化和全局变量.md","mtime":"2022-07-20T06:59:29.348Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-20T07:04:13.263Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-baidu/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

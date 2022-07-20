@@ -1,0 +1,927 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-cn" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>05.部署flannel网络 · 和我一步步部署kubernetes集群</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-tags/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="06-0.apiserver高可用之nginx代理.html" />
+    
+    
+    <link rel="prev" href="04.部署etcd集群.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">和我一步步部署 kubernetes 集群</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="00.组件版本和配置策略.html">
+            
+                <a href="00.组件版本和配置策略.html">
+            
+                    
+                    00.组件版本和配置策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01.系统初始化和全局变量.html">
+            
+                <a href="01.系统初始化和全局变量.html">
+            
+                    
+                    01.系统初始化和全局变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02.创建CA证书和秘钥.html">
+            
+                <a href="02.创建CA证书和秘钥.html">
+            
+                    
+                    02.创建CA证书和秘钥
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="03.部署kubectl命令行工具.html">
+            
+                <a href="03.部署kubectl命令行工具.html">
+            
+                    
+                    03.部署kubectl命令行工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="04.部署etcd集群.html">
+            
+                <a href="04.部署etcd集群.html">
+            
+                    
+                    04.部署etcd集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="05.部署flannel网络.html">
+            
+                <a href="05.部署flannel网络.html">
+            
+                    
+                    05.部署flannel网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="06-0.apiserver高可用之nginx代理.html">
+            
+                <a href="06-0.apiserver高可用之nginx代理.html">
+            
+                    
+                    06.apiserver高可用之nginx代理.md
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="06-1.部署master节点.html">
+            
+                <a href="06-1.部署master节点.html">
+            
+                    
+                    06-1.部署master节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="06-2.apiserver集群.html">
+            
+                <a href="06-2.apiserver集群.html">
+            
+                    
+                    06-2.apiserver集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="06-3.controller-manager集群.html">
+            
+                <a href="06-3.controller-manager集群.html">
+            
+                    
+                    06-3.controller-manager集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="06-4.scheduler集群.html">
+            
+                <a href="06-4.scheduler集群.html">
+            
+                    
+                    06-4.scheduler集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="07-0.部署worker节点.html">
+            
+                <a href="07-0.部署worker节点.html">
+            
+                    
+                    07.部署worker节点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="07-1.docker.html">
+            
+                <a href="07-1.docker.html">
+            
+                    
+                    07-1.docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="07-2.kubelet.html">
+            
+                <a href="07-2.kubelet.html">
+            
+                    
+                    07-2.kubelet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="07-3.kube-proxy.html">
+            
+                <a href="07-3.kube-proxy.html">
+            
+                    
+                    07-3.kube-proxy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="08.验证集群功能.html">
+            
+                <a href="08.验证集群功能.html">
+            
+                    
+                    08.验证集群功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="09-0.部署集群插件.html">
+            
+                <a href="09-0.部署集群插件.html">
+            
+                    
+                    09.部署集群插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="09-1.dns插件.html">
+            
+                <a href="09-1.dns插件.html">
+            
+                    
+                    09-1.dns插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="09-2.dashboard插件.html">
+            
+                <a href="09-2.dashboard插件.html">
+            
+                    
+                    09-2.dashboard插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="09-3.metrics-server插件.html">
+            
+                <a href="09-3.metrics-server插件.html">
+            
+                    
+                    09-3.metrics-server插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="09-4.EFK插件.html">
+            
+                <a href="09-4.EFK插件.html">
+            
+                    
+                    09-4.EFK插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="10.部署Docker-Registry.html">
+            
+                <a href="10.部署Docker-Registry.html">
+            
+                    
+                    10.部署Docker-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="11.部署Harbor-Registry.html">
+            
+                <a href="11.部署Harbor-Registry.html">
+            
+                    
+                    11.部署Harbor-Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="12.清理集群.html">
+            
+                <a href="12.清理集群.html">
+            
+                    
+                    12.清理集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="A.浏览器访问kube-apiserver安全端口.html">
+            
+                <a href="A.浏览器访问kube-apiserver安全端口.html">
+            
+                    
+                    A.浏览器访问apiserver安全端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="B.校验TLS证书.html">
+            
+                <a href="B.校验TLS证书.html">
+            
+                    
+                    B.校验TLS证书
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">标签集合</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="tags.html">
+            
+                <a href="tags.html">
+            
+                    
+                    标签
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本書使用 GitBook 釋出
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >05.部署flannel网络</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="05&#x90E8;&#x7F72;-flannel-&#x7F51;&#x7EDC;"><a name="05&#x90E8;&#x7F72;-flannel-&#x7F51;&#x7EDC;" class="plugin-anchor" href="#05&#x90E8;&#x7F72;-flannel-&#x7F51;&#x7EDC;"><i class="fa fa-link" aria-hidden="true"></i></a>05.&#x90E8;&#x7F72; flannel &#x7F51;&#x7EDC;</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#05&#x90E8;&#x7F72;-flannel-&#x7F51;&#x7EDC;">05.&#x90E8;&#x7F72; flannel &#x7F51;&#x7EDC;</a><ul>
+<li><a href="#&#x4E0B;&#x8F7D;&#x548C;&#x5206;&#x53D1;-flanneld-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;">&#x4E0B;&#x8F7D;&#x548C;&#x5206;&#x53D1; flanneld &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;</a></li>
+<li><a href="#&#x521B;&#x5EFA;-flannel-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;">&#x521B;&#x5EFA; flannel &#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;</a></li>
+<li><a href="#&#x5411;-etcd-&#x5199;&#x5165;&#x96C6;&#x7FA4;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;">&#x5411; etcd &#x5199;&#x5165;&#x96C6;&#x7FA4; Pod &#x7F51;&#x6BB5;&#x4FE1;&#x606F;</a></li>
+<li><a href="#&#x521B;&#x5EFA;-flanneld-&#x7684;-systemd-unit-&#x6587;&#x4EF6;">&#x521B;&#x5EFA; flanneld &#x7684; systemd unit &#x6587;&#x4EF6;</a></li>
+<li><a href="#&#x5206;&#x53D1;-flanneld-systemd-unit-&#x6587;&#x4EF6;&#x5230;&#x6240;&#x6709;&#x8282;&#x70B9;">&#x5206;&#x53D1; flanneld systemd unit &#x6587;&#x4EF6;&#x5230;<strong>&#x6240;&#x6709;&#x8282;&#x70B9;</strong></a></li>
+<li><a href="#&#x542F;&#x52A8;-flanneld-&#x670D;&#x52A1;">&#x542F;&#x52A8; flanneld &#x670D;&#x52A1;</a></li>
+<li><a href="#&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x7ED3;&#x679C;">&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x7ED3;&#x679C;</a></li>
+<li><a href="#&#x68C0;&#x67E5;&#x5206;&#x914D;&#x7ED9;&#x5404;-flanneld-&#x7684;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;">&#x68C0;&#x67E5;&#x5206;&#x914D;&#x7ED9;&#x5404; flanneld &#x7684; Pod &#x7F51;&#x6BB5;&#x4FE1;&#x606F;</a></li>
+<li><a href="#&#x68C0;&#x67E5;&#x8282;&#x70B9;-flannel-&#x7F51;&#x7EDC;&#x4FE1;&#x606F;">&#x68C0;&#x67E5;&#x8282;&#x70B9; flannel &#x7F51;&#x7EDC;&#x4FE1;&#x606F;</a></li>
+<li><a href="#&#x9A8C;&#x8BC1;&#x5404;&#x8282;&#x70B9;&#x80FD;&#x901A;&#x8FC7;-pod-&#x7F51;&#x6BB5;&#x4E92;&#x901A;">&#x9A8C;&#x8BC1;&#x5404;&#x8282;&#x70B9;&#x80FD;&#x901A;&#x8FC7; Pod &#x7F51;&#x6BB5;&#x4E92;&#x901A;</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<p>kubernetes &#x8981;&#x6C42;&#x96C6;&#x7FA4;&#x5185;&#x5404;&#x8282;&#x70B9;(&#x5305;&#x62EC; master &#x8282;&#x70B9;)&#x80FD;&#x901A;&#x8FC7; Pod &#x7F51;&#x6BB5;&#x4E92;&#x8054;&#x4E92;&#x901A;&#x3002;flannel &#x4F7F;&#x7528; vxlan &#x6280;&#x672F;&#x4E3A;&#x5404;&#x8282;&#x70B9;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x4E92;&#x901A;&#x7684; Pod &#x7F51;&#x7EDC;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x7AEF;&#x53E3;&#x4E3A; UDP 8472&#xFF08;<strong>&#x9700;&#x8981;&#x5F00;&#x653E;&#x8BE5;&#x7AEF;&#x53E3;</strong>&#xFF0C;&#x5982;&#x516C;&#x6709;&#x4E91; AWS &#x7B49;&#xFF09;&#x3002;</p>
+<p>flanneld &#x7B2C;&#x4E00;&#x6B21;&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x4ECE; etcd &#x83B7;&#x53D6;&#x914D;&#x7F6E;&#x7684; Pod &#x7F51;&#x6BB5;&#x4FE1;&#x606F;&#xFF0C;&#x4E3A;&#x672C;&#x8282;&#x70B9;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x672A;&#x4F7F;&#x7528;&#x7684;&#x5730;&#x5740;&#x6BB5;&#xFF0C;&#x7136;&#x540E;&#x521B;&#x5EFA; <code>flannedl.1</code> &#x7F51;&#x7EDC;&#x63A5;&#x53E3;&#xFF08;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x5176;&#x5B83;&#x540D;&#x79F0;&#xFF0C;&#x5982; flannel1 &#x7B49;&#xFF09;&#x3002;</p>
+<p>flannel &#x5C06;&#x5206;&#x914D;&#x7ED9;&#x81EA;&#x5DF1;&#x7684; Pod &#x7F51;&#x6BB5;&#x4FE1;&#x606F;&#x5199;&#x5165; <code>/run/flannel/docker</code> &#x6587;&#x4EF6;&#xFF0C;docker &#x540E;&#x7EED;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E; <code>docker0</code> &#x7F51;&#x6865;&#xFF0C;&#x4ECE;&#x800C;&#x4ECE;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x6BB5;&#x4E3A;&#x672C;&#x8282;&#x70B9;&#x7684;&#x6240;&#x6709; Pod &#x5BB9;&#x5668;&#x5206;&#x914D; IP&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7279;&#x6B8A;&#x6307;&#x660E;&#xFF0C;&#x672C;&#x6587;&#x6863;&#x7684;&#x6240;&#x6709;&#x64CD;&#x4F5C;<strong>&#x5747;&#x5728; zhangjun-k8s01 &#x8282;&#x70B9;&#x4E0A;&#x6267;&#x884C;</strong>&#xFF0C;&#x7136;&#x540E;&#x8FDC;&#x7A0B;&#x5206;&#x53D1;&#x6587;&#x4EF6;&#x548C;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x3002;</p>
+<h2 id="&#x4E0B;&#x8F7D;&#x548C;&#x5206;&#x53D1;-flanneld-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;"><a name="&#x4E0B;&#x8F7D;&#x548C;&#x5206;&#x53D1;-flanneld-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;" class="plugin-anchor" href="#&#x4E0B;&#x8F7D;&#x548C;&#x5206;&#x53D1;-flanneld-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E0B;&#x8F7D;&#x548C;&#x5206;&#x53D1; flanneld &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;</h2>
+<p>&#x4ECE; flannel &#x7684; <a href="https://github.com/coreos/flannel/releases" target="_blank">release &#x9875;&#x9762;</a> &#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;&#x5B89;&#x88C5;&#x5305;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token function">mkdir</span> flannel
+<span class="token function">wget</span> https://github.com/coreos/flannel/releases/download/v0.11.0/flannel-v0.11.0-linux-amd64.tar.gz
+<span class="token function">tar</span> -xzvf flannel-v0.11.0-linux-amd64.tar.gz -C flannel
+</code></pre>
+<p>&#x5206;&#x53D1;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x5230;&#x96C6;&#x7FA4;&#x6240;&#x6709;&#x8282;&#x70B9;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">scp</span> flannel/<span class="token punctuation">{</span>flanneld,mk-docker-opts.sh<span class="token punctuation">}</span> root@<span class="token variable">${node_ip}</span>:/opt/k8s/bin/
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;chmod +x /opt/k8s/bin/*&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x521B;&#x5EFA;-flannel-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;"><a name="&#x521B;&#x5EFA;-flannel-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;" class="plugin-anchor" href="#&#x521B;&#x5EFA;-flannel-&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA; flannel &#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;</h2>
+<p>flanneld &#x4ECE; etcd &#x96C6;&#x7FA4;&#x5B58;&#x53D6;&#x7F51;&#x6BB5;&#x5206;&#x914D;&#x4FE1;&#x606F;&#xFF0C;&#x800C; etcd &#x96C6;&#x7FA4;&#x542F;&#x7528;&#x4E86;&#x53CC;&#x5411; x509 &#x8BC1;&#x4E66;&#x8BA4;&#x8BC1;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4E3A; flanneld &#x751F;&#x6210;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#x3002;</p>
+<p>&#x521B;&#x5EFA;&#x8BC1;&#x4E66;&#x7B7E;&#x540D;&#x8BF7;&#x6C42;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token function">cat</span> <span class="token operator">&gt;</span> flanneld-csr.json <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+{
+  &quot;CN&quot;: &quot;flanneld&quot;,
+  &quot;hosts&quot;: [],
+  &quot;key&quot;: {
+    &quot;algo&quot;: &quot;rsa&quot;,
+    &quot;size&quot;: 2048
+  },
+  &quot;names&quot;: [
+    {
+      &quot;C&quot;: &quot;CN&quot;,
+      &quot;ST&quot;: &quot;BeiJing&quot;,
+      &quot;L&quot;: &quot;BeiJing&quot;,
+      &quot;O&quot;: &quot;k8s&quot;,
+      &quot;OU&quot;: &quot;4Paradigm&quot;
+    }
+  ]
+}
+EOF</span>
+</code></pre>
+<ul>
+<li>&#x8BE5;&#x8BC1;&#x4E66;&#x53EA;&#x4F1A;&#x88AB; kubectl &#x5F53;&#x505A; client &#x8BC1;&#x4E66;&#x4F7F;&#x7528;&#xFF0C;&#x6240;&#x4EE5; hosts &#x5B57;&#x6BB5;&#x4E3A;&#x7A7A;&#xFF1B;</li>
+</ul>
+<p>&#x751F;&#x6210;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">cfssl gencert -ca<span class="token operator">=</span>/opt/k8s/work/ca.pem <span class="token punctuation">\</span>
+  -ca-key<span class="token operator">=</span>/opt/k8s/work/ca-key.pem <span class="token punctuation">\</span>
+  -config<span class="token operator">=</span>/opt/k8s/work/ca-config.json <span class="token punctuation">\</span>
+  -profile<span class="token operator">=</span>kubernetes flanneld-csr.json <span class="token operator">|</span> cfssljson -bare flanneld
+<span class="token function">ls</span> flanneld*pem
+</code></pre>
+<p>&#x5C06;&#x751F;&#x6210;&#x7684;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#x5206;&#x53D1;&#x5230;<strong>&#x6240;&#x6709;&#x8282;&#x70B9;</strong>&#xFF08;master &#x548C; worker&#xFF09;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;mkdir -p /etc/flanneld/cert&quot;</span>
+    <span class="token function">scp</span> flanneld*.pem root@<span class="token variable">${node_ip}</span>:/etc/flanneld/cert
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x5411;-etcd-&#x5199;&#x5165;&#x96C6;&#x7FA4;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;"><a name="&#x5411;-etcd-&#x5199;&#x5165;&#x96C6;&#x7FA4;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;" class="plugin-anchor" href="#&#x5411;-etcd-&#x5199;&#x5165;&#x96C6;&#x7FA4;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5411; etcd &#x5199;&#x5165;&#x96C6;&#x7FA4; Pod &#x7F51;&#x6BB5;&#x4FE1;&#x606F;</h2>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x672C;&#x6B65;&#x9AA4;<strong>&#x53EA;&#x9700;&#x6267;&#x884C;&#x4E00;&#x6B21;</strong>&#x3002;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+etcdctl <span class="token punctuation">\</span>
+  --endpoints<span class="token operator">=</span><span class="token variable">${ETCD_ENDPOINTS}</span> <span class="token punctuation">\</span>
+  --ca-file<span class="token operator">=</span>/opt/k8s/work/ca.pem <span class="token punctuation">\</span>
+  --cert-file<span class="token operator">=</span>/opt/k8s/work/flanneld.pem <span class="token punctuation">\</span>
+  --key-file<span class="token operator">=</span>/opt/k8s/work/flanneld-key.pem <span class="token punctuation">\</span>
+  mk <span class="token variable">${FLANNEL_ETCD_PREFIX}</span>/config <span class="token string">&apos;{&quot;Network&quot;:&quot;&apos;</span><span class="token variable">${CLUSTER_CIDR}</span><span class="token string">&apos;&quot;, &quot;SubnetLen&quot;: 21, &quot;Backend&quot;: {&quot;Type&quot;: &quot;vxlan&quot;}}&apos;</span>
+</code></pre>
+<ul>
+<li>flanneld <strong>&#x5F53;&#x524D;&#x7248;&#x672C; (v0.11.0) &#x4E0D;&#x652F;&#x6301; etcd v3</strong>&#xFF0C;&#x6545;&#x4F7F;&#x7528; etcd v2 API &#x5199;&#x5165;&#x914D;&#x7F6E; key &#x548C;&#x7F51;&#x6BB5;&#x6570;&#x636E;&#xFF1B;</li>
+<li>&#x5199;&#x5165;&#x7684; Pod &#x7F51;&#x6BB5; <code>${CLUSTER_CIDR}</code> &#x5730;&#x5740;&#x6BB5;&#xFF08;&#x5982; /16&#xFF09;&#x5FC5;&#x987B;&#x5C0F;&#x4E8E; <code>SubnetLen</code>&#xFF0C;&#x5FC5;&#x987B;&#x4E0E; <code>kube-controller-manager</code> &#x7684; <code>--cluster-cidr</code> &#x53C2;&#x6570;&#x503C;&#x4E00;&#x81F4;&#xFF1B;</li>
+</ul>
+<h2 id="&#x521B;&#x5EFA;-flanneld-&#x7684;-systemd-unit-&#x6587;&#x4EF6;"><a name="&#x521B;&#x5EFA;-flanneld-&#x7684;-systemd-unit-&#x6587;&#x4EF6;" class="plugin-anchor" href="#&#x521B;&#x5EFA;-flanneld-&#x7684;-systemd-unit-&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA; flanneld &#x7684; systemd unit &#x6587;&#x4EF6;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token function">cat</span> <span class="token operator">&gt;</span> flanneld.service <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+[Unit]
+Description=Flanneld overlay address etcd agent
+After=network.target
+After=network-online.target
+Wants=network-online.target
+After=etcd.service
+Before=docker.service
+
+[Service]
+Type=notify
+ExecStart=/opt/k8s/bin/flanneld <span class="token entity" title="\\">\\</span>
+  -etcd-cafile=/etc/kubernetes/cert/ca.pem <span class="token entity" title="\\">\\</span>
+  -etcd-certfile=/etc/flanneld/cert/flanneld.pem <span class="token entity" title="\\">\\</span>
+  -etcd-keyfile=/etc/flanneld/cert/flanneld-key.pem <span class="token entity" title="\\">\\</span>
+  -etcd-endpoints=<span class="token variable">${ETCD_ENDPOINTS}</span> <span class="token entity" title="\\">\\</span>
+  -etcd-prefix=<span class="token variable">${FLANNEL_ETCD_PREFIX}</span> <span class="token entity" title="\\">\\</span>
+  -iface=<span class="token variable">${IFACE}</span> <span class="token entity" title="\\">\\</span>
+  -ip-masq
+ExecStartPost=/opt/k8s/bin/mk-docker-opts.sh -k DOCKER_NETWORK_OPTIONS -d /run/flannel/docker
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=docker.service
+EOF</span>
+</code></pre>
+<ul>
+<li><code>mk-docker-opts.sh</code> &#x811A;&#x672C;&#x5C06;&#x5206;&#x914D;&#x7ED9; flanneld &#x7684; Pod &#x5B50;&#x7F51;&#x6BB5;&#x4FE1;&#x606F;&#x5199;&#x5165; <code>/run/flannel/docker</code> &#x6587;&#x4EF6;&#xFF0C;&#x540E;&#x7EED; docker &#x542F;&#x52A8;&#x65F6;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E; docker0 &#x7F51;&#x6865;&#xFF1B;</li>
+<li>flanneld &#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x7F3A;&#x7701;&#x8DEF;&#x7531;&#x6240;&#x5728;&#x7684;&#x63A5;&#x53E3;&#x4E0E;&#x5176;&#x5B83;&#x8282;&#x70B9;&#x901A;&#x4FE1;&#xFF0C;&#x5BF9;&#x4E8E;&#x6709;&#x591A;&#x4E2A;&#x7F51;&#x7EDC;&#x63A5;&#x53E3;&#xFF08;&#x5982;&#x5185;&#x7F51;&#x548C;&#x516C;&#x7F51;&#xFF09;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x53EF;&#x4EE5;&#x7528; <code>-iface</code> &#x53C2;&#x6570;&#x6307;&#x5B9A;&#x901A;&#x4FE1;&#x63A5;&#x53E3;;</li>
+<li>flanneld &#x8FD0;&#x884C;&#x65F6;&#x9700;&#x8981; root &#x6743;&#x9650;&#xFF1B;</li>
+<li><code>-ip-masq</code>: flanneld &#x4E3A;&#x8BBF;&#x95EE; Pod &#x7F51;&#x7EDC;&#x5916;&#x7684;&#x6D41;&#x91CF;&#x8BBE;&#x7F6E; SNAT &#x89C4;&#x5219;&#xFF0C;&#x540C;&#x65F6;&#x5C06;&#x4F20;&#x9012;&#x7ED9; Docker &#x7684;&#x53D8;&#x91CF; <code>--ip-masq</code>&#xFF08;<code>/run/flannel/docker</code> &#x6587;&#x4EF6;&#x4E2D;&#xFF09;&#x8BBE;&#x7F6E;&#x4E3A; false&#xFF0C;&#x8FD9;&#x6837; Docker &#x5C06;&#x4E0D;&#x518D;&#x521B;&#x5EFA; SNAT &#x89C4;&#x5219;&#xFF1B;
+Docker &#x7684; <code>--ip-masq</code> &#x4E3A; true &#x65F6;&#xFF0C;&#x521B;&#x5EFA;&#x7684; SNAT &#x89C4;&#x5219;&#x6BD4;&#x8F83;&#x201C;&#x66B4;&#x529B;&#x201D;&#xFF1A;&#x5C06;&#x6240;&#x6709;&#x672C;&#x8282;&#x70B9; Pod &#x53D1;&#x8D77;&#x7684;&#x3001;&#x8BBF;&#x95EE;&#x975E; docker0 &#x63A5;&#x53E3;&#x7684;&#x8BF7;&#x6C42;&#x505A; SNAT&#xFF0C;&#x8FD9;&#x6837;&#x8BBF;&#x95EE;&#x5176;&#x4ED6;&#x8282;&#x70B9; Pod &#x7684;&#x8BF7;&#x6C42;&#x6765;&#x6E90; IP &#x4F1A;&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A; flannel.1 &#x63A5;&#x53E3;&#x7684; IP&#xFF0C;&#x5BFC;&#x81F4;&#x76EE;&#x7684; Pod &#x770B;&#x4E0D;&#x5230;&#x771F;&#x5B9E;&#x7684;&#x6765;&#x6E90; Pod IP&#x3002;
+flanneld &#x521B;&#x5EFA;&#x7684; SNAT &#x89C4;&#x5219;&#x6BD4;&#x8F83;&#x6E29;&#x548C;&#xFF0C;&#x53EA;&#x5BF9;&#x8BBF;&#x95EE;&#x975E; Pod &#x7F51;&#x6BB5;&#x7684;&#x8BF7;&#x6C42;&#x505A; SNAT&#x3002;</li>
+</ul>
+<h2 id="&#x5206;&#x53D1;-flanneld-systemd-unit-&#x6587;&#x4EF6;&#x5230;&#x6240;&#x6709;&#x8282;&#x70B9;"><a name="&#x5206;&#x53D1;-flanneld-systemd-unit-&#x6587;&#x4EF6;&#x5230;&#x6240;&#x6709;&#x8282;&#x70B9;" class="plugin-anchor" href="#&#x5206;&#x53D1;-flanneld-systemd-unit-&#x6587;&#x4EF6;&#x5230;&#x6240;&#x6709;&#x8282;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5206;&#x53D1; flanneld systemd unit &#x6587;&#x4EF6;&#x5230;<strong>&#x6240;&#x6709;&#x8282;&#x70B9;</strong></h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">cd</span> /opt/k8s/work
+<span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">scp</span> flanneld.service root@<span class="token variable">${node_ip}</span>:/etc/systemd/system/
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x542F;&#x52A8;-flanneld-&#x670D;&#x52A1;"><a name="&#x542F;&#x52A8;-flanneld-&#x670D;&#x52A1;" class="plugin-anchor" href="#&#x542F;&#x52A8;-flanneld-&#x670D;&#x52A1;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x542F;&#x52A8; flanneld &#x670D;&#x52A1;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;systemctl daemon-reload &amp;&amp; systemctl enable flanneld &amp;&amp; systemctl restart flanneld&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<h2 id="&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x7ED3;&#x679C;"><a name="&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x7ED3;&#x679C;" class="plugin-anchor" href="#&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x7ED3;&#x679C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x7ED3;&#x679C;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> root@<span class="token variable">${node_ip}</span> <span class="token string">&quot;systemctl status flanneld|grep Active&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<p>&#x786E;&#x4FDD;&#x72B6;&#x6001;&#x4E3A; <code>active (running)</code>&#xFF0C;&#x5426;&#x5219;&#x67E5;&#x770B;&#x65E5;&#x5FD7;&#xFF0C;&#x786E;&#x8BA4;&#x539F;&#x56E0;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">journalctl -u flanneld
+</code></pre>
+<h2 id="&#x68C0;&#x67E5;&#x5206;&#x914D;&#x7ED9;&#x5404;-flanneld-&#x7684;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;"><a name="&#x68C0;&#x67E5;&#x5206;&#x914D;&#x7ED9;&#x5404;-flanneld-&#x7684;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;" class="plugin-anchor" href="#&#x68C0;&#x67E5;&#x5206;&#x914D;&#x7ED9;&#x5404;-flanneld-&#x7684;-pod-&#x7F51;&#x6BB5;&#x4FE1;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5;&#x5206;&#x914D;&#x7ED9;&#x5404; flanneld &#x7684; Pod &#x7F51;&#x6BB5;&#x4FE1;&#x606F;</h2>
+<p>&#x67E5;&#x770B;&#x96C6;&#x7FA4; Pod &#x7F51;&#x6BB5;(/16)&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+etcdctl <span class="token punctuation">\</span>
+  --endpoints<span class="token operator">=</span><span class="token variable">${ETCD_ENDPOINTS}</span> <span class="token punctuation">\</span>
+  --ca-file<span class="token operator">=</span>/etc/kubernetes/cert/ca.pem <span class="token punctuation">\</span>
+  --cert-file<span class="token operator">=</span>/etc/flanneld/cert/flanneld.pem <span class="token punctuation">\</span>
+  --key-file<span class="token operator">=</span>/etc/flanneld/cert/flanneld-key.pem <span class="token punctuation">\</span>
+  get <span class="token variable">${FLANNEL_ETCD_PREFIX}</span>/config
+</code></pre>
+<p>&#x8F93;&#x51FA;&#xFF1A;</p>
+<p><code>{&quot;Network&quot;:&quot;172.30.0.0/16&quot;, &quot;SubnetLen&quot;: 21, &quot;Backend&quot;: {&quot;Type&quot;: &quot;vxlan&quot;}}</code></p>
+<p>&#x67E5;&#x770B;&#x5DF2;&#x5206;&#x914D;&#x7684; Pod &#x5B50;&#x7F51;&#x6BB5;&#x5217;&#x8868;(/24):</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+etcdctl <span class="token punctuation">\</span>
+  --endpoints<span class="token operator">=</span><span class="token variable">${ETCD_ENDPOINTS}</span> <span class="token punctuation">\</span>
+  --ca-file<span class="token operator">=</span>/etc/kubernetes/cert/ca.pem <span class="token punctuation">\</span>
+  --cert-file<span class="token operator">=</span>/etc/flanneld/cert/flanneld.pem <span class="token punctuation">\</span>
+  --key-file<span class="token operator">=</span>/etc/flanneld/cert/flanneld-key.pem <span class="token punctuation">\</span>
+  <span class="token function">ls</span> <span class="token variable">${FLANNEL_ETCD_PREFIX}</span>/subnets
+</code></pre>
+<p>&#x8F93;&#x51FA;&#xFF08;&#x7ED3;&#x679C;&#x89C6;&#x90E8;&#x7F72;&#x60C5;&#x51B5;&#x800C;&#x5B9A;&#xFF09;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash">/kubernetes/network/subnets/172.30.80.0-21
+/kubernetes/network/subnets/172.30.32.0-21
+/kubernetes/network/subnets/172.30.184.0-21
+</code></pre>
+<p>&#x67E5;&#x770B;&#x67D0;&#x4E00; Pod &#x7F51;&#x6BB5;&#x5BF9;&#x5E94;&#x7684;&#x8282;&#x70B9; IP &#x548C; flannel &#x63A5;&#x53E3;&#x5730;&#x5740;:</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+etcdctl <span class="token punctuation">\</span>
+  --endpoints<span class="token operator">=</span><span class="token variable">${ETCD_ENDPOINTS}</span> <span class="token punctuation">\</span>
+  --ca-file<span class="token operator">=</span>/etc/kubernetes/cert/ca.pem <span class="token punctuation">\</span>
+  --cert-file<span class="token operator">=</span>/etc/flanneld/cert/flanneld.pem <span class="token punctuation">\</span>
+  --key-file<span class="token operator">=</span>/etc/flanneld/cert/flanneld-key.pem <span class="token punctuation">\</span>
+  get <span class="token variable">${FLANNEL_ETCD_PREFIX}</span>/subnets/172.30.80.0-21
+</code></pre>
+<p>&#x8F93;&#x51FA;&#xFF08;&#x7ED3;&#x679C;&#x89C6;&#x90E8;&#x7F72;&#x60C5;&#x51B5;&#x800C;&#x5B9A;&#xFF09;&#xFF1A;</p>
+<p><code>{&quot;PublicIP&quot;:&quot;172.27.137.240&quot;,&quot;BackendType&quot;:&quot;vxlan&quot;,&quot;BackendData&quot;:{&quot;VtepMAC&quot;:&quot;ce:9c:a9:08:50:03&quot;}}</code></p>
+<ul>
+<li>172.30.80.0/21 &#x88AB;&#x5206;&#x914D;&#x7ED9;&#x8282;&#x70B9; zhangjun-k8s01&#xFF08;172.27.137.240&#xFF09;&#xFF1B;</li>
+<li>VtepMAC &#x4E3A; zhangjun-k8s01 &#x8282;&#x70B9;&#x7684; flannel.1 &#x7F51;&#x5361; MAC &#x5730;&#x5740;&#xFF1B;</li>
+</ul>
+<h2 id="&#x68C0;&#x67E5;&#x8282;&#x70B9;-flannel-&#x7F51;&#x7EDC;&#x4FE1;&#x606F;"><a name="&#x68C0;&#x67E5;&#x8282;&#x70B9;-flannel-&#x7F51;&#x7EDC;&#x4FE1;&#x606F;" class="plugin-anchor" href="#&#x68C0;&#x67E5;&#x8282;&#x70B9;-flannel-&#x7F51;&#x7EDC;&#x4FE1;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5;&#x8282;&#x70B9; flannel &#x7F51;&#x7EDC;&#x4FE1;&#x606F;</h2>
+<pre class="language-"><code class="lang-bash"><span class="token punctuation">[</span>root@zhangjun-k8s01 work<span class="token punctuation">]</span><span class="token comment"># ip addr show</span>
+<span class="token number">1</span>: lo: <span class="token operator">&lt;</span>LOOPBACK,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="token number">1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet <span class="token number">127.0</span>.0.1/8 scope <span class="token function">host</span> lo
+       valid_lft forever preferred_lft forever
+<span class="token number">2</span>: eth0: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc pfifo_fast state UP group default qlen <span class="token number">1000</span>
+    link/ether 00:22:0d:33:89:75 brd ff:ff:ff:ff:ff:ff
+    inet <span class="token number">172.27</span>.137.240/20 brd <span class="token number">172.27</span>.143.255 scope global dynamic eth0
+       valid_lft 100647283sec preferred_lft 100647283sec
+<span class="token number">3</span>: flannel.1: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1450</span> qdisc noqueue state UNKNOWN group default
+    link/ether ce:9c:a9:08:50:03 brd ff:ff:ff:ff:ff:ff
+    inet <span class="token number">172.30</span>.80.0/32 scope global flannel.1
+       valid_lft forever preferred_lft forever
+</code></pre>
+<ul>
+<li>flannel.1 &#x7F51;&#x5361;&#x7684;&#x5730;&#x5740;&#x4E3A;&#x5206;&#x914D;&#x7684; Pod &#x5B50;&#x7F51;&#x6BB5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A; IP&#xFF08;.0&#xFF09;&#xFF0C;&#x4E14;&#x662F; /32 &#x7684;&#x5730;&#x5740;&#xFF1B;</li>
+</ul>
+<pre class="language-"><code class="lang-bash"><span class="token punctuation">[</span>root@zhangjun-k8s01 work<span class="token punctuation">]</span><span class="token comment"># ip route show |grep flannel.1</span>
+<span class="token number">172.30</span>.32.0/21 via <span class="token number">172.30</span>.32.0 dev flannel.1 onlink
+<span class="token number">172.30</span>.184.0/21 via <span class="token number">172.30</span>.184.0 dev flannel.1 onlink
+</code></pre>
+<ul>
+<li>&#x5230;&#x5176;&#x5B83;&#x8282;&#x70B9; Pod &#x7F51;&#x6BB5;&#x8BF7;&#x6C42;&#x90FD;&#x88AB;&#x8F6C;&#x53D1;&#x5230; flannel.1 &#x7F51;&#x5361;&#xFF1B;</li>
+<li>flanneld &#x6839;&#x636E; etcd &#x4E2D;&#x5B50;&#x7F51;&#x6BB5;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5982; <code>${FLANNEL_ETCD_PREFIX}/subnets/172.30.80.0-21</code> &#xFF0C;&#x6765;&#x51B3;&#x5B9A;&#x8FDB;&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x7ED9;&#x54EA;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x4E92;&#x8054; IP&#xFF1B;</li>
+</ul>
+<h2 id="&#x9A8C;&#x8BC1;&#x5404;&#x8282;&#x70B9;&#x80FD;&#x901A;&#x8FC7;-pod-&#x7F51;&#x6BB5;&#x4E92;&#x901A;"><a name="&#x9A8C;&#x8BC1;&#x5404;&#x8282;&#x70B9;&#x80FD;&#x901A;&#x8FC7;-pod-&#x7F51;&#x6BB5;&#x4E92;&#x901A;" class="plugin-anchor" href="#&#x9A8C;&#x8BC1;&#x5404;&#x8282;&#x70B9;&#x80FD;&#x901A;&#x8FC7;-pod-&#x7F51;&#x6BB5;&#x4E92;&#x901A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9A8C;&#x8BC1;&#x5404;&#x8282;&#x70B9;&#x80FD;&#x901A;&#x8FC7; Pod &#x7F51;&#x6BB5;&#x4E92;&#x901A;</h2>
+<p>&#x5728;<strong>&#x5404;&#x8282;&#x70B9;&#x4E0A;&#x90E8;&#x7F72;</strong> flannel &#x540E;&#xFF0C;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x521B;&#x5EFA;&#x4E86; flannel &#x63A5;&#x53E3;(&#x540D;&#x79F0;&#x53EF;&#x80FD;&#x4E3A; flannel0&#x3001;flannel.0&#x3001;flannel.1 &#x7B49;)&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> <span class="token variable">${node_ip}</span> <span class="token string">&quot;/usr/sbin/ip addr show flannel.1|grep -w inet&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<p>&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token number">172.27</span>.137.240
+    inet <span class="token number">172.30</span>.80.0/32 scope global flannel.1
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token number">172.27</span>.137.239
+    inet <span class="token number">172.30</span>.32.0/32 scope global flannel.1
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token number">172.27</span>.137.238
+    inet <span class="token number">172.30</span>.184.0/32 scope global flannel.1
+</code></pre>
+<p>&#x5728;&#x5404;&#x8282;&#x70B9;&#x4E0A; ping &#x6240;&#x6709; flannel &#x63A5;&#x53E3; IP&#xFF0C;&#x786E;&#x4FDD;&#x80FD;&#x901A;&#xFF1A;</p>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">source</span> /opt/k8s/bin/environment.sh
+<span class="token keyword">for</span> <span class="token for-or-select variable">node_ip</span> <span class="token keyword">in</span> <span class="token variable">${NODE_IPS<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>
+  <span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;&gt;&gt;&gt; <span class="token variable">${node_ip}</span>&quot;</span>
+    <span class="token function">ssh</span> <span class="token variable">${node_ip}</span> <span class="token string">&quot;ping -c 1 172.30.80.0&quot;</span>
+    <span class="token function">ssh</span> <span class="token variable">${node_ip}</span> <span class="token string">&quot;ping -c 1 172.30.32.0&quot;</span>
+    <span class="token function">ssh</span> <span class="token variable">${node_ip}</span> <span class="token string">&quot;ping -c 1 172.30.184.0&quot;</span>
+  <span class="token keyword">done</span>
+</code></pre>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> zhangjun </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6700;&#x540E;&#x66F4;&#x65B0;&#xFF1A; 2022-07-20 14:59:29 </span> </footer><!-- tags --><div id="tags" class="tags"><p><i class="fa fa-tags" aria-hidden="true"></i> <a href="tags.html#flanneld">flanneld</a></p></div><!-- tagsstop -->
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="04.部署etcd集群.html" class="navigation navigation-prev " aria-label="Previous page: 04.部署etcd集群">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="06-0.apiserver高可用之nginx代理.html" class="navigation navigation-next " aria-label="Next page: 06.apiserver高可用之nginx代理.md">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"05.部署flannel网络","level":"1.7","depth":1,"next":{"title":"06.apiserver高可用之nginx代理.md","level":"1.8","depth":1,"path":"06-0.apiserver高可用之nginx代理.md","ref":"06-0.apiserver高可用之nginx代理.md","articles":[]},"previous":{"title":"04.部署etcd集群","level":"1.6","depth":1,"path":"04.部署etcd集群.md","ref":"04.部署etcd集群.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","anchors","disqus","github","editlink","prism","-highlight","-lunr","-search","search-plus","baidu","codesnippet","splitter","page-toc-button","image-captions","page-footer-ex","tags","multipart"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"knowl"},"github":{"url":"https://github.com/opsnull/follow-me-install-kubernetes-cluster"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/"},"page-footer-ex":{"copyright":"zhangjun","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"最后更新："},"splitter":{},"multipart":{},"codesnippet":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sitemap":{"hostname":"http://k8s.opsnull.com"},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"tags":{"placement":"bottom"},"baidu":{"token":"18c1967ba7abeaf5be1330bb512f0617"},"sharing":{"facebook":true,"twitter":true,"google":true,"weibo":true,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"expandable-chapters":{},"search-plus":{},"image-captions":{"caption":"图片 - _CAPTION_","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":11,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"index.html#fig1.1.1","level":"1.1","list_caption":"Figure: dashboard-home","alt":"dashboard-home","nro":1,"url":"./images/dashboard-home.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-home","attributes":{},"skip":false,"key":"1.1.1"},{"backlink":"index.html#fig1.1.2","level":"1.1","list_caption":"Figure: kubeoperator-ui","alt":"kubeoperator-ui","nro":2,"url":"https://raw.githubusercontent.com/KubeOperator/website/master/images/kubeoperator-ui.jpg","index":2,"caption_template":"图片 - _CAPTION_","label":"kubeoperator-ui","attributes":{},"skip":false,"key":"1.1.2"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.1","level":"1.12.2","list_caption":"Figure: dashboard-login","alt":"dashboard-login","nro":3,"url":"./images/dashboard-login.png","index":1,"caption_template":"图片 - _CAPTION_","label":"dashboard-login","attributes":{},"skip":false,"key":"1.12.2.1"},{"backlink":"09-2.dashboard插件.html#fig1.12.2.2","level":"1.12.2","list_caption":"Figure: images/dashboard.png","alt":"images/dashboard.png","nro":4,"url":"images/dashboard.png","index":2,"caption_template":"图片 - _CAPTION_","label":"images/dashboard.png","attributes":{},"skip":false,"key":"1.12.2.2"},{"backlink":"09-3.metrics-server插件.html#fig1.12.3.1","level":"1.12.3","list_caption":"Figure: monitoring_architecture.png","alt":"monitoring_architecture.png","nro":5,"url":"images/monitoring_architecture.png","index":1,"caption_template":"图片 - _CAPTION_","label":"monitoring_architecture.png","attributes":{},"skip":false,"key":"1.12.3.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.1","level":"1.12.4","list_caption":"Figure: es-setting","alt":"es-setting","nro":6,"url":"./images/es-setting.png","index":1,"caption_template":"图片 - _CAPTION_","label":"es-setting","attributes":{},"skip":false,"key":"1.12.4.1"},{"backlink":"09-4.EFK插件.html#fig1.12.4.2","level":"1.12.4","list_caption":"Figure: es-home","alt":"es-home","nro":7,"url":"./images/es-home.png","index":2,"caption_template":"图片 - _CAPTION_","label":"es-home","attributes":{},"skip":false,"key":"1.12.4.2"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.1","level":"1.14","list_caption":"Figure: virtualbox-harbor","alt":"virtualbox-harbor","nro":8,"url":"./images/virtualbox-harbor.png","index":1,"caption_template":"图片 - _CAPTION_","label":"virtualbox-harbor","attributes":{},"skip":false,"key":"1.14.1"},{"backlink":"11.部署Harbor-Registry.html#fig1.14.2","level":"1.14","list_caption":"Figure: harbor","alt":"harbor","nro":9,"url":"./images/harbo.png","index":2,"caption_template":"图片 - _CAPTION_","label":"harbor","attributes":{},"skip":false,"key":"1.14.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.1","level":"1.16","list_caption":"Figure: ssl-failed","alt":"ssl-failed","nro":10,"url":"images/ssl-failed.png","index":1,"caption_template":"图片 - _CAPTION_","label":"ssl-failed","attributes":{},"skip":false,"key":"1.16.1"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.2","level":"1.16","list_caption":"Figure: keychain","alt":"keychain","nro":11,"url":"images/keychain.png","index":2,"caption_template":"图片 - _CAPTION_","label":"keychain","attributes":{},"skip":false,"key":"1.16.2"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.3","level":"1.16","list_caption":"Figure: ssl-success","alt":"ssl-success","nro":12,"url":"images/ssl-success.png","index":3,"caption_template":"图片 - _CAPTION_","label":"ssl-success","attributes":{},"skip":false,"key":"1.16.3"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.4","level":"1.16","list_caption":"Figure: admin-cert","alt":"admin-cert","nro":13,"url":"images/admin-cert.png","index":4,"caption_template":"图片 - _CAPTION_","label":"admin-cert","attributes":{},"skip":false,"key":"1.16.4"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.5","level":"1.16","list_caption":"Figure: select-cert","alt":"select-cert","nro":14,"url":"images/select-cert.png","index":5,"caption_template":"图片 - _CAPTION_","label":"select-cert","attributes":{},"skip":false,"key":"1.16.5"},{"backlink":"A.浏览器访问kube-apiserver安全端口.html#fig1.16.6","level":"1.16","list_caption":"Figure: chrome-authored","alt":"chrome-authored","nro":15,"url":"images/chrome-authored.png","index":6,"caption_template":"图片 - _CAPTION_","label":"chrome-authored","attributes":{},"skip":false,"key":"1.16.6"}]},"title":"和我一步步部署kubernetes集群","language":"zh-cn","gitbook":"*","description":"和我一步步部署kubernetes集群"},"file":{"path":"05.部署flannel网络.md","mtime":"2022-07-20T06:59:29.349Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-20T07:04:13.263Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-baidu/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
