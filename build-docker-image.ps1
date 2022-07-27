@@ -6,4 +6,4 @@ docker push wangjie0303/docs:lastest
 
 docker stop docs
 docker rm docs
-docker run -P -d --name docs wangjie0303/docs:lastest
+docker run -p 8500:80 -d --name docs wangjie0303/docs:lastest
