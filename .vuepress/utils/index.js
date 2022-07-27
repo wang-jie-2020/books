@@ -224,6 +224,7 @@ const sideBarTool = {
             }
         })
 
+        console.log(sidebars)
         return sidebars
     }
 }

@@ -12,6 +12,7 @@ let SuffixIncludes = ['md', 'html']
 //使用方法生生成侧边栏
 
 let sidebar = sideBarTool.genSideBarGroupRecursion(path.join(rootPath, 'docs/'), path.join(rootPath, 'docs/'), unDirIncludes, SuffixIncludes, {})
+let sidebar2 = sideBarTool.genSideBarGroupRecursion(path.join(rootPath, 'docs-java/'), path.join(rootPath, 'docs-java/'), unDirIncludes, SuffixIncludes, {})
 
 module.exports = {
     title: '📖Documents',
@@ -82,14 +83,14 @@ module.exports = {
             }
         },
         //[
-            // 评论
-            // '@vssue/vuepress-plugin-vssue', {
-            //     platform: 'github',
-            //     owner: 'Meowv',
-            //     repo: 'docs',
-            //     clientId: 'dfcb3e4078504d07ccbf',
-            //     clientSecret: 'f182d64e6d5063e0b137c0d039d4a99a5cebda00',
-            // }
+        // 评论
+        // '@vssue/vuepress-plugin-vssue', {
+        //     platform: 'github',
+        //     owner: 'Meowv',
+        //     repo: 'docs',
+        //     clientId: 'dfcb3e4078504d07ccbf',
+        //     clientSecret: 'f182d64e6d5063e0b137c0d039d4a99a5cebda00',
+        // }
         //],
         [
             "vuepress-plugin-code-copy", {
@@ -120,7 +121,7 @@ module.exports = {
         editLinks: true,
         editLinkText: '在 GitHub 上编辑此页',
         lastUpdated: '上次更新',
-        sidebarDepth: 1,
+        sidebarDepth: 2,
         smoothScroll: true,
         nav: [
             {
@@ -141,6 +142,10 @@ module.exports = {
                     {
                         text: 'install-kubernetes-cluster',
                         link: '/follow-me-install-kubernetes-cluster/'
+                    },
+                    {
+                        text: 'docs-java',
+                        link: '/docs-java/'
                     }
                 ]
             },
@@ -156,6 +161,7 @@ module.exports = {
         ],
         sidebar: {
             '/docs/': sidebar,
+            '/docs-java/': sidebar2,
             '/docs-funtl/': '',
             '/docs-meowv/': [
                 {
