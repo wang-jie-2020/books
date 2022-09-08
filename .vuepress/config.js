@@ -144,6 +144,10 @@ module.exports = {
                         link: '/follow-me-install-kubernetes-cluster/'
                     },
                     {
+                        text: 'Designing and Deploying Microservices',
+                        link: '/Designing and Deploying Microservices/'
+                    },
+                    {
                         text: 'docs-java',
                         link: '/docs-java/'
                     }
@@ -162,7 +166,6 @@ module.exports = {
         sidebar: {
             '/docs/': sidebar,
             '/docs-java/': sidebar2,
-            '/docs-funtl/': '',
             '/docs-meowv/': [
                 {
                     title: '.NET Core',
